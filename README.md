@@ -1,19 +1,14 @@
 # react-brandywine-editor
 
-[![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
 [npm]: https://www.npmjs.org/package/npm-package
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
 
-A WYSIWYG-like block editor for creating blogging content. Try it out on [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq), or see a [live sample](www.alecng.ca) of some content produced and rendered with this editor.
+A WYSIWYG-like block editor for creating blogging content. Try it out on [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or clone the repo and run `npm run start`.
+
+A live sample of some content produced and rendered with this editor is coming soon!
 
 - drag and drop UX
 - easily extensible plugin architecture
@@ -61,8 +56,6 @@ export default function BlockEditor(props) {
 See the documentation on [plugins](/plugins.md) for more details.
 
 ### API
-
----
 
 | name                  | description                                                                                          | type                       | required                                        |
 | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------- |
