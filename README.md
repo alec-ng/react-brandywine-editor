@@ -21,39 +21,11 @@ A live sample of some content produced and rendered with this editor is coming s
 
 `npm install --save react-brandywine-editor`
 
-```javascript
-import "react-brandywine-editor/styles.css";
-import Editor from 'react-brandywine-editor';
-
-// Import whatever plugins you want to work with or show
-import Image from "react-brandywine-editor/plugins/image/index";
-import Markdown from "react-brandywine-editor/plugins/markdown/index";
-import CoverPhoto from "react-brandywine-editor/plugins/cover-photo/index";
-import Spacer from "react-brandywine-editor/plugins/spacer/index";
-import Carousel from "react-brandywine-editor/plugins/carousel/index";
-import Video from "react-brandywine-editor/plugins/video/index";
-
-import React from 'react';
-
-const plugins = [Image, Markdown, CoverPhoto, Spacer, Carousel, Video];
-
-export default function BlockEditor(props) {
-	function onEditorChange(header, blocks) {
-		// save this somewhere
-	}
-
-	return (
-		<BrandywineEditor
-			plugins={plugins}
-			onChange={onEditorChange}
-		/>
-);
-
-```
+See the [demo source file](/demo/src/index.js) to get started.
 
 ### Creating Your Own Plugins
 
-See the documentation on [plugins](/plugins.md) for more details.
+See the documentation on [plugins](/docs/plugins.md) for more details.
 
 ### API
 
