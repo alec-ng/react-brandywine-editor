@@ -2,6 +2,10 @@
 
 The editor builds up content using **blocks**. Blocks are _instances_ of **plugins**, which are generic blueprints for editor components. Plugins can pre-define a list of **attributes** that allow users to input data for each block, which is used to dynamically render or decide content to show.
 
+### Examples
+
+react-brandywine-editor comes shipped with a number of [pre-written plugins](/src/plugins) whose source code is available to use as a template.
+
 ### Plugin Definition
 
 A plugin is defined by an object and contains the following key-values:
@@ -115,10 +119,10 @@ Here are some examples of each element:
 
 ```javascript
 {
-    name: "urlSource",
-    label: "URL",
-    element: "input",
-    type: "text"
+  name: "urlSource",
+  label: "URL",
+  element: "input",
+  type: "text"
 }
 ```
 
@@ -147,7 +151,7 @@ Here are some examples of each element:
   name: "source",
   label: "Source",
   element: "textarea",
-rows: 5
+  rows: 5
 }
 ```
 
@@ -156,6 +160,8 @@ Note the following:
 - Base Attributes and Variation attributes can share the same name
   - (baseAttr.name1 + variationAttr.name1 is fine, as well as variation1Attr.name1 + variation2Attr.name1)
 
-# Quickstart
+### Styling
 
-The package comes shipped with a number of pre-written plugins whose source code is available to use as a template.
+The default plugins shipped with this library use a set of namespaced CSS classes to handle element widths. 
+If you build custom plugins that coexist with the default set, or you would like a set of helper classes
+to standardize block sizing, check out the stylesheet [here](/src/styles.css).
