@@ -7,7 +7,7 @@ export const VARIATION_CAPTION = "image_caption";
 
 export function ImageElement(props) {
   const imgSize = props.baseAttrs.size || DEFAULT_SIZE;
-  const sizeClassName = `scrapbookeditor-width_${imgSize}`;
+  const sizeClassName = `brandywine-width_${imgSize}`;
 
   function Variation() {
     // isolate attributes for current variations only

@@ -74,7 +74,7 @@ export function CarouselElement(props) {
     );
   }
 
-  let sizeClassName = `scrapbookeditor-width_${props.baseAttrs.size}`;
+  let sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
 
   return (
     <React.Fragment>

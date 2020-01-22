@@ -1,7 +1,7 @@
 {
-  "name": "react-block-content-editor",
+  "name": "react-brandywine-editor",
   "version": "1.0.0",
-  "description": "react-block-content-editor React component",
+  "description": "A React block editor for creating rich media content, featuring a highly extensible plugin architecture",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -43,6 +43,9 @@
   "license": "MIT",
   "repository": "",
   "keywords": [
-    "react-component"
+    "react-component",
+    "WYSIWYG",
+    "editor",
+    "block-editor"
   ]
 }
