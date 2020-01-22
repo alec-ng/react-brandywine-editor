@@ -56,22 +56,20 @@ Example -
 ```javascript
 variations: [
   {
-    VARIATION_DEFAULT: {
-      label: "Default",
-      attrs: [] ,
-    }
-  },
+    name: 'variation_default',
+    label: "Default",
+    attrs: [] ,
+  }
   {
-    VARIATION_LARGE: {
-      label: "Large Size",
-      attrs: [
-        {
-          name: "size_percentage",
-          label: "SIze (%)",
-          type: "number"
-        }
-      ]
-    }
+    name: 'variation_large',
+    label: 'Large Size',
+    attrs: [
+      {
+        name: "size_percentage",
+        label: "SIze (%)",
+        type: "number"
+      }
+    ]
   }
 ],
 ```
@@ -159,6 +157,8 @@ Note the following:
 
 - Base Attributes and Variation attributes can share the same name
   - (baseAttr.name1 + variationAttr.name1 is fine, as well as variation1Attr.name1 + variation2Attr.name1)
+- A plugin does not have to define any base attributes
+- Variations also do not have to define any attributes
 
 ### Styling
 
