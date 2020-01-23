@@ -47,7 +47,7 @@ export default function Toolbar(props) {
   ));
 
   return (
-    <div style={{ minHeight: "100%" }}>
+    <div>
       <section className="p-1">
         <Accordion title="Page Header">
           <PageHeaderControls />

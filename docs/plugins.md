@@ -11,6 +11,8 @@ react-brandywine-editor comes shipped with a number of [pre-written plugins](/sr
 A plugin is defined by an object and contains the following key-values:
 
 ```javascript
+const VARIATION_FULL_WIDTH = 'variation_full_width';
+
 const myPlugin = {
   // *Required: API name of the plugin. Must be unique when loading other plugins or previously saved data
   name: "image",
@@ -30,14 +32,13 @@ const myPlugin = {
   // *Required:  Different versions of the plugin. Each variation name must be unique
   variations: [
     {
-      Full_Width_Variation: {
-        label: "Full Width",
-        attrs: []
-      }
+      name: VARIATION_FULL_WIDTH,
+      label: "Full Width",
+      attrs: []
     }
   ],
   // *Required: Each plugin instance must be associated with a variation
-  defaultVariation: "Full_Width_Variation"
+  defaultVariation: VARIATION_FULL_WIDTH
 };
 ```
 
@@ -93,10 +94,10 @@ An attribute is minimally defined by an object with the following keys:
 
 ```javascript
 {
-	name: 'attribute_name', // unique API name of the attribute, unique across the attribute group (base or variation)
-	label: 'My Attribute',
-	element: 'input' // type of form element auto generated
-}
+  name: 'attribute_name', // api name of the attribute, unique across the attribute group (base or variation)
+  label: 'My Attribute',
+  element: 'input' // type of form element auto generated
+  }
 ```
 
 The following attribute elements are supported:

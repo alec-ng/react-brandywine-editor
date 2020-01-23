@@ -16,7 +16,7 @@ describe('block reducer', () => {
       } 
     };
     let newState = MainReducer(state, action);
-    expect(newState).toExist();
+    expect(newState.blocks.length).toBe(1);
   });
 
 });
