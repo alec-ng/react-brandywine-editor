@@ -97,27 +97,34 @@ export function CarouselElement(props) {
       {imgList.length === 0 ? (
         <NoItemsMessage />
       ) : (
-        <div className={sizeClassName} style={{ margin: "0 auto" }}>
-          <ItemsCarousel
-            infiniteLoop={false}
-            gutter={12}
-            activePosition={"center"}
-            chevronWidth={60}
-            disableSwipe={false}
-            alwaysShowChevrons={false}
-            numberOfCards={numCards}
-            slidesToScroll={1}
-            outsideChevron={false}
-            showSlither={true}
-            firstAndLastGutter={false}
-            requestToChangeActive={setActiveItemIndex}
-            activeItemIndex={activeItemIndex}
-            leftChevron={<ChevronButton>{"<"}</ChevronButton>}
-            rightChevron={<ChevronButton>{">"}</ChevronButton>}
-          >
-            {imgList}
-          </ItemsCarousel>
-        </div>
+        <React.Fragment>
+          <div className={sizeClassName} style={{ margin: "0 auto" }}>
+            <ItemsCarousel
+              infiniteLoop={false}
+              gutter={12}
+              activePosition={"center"}
+              chevronWidth={60}
+              disableSwipe={false}
+              alwaysShowChevrons={false}
+              numberOfCards={numCards}
+              slidesToScroll={1}
+              outsideChevron={false}
+              showSlither={true}
+              firstAndLastGutter={false}
+              requestToChangeActive={setActiveItemIndex}
+              activeItemIndex={activeItemIndex}
+              leftChevron={<ChevronButton>{"<"}</ChevronButton>}
+              rightChevron={<ChevronButton>{">"}</ChevronButton>}
+            >
+              {imgList}
+            </ItemsCarousel>
+          </div>
+          {props.baseAttrs.caption && 
+            <div className={`${sizeClassName} text-center mx-auto`}>
+              <h6 className="mt-3 mb-0 mx-5">{props.baseAttrs.caption}</h6>
+            </div>  
+          }
+        </React.Fragment>
       )}
     </React.Fragment>
   );
