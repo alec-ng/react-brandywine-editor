@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly, isTablet } from "react-device-detect";
 import ItemsCarousel from "react-items-carousel";
 import styled from "styled-components";
 
@@ -9,7 +9,7 @@ export const VARIATION_DEFAULT = "carousel_default";
 const NUM_CARDS_MOBILE = 1;
 
 const CarouselImage = styled.div`
-  height: ${props => props.height}px;
+  height: ${props => props.height};
   background: url(${props => props.urlSource});
   background-position: center;
   background-repeat: no-repeat;
@@ -33,21 +33,37 @@ const ChevronButton = styled.button`
   }
 `;
 
+const maxSizes = {
+  mobile: '300px',
+  tablet: '450px'
+};
+
 export function CarouselElement(props) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
 
   // determine how many cards to show at once
-  let numCards = isMobile
+  let numCards = isMobileOnly
     ? NUM_CARDS_MOBILE
     : props.baseAttrs.numCards > 0
     ? props.baseAttrs.numCards
     : DEFAULT_NUM_CARDS;
+
+  // one-time calculation of max height depending on device being used
+  let responsiveHeight;
+  if (isMobileOnly && props.baseAttrs.height > maxSizes.mobile) {
+    responsiveHeight = maxSizes.mobile;
+  } else if (isTablet && props.baseAttrs.height > maxSizes.tablet) {
+    responsiveHeight = maxSizes.tablet;
+  } else {
+    responsiveHeight = `${props.baseAttrs.height}px`;
+  }
 
   // Generate images from attribute
   let imgList = [];
   let urlSources = props.baseAttrs.urlSources
     ? props.baseAttrs.urlSources.split("\n")
     : "";
+
   if (urlSources && urlSources[0]) {
     let key = 0;
     urlSources.forEach(url => {
@@ -56,7 +72,7 @@ export function CarouselElement(props) {
           <CarouselImage
             key={key}
             urlSource={url}
-            height={props.baseAttrs.height}
+            height={responsiveHeight}
           />
         );
         key++;

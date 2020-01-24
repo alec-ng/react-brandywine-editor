@@ -1,7 +1,7 @@
 import React from "react";
 import PlaceholderImgURL from "./placeholder.jpg";
 
-const DEFAULT_SIZE = "medium";
+const DEFAULT_SIZE = "large";
 export const VARIATION_DEFAULT = "image_default";
 export const VARIATION_CAPTION = "image_caption";
 
