@@ -31,13 +31,12 @@ See the documentation on [plugins](/docs/plugins.md) for more details.
 
 | name                  | description                                                                                          | type                       | required                                        |
 | --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------- |
-| pageData              | default editor data loaded                                                                           | {header, blocks}           |                                                 |
+| pageData              | default editor data loaded                                                                           | {header, blocks}           | -                                               |
 | onSave                | renders a save button on the toolbar that, when clicked, executes this callback with the editor data | function({header, blocks}) | One of onSave or onChange if `readOnly = false` |
 | onChange              | fires on every change                                                                                | function(header,blocks){}  | One of onSave or onChange if `readOnly = false` |
 | readOnly              | if true, applies read-only styles to content and does not render the toolbar or editing canvas       | boolean                    | default `false`                                 |
 | plugins               | list of plugins you want to work with in editor mode or need to render according to `pageData`       | []                         | yes                                             |
 | showPluginDescription | show descriptive text beside plugins in editor mode                                                  | boolean                    | default `true`                                  |
-| verticalBlockMargin   | y-axis margin used on all canvas block elements during read only mode                                | text                       | default `'20px'`                                |
 
 ### Roadmap
 

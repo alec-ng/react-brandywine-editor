@@ -38,9 +38,9 @@ export const DefaultState = {
     displayDate2: ""
   },
   blocks: [],
-  readOnly: false,
   focusedBlock: undefined,
   inPreviewMode: false,
+  readOnly: false,
   verticalBlockMargin: '20px',
   showPluginDescription: true,
   onSave: null,

@@ -43,9 +43,6 @@ export function BrandywineEditor(props) {
   // add other props to global state
   globalState.onChange = props.onChange;
   globalState.onSave = props.onSave;
-  if (props.verticalBlockMargin) {
-    globalState.verticalBlockMargin = props.verticalBlockMargin;  
-  }
   globalState.showPluginDescription =
     props.showPluginDescription === false ? false : true;
 

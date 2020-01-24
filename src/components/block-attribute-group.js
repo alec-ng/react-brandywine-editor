@@ -67,9 +67,7 @@ export default function BlockAttributeGroup(props) {
         ? attrList
         : attrList.length > 0 && (
             <React.Fragment>
-              {" "}
-              <br />
-              {attrList}{" "}
+              {attrList}
             </React.Fragment>
           )}
     </React.Fragment>
