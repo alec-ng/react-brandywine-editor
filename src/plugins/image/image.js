@@ -63,7 +63,7 @@ function ImageCaption(props) {
         urlSource={props.baseAttrs.urlSource}
         sizeClassName={props.sizeClassName}
       />
-      <div className="text-center">
+      <div className={`${props.sizeClassName} text-center mx-auto`}>
         {props.variationAttrs.primaryText && (
           <h6 className="mt-1 mb-0">{props.variationAttrs.primaryText}</h6>
         )}
