@@ -37,6 +37,7 @@ See the documentation on [plugins](/docs/plugins.md) for more details.
 | readOnly              | if true, applies read-only styles to content and does not render the toolbar or editing canvas       | boolean                    | default `false`                                 |
 | plugins               | list of plugins you want to work with in editor mode or need to render according to `pageData`       | []                         | yes                                             |
 | showPluginDescription | show descriptive text beside plugins in editor mode                                                  | boolean                    | default `true`                                  |
+| fullHeight           | sidebar/canvas height toggle. true: 100vh, false: 100.                                                   | boolean                    | default `false`                                  |
 
 ### Roadmap
 

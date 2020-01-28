@@ -14,14 +14,14 @@ const BaseContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  height: 100%;
+  height: ${props => props.fullHeight === true ? '100vh' : '100%' };
   min-width: ${props =>
     props.readOnly || props.inPreviewMode ? "inherit" : "992px"};
 `;
 const ToolbarContainer = styled.div`
   flex: 0 0 25%;
   overflow-y: auto;
-  height: 100%;
+  height: ${props => props.fullHeight === true ? '100vh' : '100%' };
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -46,16 +46,15 @@ const CanvasContainer = styled.div`
 `;
 
 export default function App(props) {
-  const [{ inPreviewMode, readOnly }] = useStateValue();
-
+  const [{ inPreviewMode, readOnly, fullHeight }] = useStateValue();
   return (
-    <BaseContainer readOnly={readOnly} inPreviewMode={inPreviewMode}>
+    <BaseContainer readOnly={readOnly} inPreviewMode={inPreviewMode} fullHeight={fullHeight} >
       {!inPreviewMode && !readOnly && (
         <ToolbarContainer>
           <Toolbar />
         </ToolbarContainer>
       )}
-      <CanvasContainer readOnly={readOnly} inPreviewMode={inPreviewMode}>
+      <CanvasContainer readOnly={readOnly} inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
         <Canvas />
       </CanvasContainer>
       {inPreviewMode && <PreviewButton />}

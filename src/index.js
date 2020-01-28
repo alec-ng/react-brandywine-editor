@@ -32,6 +32,9 @@ export function BrandywineEditor(props) {
   if (typeof props.readOnly !== "undefined") {
     globalState.readOnly = props.readOnly;
   }
+  if (typeof props.fullHeight !== "undefined") {
+    globalState.fullHeight = props.fullHeight;
+  }
 
   // add a mapping of names => plugins to state
   let pluginMap = {};

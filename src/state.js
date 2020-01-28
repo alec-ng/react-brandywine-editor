@@ -44,7 +44,8 @@ export const DefaultState = {
   verticalBlockMargin: "20px",
   showPluginDescription: true,
   onSave: null,
-  onChange: null
+  onChange: null,
+  fullHeight: false
 };
 
 /**
