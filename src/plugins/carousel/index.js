@@ -8,7 +8,6 @@ const Carousel = {
   name: "carousel",
   label: "Carousel",
   description: "Renders multiple images in a carousel",
-  icon: null,
   canvasElement: CarouselElement,
   baseAttrs: [
     {
@@ -54,10 +53,10 @@ const Carousel = {
       ]
     },
     {
-      name: 'caption',
-      label: 'Caption',
-      element: 'input',
-      type: 'text'
+      name: "caption",
+      label: "Caption",
+      element: "input",
+      type: "text"
     }
   ],
   variations: [
@@ -67,8 +66,7 @@ const Carousel = {
       attrs: []
     }
   ],
-  defaultVariation: VARIATION_DEFAULT,
-  useDefaultControls: true
+  defaultVariation: VARIATION_DEFAULT
 };
 
 export default Carousel;

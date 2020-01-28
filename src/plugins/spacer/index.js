@@ -5,7 +5,6 @@ const VARIATION_INVERSE = "inverse";
 const DEFAULT_SPACE_SIZE = 20;
 const DEFAULT_SPACE_UNIT = "px";
 
-
 const Spacer = {
   name: "spacer",
   label: "Spacer",
@@ -29,11 +28,11 @@ const Spacer = {
               label: "Normal"
             },
             {
-              name: "2",
+              name: "3",
               label: "Medium"
             },
             {
-              name: "3",
+              name: "5",
               label: "Large"
             }
           ]
@@ -46,11 +45,9 @@ const Spacer = {
       attrs: []
     }
   ],
-  defaultVariation: VARIATION_DEFAULT,
-  useDefaultControls: true
+  defaultVariation: VARIATION_DEFAULT
 };
 export default Spacer;
-
 
 function SpacerElement(props) {
   if (props.variation === VARIATION_INVERSE) {
@@ -62,13 +59,17 @@ function SpacerElement(props) {
       );
     }
     return (
-      <div style={{ marginTop: `-${DEFAULT_SPACE_SIZE}${DEFAULT_SPACE_UNIT}` }}></div>
-    )
+      <div
+        style={{ marginTop: `-${DEFAULT_SPACE_SIZE}${DEFAULT_SPACE_UNIT}` }}
+      ></div>
+    );
   }
 
   // default
-  let spaceSize = parseInt(props.variationAttrs[VARIATION_DEFAULT].factor) * DEFAULT_SPACE_SIZE;
+  let spaceSize =
+    parseInt(props.variationAttrs[VARIATION_DEFAULT].factor) *
+    DEFAULT_SPACE_SIZE;
   return (
     <div style={{ paddingTop: `${spaceSize}${DEFAULT_SPACE_UNIT}` }}></div>
-  )
+  );
 }

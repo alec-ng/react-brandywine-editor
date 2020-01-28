@@ -41,14 +41,14 @@ export const DefaultState = {
   focusedBlock: undefined,
   inPreviewMode: false,
   readOnly: false,
-  verticalBlockMargin: '20px',
+  verticalBlockMargin: "20px",
   showPluginDescription: true,
   onSave: null,
   onChange: null
 };
 
 /**
- * State management 
+ * State management
  */
 export const StateContext = createContext();
 

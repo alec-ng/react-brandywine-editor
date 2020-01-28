@@ -1,4 +1,4 @@
-import { ImageElement, VARIATION_DEFAULT, VARIATION_CAPTION } from "./image";
+import { ImageElement, VARIATION_DEFAULT } from "./image";
 
 /**
  * Plugin definition for Image
@@ -7,7 +7,6 @@ const Image = {
   name: "image",
   label: "Image",
   description: "An image rendered from a URL source",
-  icon: null,
   canvasElement: ImageElement,
   baseAttrs: [
     {
@@ -36,6 +35,18 @@ const Image = {
           label: "Small"
         }
       ]
+    },
+    {
+      name: "primaryText",
+      label: "Caption",
+      element: "input",
+      type: "text"
+    },
+    {
+      name: "secondaryText",
+      label: "Footnotes",
+      element: "input",
+      type: "text"
     }
   ],
   variations: [
@@ -43,28 +54,9 @@ const Image = {
       name: VARIATION_DEFAULT,
       label: "Base Image",
       attrs: []
-    },
-    {
-      name: VARIATION_CAPTION,
-      label: "Captioned Image",
-      attrs: [
-        {
-          name: "primaryText",
-          label: "Primary Text",
-          element: "input",
-          type: "text"
-        },
-        {
-          name: "secondaryText",
-          label: "Secondary Text",
-          element: "input",
-          type: "text"
-        }
-      ]
     }
   ],
-  defaultVariation: VARIATION_DEFAULT,
-  useDefaultControls: true
+  defaultVariation: VARIATION_DEFAULT
 };
 
 export default Image;

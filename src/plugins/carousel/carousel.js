@@ -34,8 +34,8 @@ const ChevronButton = styled.button`
 `;
 
 const maxSizes = {
-  mobile: '300px',
-  tablet: '450px'
+  mobile: "300px",
+  tablet: "450px"
 };
 
 export function CarouselElement(props) {
@@ -69,11 +69,7 @@ export function CarouselElement(props) {
     urlSources.forEach(url => {
       if (url.length) {
         imgList.push(
-          <CarouselImage
-            key={key}
-            urlSource={url}
-            height={responsiveHeight}
-          />
+          <CarouselImage key={key} urlSource={url} height={responsiveHeight} />
         );
         key++;
       }
@@ -97,34 +93,34 @@ export function CarouselElement(props) {
       {imgList.length === 0 ? (
         <NoItemsMessage />
       ) : (
-        <React.Fragment>
-          <div className={sizeClassName} style={{ margin: "0 auto" }}>
-            <ItemsCarousel
-              infiniteLoop={false}
-              gutter={12}
-              activePosition={"center"}
-              chevronWidth={60}
-              disableSwipe={false}
-              alwaysShowChevrons={false}
-              numberOfCards={numCards}
-              slidesToScroll={1}
-              outsideChevron={false}
-              showSlither={true}
-              firstAndLastGutter={false}
-              requestToChangeActive={setActiveItemIndex}
-              activeItemIndex={activeItemIndex}
-              leftChevron={<ChevronButton>{"<"}</ChevronButton>}
-              rightChevron={<ChevronButton>{">"}</ChevronButton>}
-            >
-              {imgList}
-            </ItemsCarousel>
-          </div>
-          {props.baseAttrs.caption && 
-            <div className={`${sizeClassName} text-center mx-auto`}>
-              <h6 className="mt-3 mb-0 mx-5">{props.baseAttrs.caption}</h6>
-            </div>  
-          }
-        </React.Fragment>
+        <div
+          className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}
+        >
+          <ItemsCarousel
+            infiniteLoop={false}
+            gutter={12}
+            activePosition={"center"}
+            chevronWidth={60}
+            disableSwipe={false}
+            alwaysShowChevrons={false}
+            numberOfCards={numCards}
+            slidesToScroll={1}
+            outsideChevron={false}
+            showSlither={true}
+            firstAndLastGutter={false}
+            requestToChangeActive={setActiveItemIndex}
+            activeItemIndex={activeItemIndex}
+            leftChevron={<ChevronButton>{"<"}</ChevronButton>}
+            rightChevron={<ChevronButton>{">"}</ChevronButton>}
+          >
+            {imgList}
+          </ItemsCarousel>
+          {props.baseAttrs.caption && (
+            <h6 className="mt-3 mx-3 mb-0 text-center">
+              {props.baseAttrs.caption}
+            </h6>
+          )}
+        </div>
       )}
     </React.Fragment>
   );
