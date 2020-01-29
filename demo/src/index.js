@@ -13,6 +13,8 @@ import Carousel from '../../src/plugins/carousel';
 import HTMLVideo from '../../src/plugins/html-video';
 import EmbeddedVideo from '../../src/plugins/embedded-video';
 
+import testData from './data';
+
 const plugins = [
 	Image, 
 	Markdown, 
@@ -32,6 +34,7 @@ function Demo(props) {
 			plugins={plugins}
 			onChange={onEditorChange}
 			fullHeight={true}
+			pageData={testData}
 		/>
   );
 }
