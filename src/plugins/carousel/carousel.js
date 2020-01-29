@@ -7,7 +7,6 @@ export const DEFAULT_NUM_CARDS = 1;
 export const VARIATION_DEFAULT = "carousel_default";
 
 const NUM_CARDS_MOBILE = 1;
-
 const CarouselImage = styled.div`
   height: ${props => props.height};
   background: url(${props => props.urlSource});
@@ -15,7 +14,6 @@ const CarouselImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 `;
-
 const ChevronButton = styled.button`
   border-radius: 15px;
   border-style: solid;
@@ -32,13 +30,32 @@ const ChevronButton = styled.button`
     color: rgb(255, 69, 0);
   }
 `;
-
+const PlaceholderDiv = styled.div`  
+  background-color: #ddd;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const maxSizes = {
   mobile: "300px",
   tablet: "450px"
 };
 
 export function CarouselElement(props) {
+  let urlSources = props.baseAttrs.urlSources
+    ? props.baseAttrs.urlSources.split("\n")
+    : "";
+  if (!urlSources || !urlSources[0]) {
+    return (
+      <PlaceholderDiv>
+        <h1 className="text-center">Provide at least one URL to an image.</h1>
+      </PlaceholderDiv>
+    );
+  }
+
   const [activeItemIndex, setActiveItemIndex] = useState(0);
 
   // determine how many cards to show at once
@@ -58,70 +75,46 @@ export function CarouselElement(props) {
     responsiveHeight = `${props.baseAttrs.height}px`;
   }
 
-  // Generate images from attribute
-  let imgList = [];
-  let urlSources = props.baseAttrs.urlSources
-    ? props.baseAttrs.urlSources.split("\n")
-    : "";
+  // Generate carousel images from URLs provided
+  let imgList = [];    
+  urlSources.forEach((url, index) => {
+    if (url.length) {
+      imgList.push(
+        <CarouselImage key={index} urlSource={url} height={responsiveHeight} />
+      );
+    }
+  });
 
-  if (urlSources && urlSources[0]) {
-    let key = 0;
-    urlSources.forEach(url => {
-      if (url.length) {
-        imgList.push(
-          <CarouselImage key={key} urlSource={url} height={responsiveHeight} />
-        );
-        key++;
-      }
-    });
-  }
-
-  function NoItemsMessage(props) {
-    return (
-      <div className="p-3">
-        <h5 className="text-center text-muted">
-          Provide at least one image to show
-        </h5>
-      </div>
-    );
-  }
-
-  let sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
+  const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
 
   return (
-    <React.Fragment>
-      {imgList.length === 0 ? (
-        <NoItemsMessage />
-      ) : (
-        <div
-          className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}
-        >
-          <ItemsCarousel
-            infiniteLoop={false}
-            gutter={12}
-            activePosition={"center"}
-            chevronWidth={60}
-            disableSwipe={false}
-            alwaysShowChevrons={false}
-            numberOfCards={numCards}
-            slidesToScroll={1}
-            outsideChevron={false}
-            showSlither={true}
-            firstAndLastGutter={false}
-            requestToChangeActive={setActiveItemIndex}
-            activeItemIndex={activeItemIndex}
-            leftChevron={<ChevronButton>{"<"}</ChevronButton>}
-            rightChevron={<ChevronButton>{">"}</ChevronButton>}
-          >
-            {imgList}
-          </ItemsCarousel>
-          {props.baseAttrs.caption && (
-            <h6 className="mt-3 mx-3 mb-0 text-center">
-              {props.baseAttrs.caption}
-            </h6>
-          )}
-        </div>
+    <div
+      className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}
+    >
+      <ItemsCarousel
+        infiniteLoop={false}
+        gutter={12}
+        activePosition={"center"}
+        chevronWidth={60}
+        disableSwipe={false}
+        alwaysShowChevrons={false}
+        numberOfCards={numCards}
+        slidesToScroll={1}
+        outsideChevron={false}
+        showSlither={true}
+        firstAndLastGutter={false}
+        requestToChangeActive={setActiveItemIndex}
+        activeItemIndex={activeItemIndex}
+        leftChevron={<ChevronButton>{"<"}</ChevronButton>}
+        rightChevron={<ChevronButton>{">"}</ChevronButton>}
+      >
+        {imgList}
+      </ItemsCarousel>
+      {props.baseAttrs.caption && (
+        <h6 className="mt-3 mx-3 mb-0 text-center">
+          {props.baseAttrs.caption}
+        </h6>
       )}
-    </React.Fragment>
+    </div>
   );
 }

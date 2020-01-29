@@ -1,5 +1,4 @@
 import React from "react";
-import PlaceholderImgURL from "./placeholder.jpg";
 import styled from "styled-components";
 import "./style.css";
 
@@ -34,16 +33,32 @@ export function CoverPhotoElement(props) {
 //////////////////////////////////////////////////////////
 
 export function BaseImage(props) {
-  let urlSource = props.urlSource || PlaceholderImgURL;
+  if (!props.urlSource) {
+    return (
+      <PlaceholderDiv>
+        <h1 className="text-center">Provide a URL to an image.</h1>
+      </PlaceholderDiv>
+    )
+  }
   return (
     <img
-      src={urlSource}
+      src={props.urlSource}
       className="img-fluid"
       style={{ width: "100%" }}
       alt=""
     />
   );
 }
+
+const PlaceholderDiv = styled.div`  
+  background-color: #ddd;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 // Text Overlay Variation
 //////////////////////////////////////////////////////////

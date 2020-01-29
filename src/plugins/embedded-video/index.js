@@ -1,5 +1,5 @@
 import React from "react";
-import ImgPlaceholder from "./placeholder.jpg";
+import styled from 'styled-components';
 
 const VARIATION_DEFAULT = "embedded_video_default";
 
@@ -48,6 +48,8 @@ const EmbeddedVideo = {
 };
 export default EmbeddedVideo;
 
+/////////////////////////////////////////////////////////////
+
 const AlignmentContainer = function(props) {
   return (
     <div
@@ -57,11 +59,16 @@ const AlignmentContainer = function(props) {
     </div>
   );
 };
-const PlaceholderImage = function(props) {
-  return (
-    <img alt="" src={ImgPlaceholder} className="img-fluid d-block mx-auto" />
-  );
-};
+const PlaceholderDiv = styled.div`  
+  background-color: #ddd;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 
 function EmbeddeVideoElement(props) {
   const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
@@ -70,7 +77,9 @@ function EmbeddeVideoElement(props) {
   if (!props.baseAttrs.link) {
     return (
       <AlignmentContainer sizeClassName={sizeClassName}>
-        <PlaceholderImage />
+        <PlaceholderDiv>
+          <h1 className="text-center">Provide a link to an embedded video.</h1>
+        </PlaceholderDiv>
       </AlignmentContainer>
     );
   }

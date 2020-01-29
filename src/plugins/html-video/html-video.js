@@ -1,7 +1,17 @@
 import React from "react";
 import { VARIATION_AUTOPLAY, AutoplayElement } from "./variation-autoplay";
-import ImgPlaceholder from "./placeholder.jpg";
+import styled from 'styled-components';
 import "./style.css";
+
+const PlaceholderDiv = styled.div`  
+  background-color: #ddd;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 export const VARIATION_DEFAULT = "html-video-default";
 export const AlignmentContainer = function(props) {
@@ -32,11 +42,7 @@ export const HTMLVideo = function(props) {
   };
   return <video src={props.urlSource} preload="metadata" {...attributes} />;
 };
-const PlaceholderImage = function(props) {
-  return (
-    <img alt="" src={ImgPlaceholder} className="img-fluid d-block mx-auto" />
-  );
-};
+
 
 export function HTMLVideoElement(props) {
   const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
@@ -45,7 +51,9 @@ export function HTMLVideoElement(props) {
   if (!props.baseAttrs.urlSource) {
     return (
       <AlignmentContainer sizeClassName={sizeClassName}>
-        <PlaceholderImage />
+        <PlaceholderDiv>
+          <h1 className="text-center">Provide a URL to a video file.</h1>
+        </PlaceholderDiv>
       </AlignmentContainer>
     );
   }
