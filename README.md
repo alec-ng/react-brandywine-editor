@@ -3,29 +3,29 @@
 [![npm package][npm-badge]][npm]
 
 [npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+[npm]: https://www.npmjs.com/package/react-brandywine-editor
 
 
-A WYSIWYG-like block editor for creating blogging content. Try it out on [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or clone the repo and run `npm run start`.
+A WYSIWYG-like block editor for creating blogging content. Try out a live demo [here](https://ld0lq.csb.app/) hosted on [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq), or check out a [live blog](https://alecng.ca/blog) using content produced and rendered with this library.
 
-A live sample of some content produced and rendered with this editor is coming soon!
+__Features__
 
 - drag and drop UX
 - easily extensible plugin architecture
 - serializes to a JSON data structure
 - read-only mode
 
-![react-brandywine-editor overview](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/features.gif)
+![react-brandywine-editor overview](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/features.gif?raw=true)
 
 ### Quickstart
 
 `npm install --save react-brandywine-editor`
 
-See the [demo source file](/demo/src/index.js) to get started.
+See the [demo source file](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src/index.js) to get started.
 
 ### Creating Your Own Plugins
 
-See the documentation on [plugins](/docs/plugins.md) for more details.
+See the documentation on [plugins](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/plugins.md) for more details.
 
 ### API
 
