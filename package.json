@@ -1,6 +1,6 @@
 {
   "name": "react-brandywine-editor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A React block editor for creating rich media content, featuring a highly extensible plugin architecture",
   "main": "lib/index.js",
   "module": "es/index.js",
