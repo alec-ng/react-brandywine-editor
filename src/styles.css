@@ -20,6 +20,11 @@ Row {
   padding-left: 5%;
 }
 
+.brandywine-responsive-caption {
+  font-size: 85%;
+}
+
+
 @media (min-width: 576px) {
   .brandywine-width_large,
   .brandywine-width_medium,
@@ -39,6 +44,9 @@ Row {
   .brandywine-width_small {
     width: 50%;
   }
+  .brandywine-responsive-caption {
+    font-size: 95%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -52,10 +60,12 @@ Row {
   .brandywine-width_small {
     width: 40%;
   }
-
   .brandywine-responsive-x-padding {
     padding-right: 0;
     padding-left: 0;
+  }
+  .brandywine-responsive-caption {
+    font-size: 100%;
   }
 }
 

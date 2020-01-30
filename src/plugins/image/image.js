@@ -34,7 +34,9 @@ export function ImageElement(props) {
     >
       <img alt="" src={props.baseAttrs.urlSource} className="img-fluid" />
       {props.baseAttrs.primaryText && (
-        <h6 className="mt-2 mx-3 mb-0">{props.baseAttrs.primaryText}</h6>
+        <h6 className="mt-2 mx-3 mb-0 brandywine-responsive-caption">
+          {props.baseAttrs.primaryText}
+        </h6>
       )}
       {props.baseAttrs.secondaryText && (
         <small className="mx-3 text-muted text-center">

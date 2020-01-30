@@ -77,7 +77,7 @@ const CoverPhoto = {
         },
         {
           name: "bottom",
-          label: "Bottom OFfset (%)",
+          label: "Bottom Offset (%)",
           element: "input",
           type: "range",
           min: 0,

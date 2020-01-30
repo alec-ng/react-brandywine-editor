@@ -45,14 +45,18 @@ const maxSizes = {
 };
 
 export function CarouselElement(props) {
+  const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
   let urlSources = props.baseAttrs.urlSources
     ? props.baseAttrs.urlSources.split("\n")
     : "";
+
   if (!urlSources || !urlSources[0]) {
     return (
-      <PlaceholderDiv>
-        <h1 className="text-center">Provide at least one URL to an image.</h1>
-      </PlaceholderDiv>
+      <div className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}>
+        <PlaceholderDiv>
+          <h1 className="text-center">Provide at least one URL to an image.</h1>
+        </PlaceholderDiv>
+      </div>
     );
   }
 
@@ -62,8 +66,8 @@ export function CarouselElement(props) {
   let numCards = isMobileOnly
     ? NUM_CARDS_MOBILE
     : props.baseAttrs.numCards > 0
-    ? props.baseAttrs.numCards
-    : DEFAULT_NUM_CARDS;
+      ? props.baseAttrs.numCards
+      : DEFAULT_NUM_CARDS;
 
   // one-time calculation of max height depending on device being used
   let responsiveHeight;
@@ -76,7 +80,7 @@ export function CarouselElement(props) {
   }
 
   // Generate carousel images from URLs provided
-  let imgList = [];    
+  let imgList = [];
   urlSources.forEach((url, index) => {
     if (url.length) {
       imgList.push(
@@ -84,8 +88,6 @@ export function CarouselElement(props) {
       );
     }
   });
-
-  const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
 
   return (
     <div
@@ -111,7 +113,7 @@ export function CarouselElement(props) {
         {imgList}
       </ItemsCarousel>
       {props.baseAttrs.caption && (
-        <h6 className="mt-3 mx-3 mb-0 text-center">
+        <h6 className="mt-2 mx-3 mb-0 text-center brandywine-responsive-caption">
           {props.baseAttrs.caption}
         </h6>
       )}

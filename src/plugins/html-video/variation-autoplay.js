@@ -56,18 +56,30 @@ export function AutoplayElement(props) {
               attributes={attributes}
             />
             {offsetDefined && (
-              <OverlayContainer
-                top={props.variationAttrs.top}
-                right={props.variationAttrs.right}
-                bottom={props.variationAttrs.bottom}
-                left={props.variationAttrs.left}
-              >
-                <p className={`${alignmentClass} text-overlay mb-0`}>
-                  {props.variationAttrs.text}
-                </p>
-              </OverlayContainer>
+              <React.Fragment>
+                {/* Tablets & Desktop see absolute overlay */}
+                <OverlayContainer
+                  className="d-none d-md-block"
+                  top={props.variationAttrs.top}
+                  right={props.variationAttrs.right}
+                  bottom={props.variationAttrs.bottom}
+                  left={props.variationAttrs.left}
+                >
+                  <p className={`${alignmentClass} text-overlay mb-0`}>
+                    {props.variationAttrs.text}
+                  </p>
+                </OverlayContainer>
+              </React.Fragment>
             )}
           </VideoContainer>
+          {/* Mobile see caption */}
+          {offsetDefined && (
+            <div className="mx-auto text-center d-block d-md-none">
+              <h6 className="py-2 mx-3 mb-0 brandywine-responsive-caption">
+                {props.variationAttrs.text}
+              </h6>
+            </div>
+          )}
         </AlignmentContainer>
       </div>
     </VisibilitySensor>
