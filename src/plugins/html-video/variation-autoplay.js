@@ -1,22 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import VisibilitySensor from "react-visibility-sensor";
-import { HTMLVideo, VideoContainer, AlignmentContainer } from "./html-video";
+import {
+  OverlayContainer, TextOverlay, CaptionContainer, AlignmentContainer, VideoContainer, HTMLVideo
+} from './components-util';
 
 export const VARIATION_AUTOPLAY = "video_autoplay";
-
-const OverlayContainer = styled.div`
-  position: absolute;
-  margin: 10px;
-  color: #ffffff;
-  top: ${props => (props.top && props.top !== "0" ? props.top + "%" : "auto")};
-  right: ${props =>
-    props.right && props.right !== "0" ? props.right + "%" : "auto"};
-  bottom: ${props =>
-    props.bottom && props.bottom !== "0" ? props.bottom + "%" : "auto"};
-  left: ${props =>
-    props.left && props.left !== "0" ? props.left + "%" : "auto"};
-`;
 
 export function AutoplayElement(props) {
   const alignmentClass = props.variationAttrs.align
@@ -65,23 +53,22 @@ export function AutoplayElement(props) {
                   bottom={props.variationAttrs.bottom}
                   left={props.variationAttrs.left}
                 >
-                  <p className={`${alignmentClass} text-overlay mb-0`}>
+                  <TextOverlay className={`${alignmentClass} mb-0`}>
                     {props.variationAttrs.text}
-                  </p>
+                  </TextOverlay>
                 </OverlayContainer>
               </React.Fragment>
             )}
           </VideoContainer>
           {/* Mobile see caption */}
           {offsetDefined && (
-            <div className="mx-auto text-center d-block d-md-none">
-              <h6 className="py-2 mx-3 mb-0 brandywine-responsive-caption">
-                {props.variationAttrs.text}
-              </h6>
-            </div>
+            <CaptionContainer>
+              {props.variationAttrs.text}
+            </CaptionContainer>
           )}
         </AlignmentContainer>
       </div>
     </VisibilitySensor>
   );
+
 }

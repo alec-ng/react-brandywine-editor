@@ -1,6 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import "./style.css";
+
+import {
+  OverlayContainer, TextOverlay, CaptionContainer, Plcaeholder
+ } from './components-util'
 
 export const VARIATION_DEFAULT = "coverPhoto_default";
 export const VARIATION_TEXT_OVERLAY = "coverPhoto_text_overlay";
@@ -34,11 +36,7 @@ export function CoverPhotoElement(props) {
 
 export function BaseImage(props) {
   if (!props.urlSource) {
-    return (
-      <PlaceholderDiv>
-        <h1 className="text-center">Provide a URL to an image.</h1>
-      </PlaceholderDiv>
-    )
+    return <Placeholder />
   }
   return (
     <img
@@ -50,31 +48,9 @@ export function BaseImage(props) {
   );
 }
 
-const PlaceholderDiv = styled.div`  
-  background-color: #ddd;
-  width: 100%;
-  min-height: 250px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 // Text Overlay Variation
 //////////////////////////////////////////////////////////
 
-const OverlayContainer = styled.div`
-  position: absolute;
-  margin: 10px;
-  color: #ffffff;
-  top: ${props => (props.top && props.top !== "0" ? props.top + "%" : "auto")};
-  right: ${props =>
-    props.right && props.right !== "0" ? props.right + "%" : "auto"};
-  bottom: ${props =>
-    props.bottom && props.bottom !== "0" ? props.bottom + "%" : "auto"};
-  left: ${props =>
-    props.left && props.left !== "0" ? props.left + "%" : "auto"};
-`;
 function TextOverlayImage(props) {
   const alignmentClass = props.variationAttrs.align ? `text-${props.variationAttrs.align}` : '';
   const offsetDefined =
@@ -98,16 +74,14 @@ function TextOverlayImage(props) {
             bottom={props.variationAttrs.bottom}
             left={props.variationAttrs.left}
           >
-            <p className={`${alignmentClass} text-overlay mb-0`}>
+            <TextOverlay className={`${alignmentClass} mb-0`}>
               {props.variationAttrs.text}
-            </p>
+            </TextOverlay>
           </OverlayContainer>
           {/* Mobile see caption */}
-          <div className="mx-auto text-center d-block d-md-none">
-            <h6 className="py-2 mx-3 mb-0 brandywine-responsive-caption">
-              {props.variationAttrs.text}
-            </h6>
-          </div>
+          <CaptionContainer>
+            {props.variationAttrs.text}
+          </CaptionContainer>
         </React.Fragment>
       )}
     </div>
