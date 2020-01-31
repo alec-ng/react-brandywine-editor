@@ -1,0 +1,24 @@
+name: Build and publish to npm
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run prepublishOnly
+      - name: Publish
+        if: github.ref == 'refs/heads/master'
+        uses: mikeal/merge-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
