@@ -13,7 +13,8 @@ import PreviewButton from "./components/preview-button";
 const BaseContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  display: ${props =>
+    props.readOnly || props.inPreviewMode ? "block" : "flex"};
   height: ${props => props.fullHeight === true ? '100vh' : '100%' };
   min-width: ${props =>
     props.readOnly || props.inPreviewMode ? "inherit" : "992px"};
@@ -36,13 +37,18 @@ const ToolbarContainer = styled.div`
   }
 `;
 const CanvasContainer = styled.div`
-  overflow-y: auto;
-  flex: ${props => (props.readOnly ? "100%" : "75%")};
-  padding: ${props => (props.readOnly || props.inPreviewMode ? "0" : "0 10px")};
-  padding-bottom: ${props =>
-    props.readOnly || props.inPreviewMode ? "0" : "20px"};
-  height: ${props =>
-    !props.readOnly && !props.inPreviewMode ? "100%" : "initial"};
+  ${({ readOnly, inPreviewMode }) => (readOnly || inPreviewMode) && `
+    padding: 0;
+  `}
+  ${({ readOnly, inPreviewMode }) => !readOnly && !inPreviewMode && `
+    flex: 75%;
+    padding: 0 10px 20xpx 10px;
+    height: 100%;
+    overflow-y: auto;  
+  `}
+  ${({ inPreviewMode }) => inPreviewMode && `
+    padding-bottom: 30px;
+  `}
 `;
 
 export default function App(props) {
