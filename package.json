@@ -42,9 +42,12 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/alec-ng/react-brandywine-editor.git"
+  },
   "keywords": [
-    "react-component",
+    "react",
     "WYSIWYG",
     "editor",
     "block-editor"
