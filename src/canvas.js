@@ -20,9 +20,6 @@ export default function Canvas(props) {
    * When a block on the canvas is clicked, switch the active focus to that block if in editor mode
    */
   const handleBlockClick = function(e) {
-    if (readOnly || inPreviewMode) {
-      return;
-    }
     dispatch({
       type: ACTION_TYPES.SWITCH_BLOCK_FOCUS,
       payload: {
