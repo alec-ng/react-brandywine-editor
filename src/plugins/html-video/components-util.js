@@ -34,7 +34,7 @@ export const TextOverlay = styled.p`
 export function CaptionContainer(props) {
   return (
     <div className="mx-auto text-center d-block d-md-none">
-      <h6 className="py-2 mx-3 mb-0 brandywine-responsive-caption">
+      <h6 className="mt-2 mx-3 mb-0 brandywine-responsive-caption">
         {props.children}
       </h6>
     </div>
