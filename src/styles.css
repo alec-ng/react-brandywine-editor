@@ -14,23 +14,21 @@ Row {
 .brandywine-width_small {
   width: 100%;
 }
-
 .brandywine-responsive-x-padding {
   padding-right: 5%;
   padding-left: 5%;
 }
-
 .brandywine-responsive-caption {
   font-size: 85%;
 }
-
+.brandywine-responsive-header {
+  font-size: 3rem;
+}
 
 @media (min-width: 576px) {
-  .brandywine-width_large,
-  .brandywine-width_medium,
-  .brandywine-width_small {
-    width: 100%;
-  }
+  .brandywine-responsive-header {
+    font-size: 3.5rem;
+  }  
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -46,6 +44,9 @@ Row {
   }
   .brandywine-responsive-caption {
     font-size: 95%;
+  }
+  .brandywine-responsive-header {
+    font-size: 4rem;
   }
 }
 
@@ -66,6 +67,9 @@ Row {
   }
   .brandywine-responsive-caption {
     font-size: 100%;
+  }
+  .brandywine-responsive-header {
+    font-size: 4.5rem;
   }
 }
 

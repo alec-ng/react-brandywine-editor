@@ -10,13 +10,7 @@ export function AutoplayElement(props) {
   const alignmentClass = props.variationAttrs.align
     ? `text-${props.variationAttrs.align}`
     : "";
-  const offsetDefined =
-    (props.variationAttrs.top && props.variationAttrs.top !== "0") ||
-    (props.variationAttrs.right && props.variationAttrs.right !== "0") !==
-      "0" ||
-    (props.variationAttrs.bottom && props.variationAttrs.bottom !== "0")(
-      props.variationAttrs.left && props.variationAttrs.left !== "0"
-    );
+  const overlayDefined = isOverlayDefined(props.variationAttrs);
 
   let vidRef = React.useRef();
   let attributes = {
@@ -43,32 +37,55 @@ export function AutoplayElement(props) {
               urlSource={props.baseAttrs.urlSource}
               attributes={attributes}
             />
-            {offsetDefined && (
-              <React.Fragment>
-                {/* Tablets & Desktop see absolute overlay */}
-                <OverlayContainer
-                  className="d-none d-md-block"
-                  top={props.variationAttrs.top}
-                  right={props.variationAttrs.right}
-                  bottom={props.variationAttrs.bottom}
-                  left={props.variationAttrs.left}
-                >
-                  <TextOverlay className={`${alignmentClass} mb-0`}>
-                    {props.variationAttrs.text}
-                  </TextOverlay>
-                </OverlayContainer>
-              </React.Fragment>
-            )}
+            {/* Tablets & Desktop  absolute overlay */}
+            {overlayDefined &&  
+              <AbsoluteOverlay 
+                variationAttrs={props.variationAttrs} 
+                alignmentClass={alignmentClass} />
+            }
           </VideoContainer>
-          {/* Mobile see caption */}
-          {offsetDefined && (
-            <CaptionContainer>
+          {/* Mobile caption instead of overlay */}
+          {overlayDefined && 
+            <CaptionContainer> 
               {props.variationAttrs.text}
             </CaptionContainer>
-          )}
+          }
         </AlignmentContainer>
       </div>
     </VisibilitySensor>
   );
+}
 
+function AbsoluteOverlay(props) {
+  return (
+    <OverlayContainer
+      className="d-none d-md-block"
+      top={props.variationAttrs.top}
+      right={props.variationAttrs.right}
+      bottom={props.variationAttrs.bottom}
+      left={props.variationAttrs.left}
+    >
+      <TextOverlay className={`${props.alignmentClass} mb-0`}>
+        {props.variationAttrs.text}
+      </TextOverlay>
+    </OverlayContainer>
+  )
+}
+
+function isOverlayDefined(variationAttrs) {
+  // at least one character exists 
+  if (!variationAttrs.text || !variationAttrs.text.trim()) {
+    return false;
+  }
+  // at least one offset is defined
+  if (
+    (variationAttrs.top && variationAttrs.top !== "0")
+    || (variationAttrs.right && variationAttrs.right !== "0") 
+    || (variationAttrs.bottom && variationAttrs.bottom !== "0")
+    || (variationAttrs.left && variationAttrs.left !== "0")
+    ) {
+      return true;
+    }
+
+  return false;
 }

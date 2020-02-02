@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import { useStateValue } from "../state";
 import { ACTION_TYPES } from "../reducers/index";
 import Input from "./input";
@@ -14,6 +15,14 @@ export function PageHeader(props) {
     header.displayDate1 ||
     header.displayDate2;
 
+  if (!headerExists) {
+    return (
+      <Header>
+        <h1 className="text-muted">Your page title goes here</h1>
+      </Header>
+    )
+  }
+
   let displayDate;
   if (header.displayDate1 && header.displayDate2) {
     displayDate = `${header.displayDate1.replace(
@@ -25,20 +34,29 @@ export function PageHeader(props) {
   }
 
   return (
-    <div className="text-center mx-3 my-5">
-      {headerExists ? (
-        <React.Fragment>
-          {header.title && (
-            <h1 className="pb-3 pt-1 display-3">{header.title}</h1>
-          )}
-          {header.subTitle && <h3 className="py-1">{header.subTitle}</h3>}
-          {displayDate && <h4 className="py-1">{displayDate}</h4>}
-        </React.Fragment>
-      ) : (
-        <h1>Page header is shown here</h1>
+    <Header>
+      {header.title && (
+        <h1 className="mb-0 brandywine-responsive-header">{header.title}</h1>
       )}
-    </div>
+      {header.subTitle && <h3 className="mt-3 mb-0">{header.subTitle}</h3>}
+      {displayDate && <h4 className="mt-2 mb-0">{displayDate}</h4>}
+    </Header>
   );
+}
+
+
+const HeaderContainer = styled.div`
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+function Header(props) {
+  return (
+    <HeaderContainer className="brandywine-width_large brandywine-responsive-x-padding my-5">
+      {props.children}
+    </HeaderContainer>
+  )
 }
 
 /**
