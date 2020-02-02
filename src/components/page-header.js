@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import { useStateValue } from "../state";
 import { ACTION_TYPES } from "../reducers/index";
 import Input from "./input";
@@ -16,9 +17,9 @@ export function PageHeader(props) {
 
   if (!headerExists) {
     return (
-      <div className="text-center mx-3 my-5">
-        <h1 className="text-muted">Your page title goes here.</h1>
-      </div>
+      <Header>
+        <h1 className="text-muted">Your page title goes here</h1>
+      </Header>
     )
   }
 
@@ -33,14 +34,29 @@ export function PageHeader(props) {
   }
 
   return (
-    <div className="text-center mx-3 my-5">
+    <Header>
       {header.title && (
         <h1 className="mb-0 brandywine-responsive-header">{header.title}</h1>
       )}
       {header.subTitle && <h3 className="mt-3 mb-0">{header.subTitle}</h3>}
       {displayDate && <h4 className="mt-2 mb-0">{displayDate}</h4>}
-    </div>
+    </Header>
   );
+}
+
+
+const HeaderContainer = styled.div`
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+function Header(props) {
+  return (
+    <HeaderContainer className="brandywine-width_large brandywine-responsive-x-padding my-5">
+      {props.children}
+    </HeaderContainer>
+  )
 }
 
 /**
