@@ -47,17 +47,21 @@ function BlockContainer(props) {
   };
   const BlockElement = props.blockElement;
   const isDraggable = props.locked ? {} : { draggable: true };
+  const editableProperties = props.locked ? {} :
+    {
+      onDragStart: onDragStart,
+      onClick: props.onBlockClick,
+      'data-uuid': props.uuid
+    };
 
   return (
     <FocusDiv
       {...isDraggable}
-      onDragStart={onDragStart}
-      onClick={props.onBlockClick}
+      {...editableProperties}
       isFocused={props.isFocused}
       verticalBlockMargin={props.verticalBlockMargin}
       locked={props.locked}
       ref={containerDivRef}
-      data-uuid={props.uuid}
       omitBottomMargin={props.omitBottomMargin}
     >
       <BlockElement
