@@ -6,7 +6,7 @@ export const VARIATION_DEFAULT = "markdown_default";
 
 export function MarkdownElement(props) {
   return (
-    <div className="mx-auto brandywine-responsive-x-padding brandywine-width_large">
+    <div className="mx-auto brandywine-responsive-x-padding brandywine-width_large py-1">
       {props.baseAttrs.source ? (
         <ReactMarkdown
           source={props.baseAttrs.source}
