@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  OverlayContainer, TextOverlay, CaptionContainer, Plcaeholder
+  OverlayContainer, TextOverlay, CaptionContainer, Placeholder
  } from './components-util'
 
 export const VARIATION_DEFAULT = "coverPhoto_default";
