@@ -21,10 +21,23 @@ export function AutoplayElement(props) {
   // For autoplay variation- if video is visible, play. If not, pause
   function onChange(isVisible) {
     let video = this.children.ref.current.getElementsByTagName("video")[0];
+    let promise;
     if (isVisible) {
-      video.play();
+      promise = video.play();
     } else if (video.playing) {
-      video.pause();
+      promise = video.pause();
+    }
+
+    // Depending on whether user's browser settings allow autoplay or not, show
+    // controls on failure
+    if (promise !== undefined) {
+      promise
+        .catch(() => {
+          video.controls = true;
+        })
+        .then(() => {
+          video.controls = false;
+        });
     }
   }
 
