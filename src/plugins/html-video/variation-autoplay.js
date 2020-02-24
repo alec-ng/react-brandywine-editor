@@ -15,7 +15,8 @@ export function AutoplayElement(props) {
   let vidRef = React.useRef();
   let attributes = {
     muted: true,
-    loop: true
+    loop: true,
+    playsInline: true
   };
 
   // For autoplay variation- if video is visible, play. If not, pause
@@ -28,15 +29,11 @@ export function AutoplayElement(props) {
       promise = video.pause();
     }
 
-    // Depending on whether user's browser settings allow autoplay or not, show
-    // controls on failure
+    // If there's a playback error, show the controls so the user can toggle the video themselves
     if (promise !== undefined) {
       promise
         .catch(() => {
           video.controls = true;
-        })
-        .then(() => {
-          video.controls = false;
         });
     }
   }
