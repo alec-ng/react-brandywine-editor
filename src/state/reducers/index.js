@@ -1,5 +1,5 @@
 import blockReducer from "./block-reducer";
-import { exportStateData } from "./../state";
+import { exportStateData } from "../index";
 
 export const ACTION_TYPES = {
   // Set header data

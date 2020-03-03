@@ -1,17 +1,18 @@
 import React from "react";
-import { PageHeader } from "./components/page-header";
-import { useStateValue } from "./state";
-import { ACTION_TYPES } from "./reducers/index";
-import DropZone from "./components/dropzone";
-import BlockContainer from "./components/block-container";
+import { useStateValue } from "../../state/context";
+import { ACTION_TYPES } from "../../state/reducers/index";
+
+import PageHeader from "../universal/page-header"
+import DropZone from "../universal/dropzone";
+import BlockContainer from "../universal/block-container";
 
 /**
  * Represents the portion of the editor showing block elements. In editor mode, the user can
  * drag/drop/manipulate blocks on the canvas. In read/preview, the blocks are just shown
  */
-export default function Canvas(props) {
+export default function Canvas() {
   const [
-    { blocks, pluginMap, readOnly, inPreviewMode, verticalBlockMargin },
+    { blocks, pluginMap, readOnly, inPreviewMode, verticalBlockMargin, header },
     dispatch
   ] = useStateValue();
   const renderDropzones = !readOnly && !inPreviewMode;
@@ -19,7 +20,7 @@ export default function Canvas(props) {
   /**
    * When a block on the canvas is clicked, switch the active focus to that block if in editor mode
    */
-  const handleBlockClick = function(e) {
+  function handleBlockClick(e) {
     dispatch({
       type: ACTION_TYPES.SWITCH_BLOCK_FOCUS,
       payload: {
@@ -32,7 +33,7 @@ export default function Canvas(props) {
    * When item is dropped onto dropzone, extract the plugin name from dataTransfer and
    * dispatch add_block action
    */
-  const handleOnDrop = function(e) {
+  function handleOnDrop(e) {
     // assumes dropzone uuid is of form dropzone-{uuid}, set in canvas.js
     let currentPositionId = e.currentTarget.dataset.uuid
       ? e.currentTarget.dataset.uuid.replace("dropzone-", "")
@@ -65,10 +66,8 @@ export default function Canvas(props) {
     }
   };
 
-  /**
-   * Generate and render block elements on the canvas
-   * Each block is displayed with a dropzone
-   */
+  // Generate and render block elements on the canvas
+  // Each block is displayed with a dropzone
   let list = [];
   blocks.forEach((block, index) => {
     let BlockElement = pluginMap[block.name].canvasElement;
@@ -101,7 +100,7 @@ export default function Canvas(props) {
 
   return (
     <React.Fragment>
-      <PageHeader />
+      <PageHeader header={header} />
       {list}
       {renderDropzones && <DropZone onDrop={handleOnDrop} />}
     </React.Fragment>
