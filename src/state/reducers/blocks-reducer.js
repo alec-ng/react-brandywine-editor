@@ -12,7 +12,7 @@ import {
 export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action) {
   return produce(blocks, draft => {
     switch (action.type) {
-      
+      // block that was just moved is now the only new focused block
       case MOVE_BLOCK: {
         if (focusedBlock) {
           draft[focusedBlock].isFocused = false;
@@ -21,6 +21,7 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         break;
       }
 
+      // specified block is now the only focused block
       case SWITCH_BLOCK_FOCUS: {
         if (focusedBlock) {
           draft[focusedBlock].isFocused = false;
@@ -29,6 +30,7 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         break;
       }
 
+      // update a specific base of variation attribute  of the current block
       case UPDATE_FOCUSED_BLOCK: {
         if (!focusedBlock) {
           break;
@@ -56,8 +58,8 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         }
         let blockToUpdate = draft[focusedBlock];
         blockToUpdate.variation = action.newVariation;
-        if (!blockToUpdate.variationAttrs[action.variation]) {
-          blockToUpdate.variationAttrs[action.variation] = {};
+        if (!blockToUpdate.variationAttrs[action.newVariation]) {
+          blockToUpdate.variationAttrs[action.newVariation] = {};
         }
         break;
       }
