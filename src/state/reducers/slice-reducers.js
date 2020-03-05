@@ -4,7 +4,8 @@ import {
   DELETE_FOCUSED_BLOCK,
   UPDATE_HEADER,
   TOGGLE_PREVIEW_MODE,
-  SWITCH_BLOCK_FOCUS
+  SWITCH_BLOCK_FOCUS,
+  MOVE_BLOCK
 } from '../actions';
 
 export function headerReducer(header={}, action) {
@@ -33,6 +34,8 @@ export function focusedBlockReducer(focusedBlock=null, action) {
       return null;
     case ADD_BLOCK:
       return action.newUuid;
+    case MOVE_BLOCK:
+      return action.targetBlockId;
     default:
       return focusedBlock;
   }
