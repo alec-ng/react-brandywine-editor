@@ -2,76 +2,64 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 /**
- * Wraps a block in a container that provides focus/draggable functionality
+ * Renders a block as a plugin instance inside of a container
+ * that provides focus/draggable functionality
  */
-
 const FocusDiv = styled.div`
   cursor: ${props => (props.locked ? "inherit" : "move")};
   min-height: ${props => (props.locked ? "inherit" : "20px")};
-  border: ${props =>
-    props.isFocused && !props.locked ? "2pt solid rgba(0,0,0,0.5)" : "none"};
-  margin-bottom: ${props =>
-    props.locked && props.verticalBlockMargin && !props.omitBottomMargin
-      ? props.verticalBlockMargin
-      : 0};
+  border: ${props => props.isFocused  && !props.locked 
+    ? "2pt solid rgba(0,0,0,0.5)" 
+    : "none"
+  };
+  margin: ${props => props.locked
+    ? (props.omitBottomMargin ? 0 : '0 0 20px 0')
+    : "10px 0"
+  }
 `;
 
-// Only refresh if focus is different
-const isPropsEqual = function(oldProps, newProps) {
-  return (
-    oldProps.variation === newProps.variation &&
-    oldProps.isFocused === newProps.isFocused &&
-    oldProps.locked === newProps.locked &&
-    JSON.stringify(oldProps.baseAttrs) === JSON.stringify(newProps.baseAttrs) &&
-    JSON.stringify(oldProps.variationAttrs) ===
-      JSON.stringify(newProps.variationAttrs)
-  );
-};
-
-function BlockContainer(props) {
-  let containerDivRef = React.createRef();
+export default function BlockContainer({ 
+  block, onBlockClick, BlockElement, omitBottomMargin, isEditable
+}) {
+  const containerDivRef = React.createRef();
 
   // Scroll into view whenever the block is in focus
   useEffect(() => {
-    if (props.isFocused && !props.locked) {
+    if (block.isFocused && isEditable) {
       containerDivRef.current.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
     }
-  });
+  }, [block.isFocused, isEditable]);
 
-  const onDragStart = function(e) {
+  function onDragStart(e) {
     e.dataTransfer.setData("dragType", "block");
-    e.dataTransfer.setData("targetBlockId", props.uuid);
+    e.dataTransfer.setData("targetBlockId", block.uuid);
   };
-  const BlockElement = props.blockElement;
-  const isDraggable = props.locked ? {} : { draggable: true };
-  const editableProperties = props.locked ? {} :
-    {
-      onDragStart: onDragStart,
-      onClick: props.onBlockClick,
-      'data-uuid': props.uuid
-    };
+  
+  const isDraggable = isEditable ? { draggable: true } : {};
+  const editableProperties = isEditable ? {
+    onDragStart: onDragStart,
+    onClick: onBlockClick,
+    'data-uuid': block.uuid
+  } : {};
 
   return (
     <FocusDiv
       {...isDraggable}
       {...editableProperties}
-      isFocused={props.isFocused}
-      verticalBlockMargin={props.verticalBlockMargin}
-      locked={props.locked}
+      isFocused={block.isFocused}
+      locked={!isEditable}
       ref={containerDivRef}
-      omitBottomMargin={props.omitBottomMargin}
+      omitBottomMargin={omitBottomMargin}
     >
       <BlockElement
-        isEditable={!props.locked}
-        variation={props.variation}
-        baseAttrs={props.baseAttrs}
-        variationAttrs={props.variationAttrs}
+        isEditable={isEditable}
+        variation={block.variation}
+        baseAttrs={block.baseAttrs}
+        variationAttrs={block.variationAttrs}
       />
     </FocusDiv>
   );
 }
-
-export default React.memo(BlockContainer, isPropsEqual);

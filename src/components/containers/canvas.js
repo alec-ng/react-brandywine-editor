@@ -13,46 +13,35 @@ import BlockContainer from "../universal/block-container";
  * drag/drop/manipulate blocks on the canvas. In read/preview, the blocks are just shown
  */
 function Canvas({ config, header, isEditable, blocks, dispatch }) {
-  // const [canvasContent, setCanvasContent] = useState([]);
-  // useEffect(() => {
-  //   if (!blocks) {
-  //     return;
-  //   }
-    let elements = [];
-    blocks.forEach((block, index) => {
-      let BlockElement = config.pluginMap[block.name].canvasElement;
-      if (isEditable) {
-        elements.push(
-          <DropZone
-            key={`dropzone-${block.uuid}`}
-            uuid={`dropzone-${block.uuid}`}
-            onDrop={handleOnDrop}
-          />
-        );
-      }
-      elements.push(
-        <BlockContainer
-          omitBottomMargin={index === blocks.length - 1}
-          locked={!isEditable}
-          verticalBlockMargin={config.verticalBlockMargin}
-          key={block.uuid}
-          isFocused={block.isFocused}
-          uuid={block.uuid}
-          onBlockClick={handleBlockClick}
-          variation={block.variation}
-          baseAttrs={block.baseAttrs}
-          variationAttrs={block.variationAttrs}
-          blockElement={BlockElement}
-        />
-      );
-    });
+  
+  let elements = [];
+  blocks.forEach((block, index) => {
+    let BlockElement = config.pluginMap[block.name].canvasElement;
     if (isEditable) {
       elements.push(
-        <DropZone key={`dropzone-last`} onDrop={handleOnDrop} />
+        <DropZone
+          key={`dropzone-${block.uuid}`}
+          uuid={`dropzone-${block.uuid}`}
+          onDrop={handleOnDrop}
+        />
       );
     }
-  //   setCanvasContent(elements);
-  // }, [blocks, config, isEditable, handleBlockClick, handleOnDrop]);
+    elements.push(
+      <BlockContainer
+        key={block.uuid}
+        block={block}
+        onBlockClick={handleBlockClick}
+        BlockElement={BlockElement}
+        isEditable={isEditable}
+        omitBottomMargin={index === blocks.length - 1}
+      />
+    );
+  });
+  if (isEditable) {
+    elements.push(
+      <DropZone key={`dropzone-last`} onDrop={handleOnDrop} />
+    );
+  }
 
   /**
    * When a block on the canvas is clicked, switch the active focus to that block if in editor mode

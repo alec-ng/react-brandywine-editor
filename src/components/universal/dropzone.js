@@ -4,48 +4,42 @@ import styled from "styled-components";
 const DropZoneDiv = styled.div`
   z-index: 9999;
   height: 15px;
-  background-color: rgba(0, 0, 0, 0.03);
-  border: ${props =>
-    props.dragEnter
-      ? "1px dashed rgba(0,0,0,0.5)"
-      : "1px dashed rgba(0,0,0,0.15)"};
-  color: rgba(0, 0, 0, 0.5);
+  background-color: ${props => props.dragEnter
+    ? "rgba(0, 0, 0, 0.1)"
+    : "rgba(0, 0, 0, 0.03)"
+  };
+  border: ${props => props.dragEnter
+    ? "1px dashed rgba(0, 0, 0, 0.75)"
+    : "1px dashed rgba(0, 0, 0, 0.15)"
+  };
+  transition: border 0.25s, background-color 0.25s;  
 `;
 
-const isEqual = function(oldProps, newProps) {
-  return oldProps.uuid === newProps.uuid;
-};
-
-const DropZone = function(props) {
+export default function DropZone({ uuid, onDrop }) {
   const [dragEnter, setDragEnter] = useState(false);
 
-  /**
-   * Overwrite browser default behaviour to allow drag n' drop
-   */
   function onDragOver(e) {
     e.preventDefault();
   }
-
-  /**
-   * Track if an item is dragged over, for CSS
-   */
   function setDragLeft(e) {
     setDragEnter(false);
   }
   function setDrag(e) {
     setDragEnter(true);
   }
+  function handleDrop(e) {
+    setDragEnter(false);
+    onDrop(e);
+  }
 
   return (
     <DropZoneDiv
-      data-uuid={props.uuid}
+      data-uuid={uuid}
       onDragOver={onDragOver}
-      onDrop={props.onDrop}
+      onDrop={handleDrop}
       onDragLeave={setDragLeft}
       onDragEnter={setDrag}
       dragEnter={dragEnter}
     />
   );
 };
-
-export default React.memo(DropZone, isEqual);

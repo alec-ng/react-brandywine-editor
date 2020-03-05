@@ -16,7 +16,11 @@ export default function BlockAttributes(
     );
   }
 
-  const handleChange = (e) => {
+  /**
+   * type coercion of input value depending on its type
+   * then, fire cb with variation name, attr name, new value
+   */
+  function handleChange(e) {
     let newVal;
     switch (e.target.type) {
       case 'checkbox': 
@@ -30,6 +34,7 @@ export default function BlockAttributes(
     }
     onAttributeChange(e.target.dataset.variation, e.target.dataset.name, newVal);
   }
+  
   const plugin = pluginMap[focusedBlock.name];
   const variation = plugin.variations.find(
     variation => variation.name === focusedBlock.variation

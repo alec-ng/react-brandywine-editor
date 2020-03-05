@@ -6,7 +6,6 @@ import { mainReducer } from "./reducers/index";
 const defaultState = {
   // CONFIG properties: set once from user props
   readOnly: false,
-  verticalBlockMargin: "20px",
   showPluginDescription: true,
   onChange: null,
   fullHeight: false,
