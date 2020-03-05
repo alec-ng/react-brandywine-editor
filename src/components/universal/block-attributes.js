@@ -28,7 +28,7 @@ export default function BlockAttributes(
       default:
         newVal = e.target.value;
     }
-    onAttributeChange(e.target.dataset.name, newVal, e.target.dataset.variation);
+    onAttributeChange(e.target.dataset.variation, e.target.dataset.name, newVal);
   }
   const plugin = pluginMap[focusedBlock.name];
   const variation = plugin.variations.find(

@@ -1,6 +1,7 @@
 import React from "react";
-import { useStateValue } from "../../../state/context";
-import { ACTION_TYPES } from '../../../state/reducers';
+import { connect } from 'react-redux';
+import { togglePreviewMode } from '../../../state/actions';
+
 import Toolbar from "../toolbar";
 import Canvas from "../canvas";
 import { 
@@ -11,10 +12,10 @@ import {
  * Top level container component
  * Conditional rendering dependning on read vs preview vs edit mode
  */
-export default function App() {
-  const [{ inPreviewMode, readOnly, fullHeight }, dispatch] = useStateValue();
+function App({ inPreviewMode, readOnly, fullHeight, dispatch }) {
+  
   const togglePreview = () => {
-    dispatch ({ type: ACTION_TYPES.TOGGLE_PREVIEW_MODE });
+    dispatch(togglePreviewMode());
   }
 
   return (
@@ -51,3 +52,10 @@ export default function App() {
     </BaseContainer>
   );
 }
+
+const mapStateToProps = (state) => ({
+  inPreviewMode: state.inPreviewMode,
+  readOnly: state.readOnly,
+  fullHeight: state.fullHeight
+});
+export default connect(mapStateToProps)(App);

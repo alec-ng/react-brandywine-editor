@@ -1,7 +1,9 @@
 import React from "react";
-import { exportStateData } from "../../state/index";
-import { useStateValue } from '../../state/context';
-import { ACTION_TYPES } from "../../state/reducers/index";
+import { connect } from 'react-redux';
+import { 
+  togglePreviewMode, deleteFocusedBlock, updateHeader, updateFocusedBlock, updateVariation
+} from '../../state/actions';
+import { selectConfig, selectFocusedBlock } from '../../state/selectors';
 
 import PageHeaderForm from "../universal/page-header-form";
 import DraggablePlugin from "../universal/draggable-plugin";
@@ -11,59 +13,33 @@ import BlockAttributes from "../universal/block-attributes";
 /**
  * Represents the editor's left hand command bar for modifying page and block metadata
  */
-export default function Toolbar() {
-  const [
-    { plugins, pluginMap, blocks, onSave, focusedBlock, showPluginDescription, header },
-    dispatch
-  ] = useStateValue();
-
-  
-  function exportEditorData() {
-    let { exportHeader, exportBlocks } = exportStateData(header, blocks);
-    onSave(exportHeader, exportBlocks);
-  }
+function Toolbar({ config, focusedBlock, header, dispatch }) {
 
   function togglePreview() {
-    dispatch ({ type: ACTION_TYPES.TOGGLE_PREVIEW_MODE });
+    dispatch(togglePreviewMode());
   }
 
-  function deleteFocusedBlock() {
-    dispatch({ type: ACTION_TYPES.DELETE_FOCUSED_BLOCK });
+  function deleteCurrentBlock() {
+    dispatch(deleteFocusedBlock());
   }
 
-  function updateHeader(key, value) {
-    dispatch({
-      type: ACTION_TYPES.UPDATE_HEADER,
-      payload: {
-        key: key,
-        value: value
-      }
-    });
+  function updateHeaderValue(key, value) {
+    dispatch(updateHeader(key, value));
   }
 
-  function updateBlockAttribute(name, value, variation) {
-    dispatch({
-      type: ACTION_TYPES.UPDATE_FOCUSED_BLOCK,
-      payload: {
-        name: name,
-        val: value,
-        variation: variation
-      }
-    });
+  function updateBlockAttribute(variation, name, value) {
+    dispatch(updateFocusedBlock(variation, name, value));
   }
 
-  function updateVariation(newVariation) {
-    dispatch({
-      type: ACTION_TYPES.UPDATE_VARIATION,
-      payload: { variation: newVariation }
-    });
+  function updateBlockVariation(newVariation) {
+    dispatch(updateVariation(newVariation));
   }
 
-  const PluginList = plugins.map(plugin => (
+  const PluginList = config.pluginOrder.map(pluginName => (
     <DraggablePlugin
-      showPluginDescription={showPluginDescription}
-      key={plugin.name}
-      plugin={plugin}
+      showPluginDescription={config.showPluginDescription}
+      key={pluginName}
+      plugin={config.pluginMap[pluginName]}
     />
   ));
 
@@ -73,7 +49,7 @@ export default function Toolbar() {
         <Accordion title="Page Header">
           <PageHeaderForm 
             header={header}
-            onInputChange={updateHeader}
+            onInputChange={updateHeaderValue}
           />
         </Accordion>
         <Accordion title="Add Block">
@@ -82,15 +58,15 @@ export default function Toolbar() {
         <Accordion title="Block Attributes" openOnDefault={true}>
           <BlockAttributes 
               onAttributeChange={updateBlockAttribute}
-              onVariationChange={updateVariation}
+              onVariationChange={updateBlockVariation}
               focusedBlock={focusedBlock}
-              pluginMap={pluginMap}
+              pluginMap={config.pluginMap}
           />
         </Accordion>
       </section>
 
       <section className="p-3">
-        {onSave != null && (
+        {config.onSave && (
           <button
             type="button"
             className="btn btn-block btn-success"
@@ -110,7 +86,7 @@ export default function Toolbar() {
           <button
             type="button"
             className="btn btn-block btn-danger"
-            onClick={deleteFocusedBlock}
+            onClick={deleteCurrentBlock}
           >
             Delete Current Block
           </button>
@@ -119,3 +95,11 @@ export default function Toolbar() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  config: selectConfig(state),
+  focusedBlock: selectFocusedBlock(state),
+  header: state.header
+});
+export default connect(mapStateToProps)(Toolbar);
+
