@@ -1,3 +1,7 @@
+/**
+ * PEER DEPENDENCIES: VisibilitySensor
+ */
+
 import { VARIATION_DEFAULT, HTMLVideoElement } from "./html-video";
 import { VARIATION_AUTOPLAY } from "./variation-autoplay";
 

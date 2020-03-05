@@ -1,9 +1,9 @@
+/**
+ * PEER DEPENDENCIES: react-markdown
+ */
 import { MarkdownElement, VARIATION_DEFAULT } from "./markdown";
 
-/**
- * Plugin definition for Markdown text
- */
-const Image = {
+const Markdown = {
   name: "markdown",
   label: "Markdown",
   description: "Parses and renders a markdown source",
@@ -27,4 +27,4 @@ const Image = {
   useDefaultControls: true
 };
 
-export default Image;
+export default Markdown;
