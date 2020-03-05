@@ -24,7 +24,6 @@
     "immer": "^6.0.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-device-detect": "^1.11.14",
-    "react-fast-compare": "^2.0.4",
     "react-items-carousel": "^2.8.0",
     "react-markdown": "^4.3.1",
     "react-redux": "^7.2.0",
