@@ -23,17 +23,17 @@
     "bootstrap": "^4.4.1",
     "immer": "^6.0.0",
     "react-bootstrap": "^1.0.0-beta.16",
-    "react-device-detect": "^1.11.14",
-    "react-items-carousel": "^2.8.0",
-    "react-markdown": "^4.3.1",
     "react-redux": "^7.2.0",
-    "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
     "uuid": "^7.0.1"
   },
   "peerDependencies": {
     "styled-components": "^5.0.0",
-    "react": "16.x"
+    "react": "16.x",
+    "react-visibility-sensor": "^5.1.1",
+    "react-device-detect": "^1.11.14",
+    "react-items-carousel": "^2.8.0",
+    "react-markdown": "^4.3.1"
   },
   "devDependencies": {
     "nwb": "0.23.x",
