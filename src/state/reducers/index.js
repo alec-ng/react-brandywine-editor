@@ -1,9 +1,9 @@
 import { dispatchChange } from "./util";
 import { actionsTriggeringDispatch } from '../actions';
+
 import blocksReducer from "./blocks-reducer";
-import { 
-  blockOrderReducer, headerReducer, previewModeReducer, focusedBlockReducer
-} from './slice-reducers';
+import blockOrderReducer from './block-order-reducer';
+import { headerReducer, previewModeReducer, focusedBlockReducer } from './slice-reducers';
 
 export const mainReducer = (state = {}, action) => {
   // get next values for subset of state that is mutable 

@@ -43,6 +43,7 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         break;
       }
 
+      // add new block entry and make sure it's the only focused block
       case ADD_BLOCK: {
         if (focusedBlock) {
           draft[focusedBlock].isFocused = false;
@@ -52,6 +53,7 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         break;
       }
   
+      // update the variation property of the focused block
       case UPDATE_VARIATION: {
         if (!focusedBlock) {
           break;
@@ -63,7 +65,8 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         }
         break;
       }
-        
+       
+      // removes the focused block from key value store
       case DELETE_FOCUSED_BLOCK: {
         if (!focusedBlock) {
           break;
