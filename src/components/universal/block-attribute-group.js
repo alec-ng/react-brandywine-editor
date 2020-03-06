@@ -1,24 +1,27 @@
 import React from "react";
-import Input from "./input";
-import Select from "./select";
-import TextArea from "./textarea";
+import Input from "../generic/input";
+import Select from "../generic/select";
+import TextArea from "../generic/textarea";
 
 /**
  * Represents a grouping of form elements to be rendered in BlockAttributes in the Toolbar
  * The groupings are either "base" or some variation
  */
-export default function BlockAttributeGroup(props) {
+export default function BlockAttributeGroup(
+  { attrs, focusedBlock, isBase, variationName, onChange }
+) {
+
   let attrList = [];
-  props.attrs.forEach(attr => {
+  attrs.forEach(attr => {
     // Populate HTML attributes through focused block/plugin definition information
     let inputAttrs = { "data-name": attr.name };
-    let attributeSet = props.isBase
-      ? props.focusedBlock.baseAttrs
-      : props.focusedBlock.variationAttrs[props.variationName];
+    let attributeSet = isBase
+      ? focusedBlock.baseAttrs
+      : focusedBlock.variationAttrs[variationName];
 
     inputAttrs["min"] = attr.min;
     inputAttrs["max"] = attr.max;
-    inputAttrs["data-variation"] = props.isBase ? "base" : props.variationName;
+    inputAttrs["data-variation"] = isBase ? "base" : variationName;
     inputAttrs["value"] = attributeSet[attr.name] || attr.defaultValue || "";
 
     if (attr.element === "input") {
@@ -29,7 +32,7 @@ export default function BlockAttributeGroup(props) {
         <Input
           label={attr.label}
           type={attr.type}
-          handleOnChange={props.onChange}
+          handleOnChange={onChange}
           key={attr.name}
           attributes={inputAttrs}
         />
@@ -41,7 +44,7 @@ export default function BlockAttributeGroup(props) {
       attrList.push(
         <TextArea
           label={attr.label}
-          handleOnChange={props.onChange}
+          handleOnChange={onChange}
           key={attr.name}
           attributes={inputAttrs}
         />
@@ -52,7 +55,7 @@ export default function BlockAttributeGroup(props) {
       attrList.push(
         <Select
           label={attr.label}
-          onChange={props.onChange}
+          onChange={onChange}
           key={attr.name}
           options={attr.options}
           attributes={inputAttrs}
@@ -61,9 +64,10 @@ export default function BlockAttributeGroup(props) {
       );
     }
   });
+
   return (
     <React.Fragment>
-      {props.isBase
+      {isBase
         ? attrList
         : attrList.length > 0 && <React.Fragment>{attrList}</React.Fragment>}
     </React.Fragment>

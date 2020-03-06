@@ -16,19 +16,9 @@ const CarouselImage = styled.div`
 `;
 const ChevronButton = styled.button`
   border-radius: 15px;
-  border-style: solid;
-  border-color: rgba(0, 0, 0, 0.75);
+  border: none;
   color: black;
-  border-width: 1px;
-  background-color: rgba(255, 255, 255, 0.5);
-  transition: border-color 0.4s ease-in-out, color 0.75s ease-in-out;
-  &:focus,
-  &:active,
-  &:hover {
-    outline: none;
-    border-color: rgb(255, 69, 0);
-    color: rgb(255, 69, 0);
-  }
+  background-color: rgba(255, 255, 255, 0.75);
 `;
 const PlaceholderDiv = styled.div`  
   background-color: #ddd;
@@ -103,7 +93,6 @@ export function CarouselElement(props) {
         numberOfCards={numCards}
         slidesToScroll={1}
         outsideChevron={false}
-        showSlither={true}
         firstAndLastGutter={false}
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}

@@ -1,3 +1,7 @@
+/**
+ * PEER DEPENDENCY: react-items-carousel, react-device-detect
+ */
+
 import {
   CarouselElement,
   DEFAULT_NUM_CARDS,

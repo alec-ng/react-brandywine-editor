@@ -8,38 +8,50 @@ react-brandywine-editor comes shipped with a number of [pre-written plugins](/sr
 
 ### Plugin Definition
 
-A plugin is defined by an object and contains the following key-values:
+Taken from [user-prop-types.js](../src/user-prop-types.js).
+
+A plugin is defined by an object and contains the following properties:
 
 ```javascript
-const VARIATION_FULL_WIDTH = 'variation_full_width';
+  // API name of the plugin, must be unique across all plugins supplied
+  name: PropTypes.string.isRequired,
 
-const myPlugin = {
-  // *Required: API name of the plugin. Must be unique when loading other plugins or previously saved data
-  name: "image",
-  // *Required: Shown on toolbar UI
-  label: "Image",
-  description: "An image rendered from a URL source",
-  // *Required: React element to be rendered on the canvas
-  canvasElement: ImageElement,
-  //  Data that is used across all variations
-  baseAttrs: [
-    {
-      name: "urlSource",
-      label: "URL",
-      type: "text"
-    }
-  ],
-  // *Required:  Different versions of the plugin. Each variation name must be unique
-  variations: [
-    {
-      name: VARIATION_FULL_WIDTH,
-      label: "Full Width",
-      attrs: []
-    }
-  ],
-  // *Required: Each plugin instance must be associated with a variation
-  defaultVariation: VARIATION_FULL_WIDTH
-};
+  // label shown on toolbar UI
+  label: PropTypes.string.isRequired,
+
+  // description shown on toolbar UI
+  description: PropTypes.string.isRequired,
+
+  // React element rendered on canvas
+  canvasElement: PropTypes.elementType.isRequired,
+
+  // data accessible across all variations
+  baseAttrs: PropTypes.arrayOf(PropTypes.shape({
+    // api name, must be unique across all attributes (base or variation) of this plugin
+    name: PropTypes.string.isRequired,
+    // readable name
+    label: PropTypes.string.isRequired,
+    // type of form element generated 
+    element: PropTypes.string.isRequired
+  })),
+
+  // variation plugin initialized with when first created
+  defaultVariation: PropTypes.string.isRequired, 
+
+  // list of plugin variations to provide functionality specific data
+  variations: PropTypes.arrayOf(PropTypes.shape({
+    // variation api name, must be unique across all of this plugin's variations
+    name: PropTypes.string.isRequired,
+    // readable variation name
+    label: PropTypes.string.isRequired,
+    // refer to baseAttrs shape 
+    attrs: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      element: PropTypes.string.isRequired
+    })),
+  }))
+}
 ```
 
 Below is an example of how each plugin propery maps to the editor UI.
@@ -67,7 +79,7 @@ variations: [
     attrs: [
       {
         name: "size_percentage",
-        label: "SIze (%)",
+        label: "Size (%)",
         type: "number"
       }
     ]
