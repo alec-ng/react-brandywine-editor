@@ -19,7 +19,6 @@ jobs:
       - name: Build
         run: npm run prepublishOnly
       - name: Publish
-        if: github.ref == 'refs/heads/master'
         uses: mikeal/merge-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
