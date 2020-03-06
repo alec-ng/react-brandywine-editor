@@ -15,17 +15,16 @@ __Features__
 
 ### Quickstart
 
+`npm install --save react-brandywine-editor`
+
 See [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or the [demo source file](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src/index.js) to get started.
 
-### Dependencies
-
-Styled components is a peer dependency: `npm install styled-components@^5.0.0`
-
-This library ships with a set of pre-written plugins. Some of them have peer dependencies; if you are using any of the following, run:
-
-* Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`
-* HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
-* Markdown: `npm install react-markdown@^4.3.1`
+A note on dependencies:
+  * Styled components is a peer dependency: `npm install styled-components@^5.0.0`
+  * This library ships with a set of pre-written plugins. Some of them have peer dependencies; if you are using any of the following, run:
+    * Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`
+    * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
+    * Markdown: `npm install react-markdown@^4.3.1`
 
 ### API
 
