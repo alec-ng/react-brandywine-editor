@@ -1,0 +1,31 @@
+name: Integration Main Workflow
+
+on:
+  push:
+    branches:
+      - integration
+
+jobs:
+  main:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+      - name: npm run 
+      - name: Build
+        run: npm run build
+  auto-pull-request:
+    name: auto-pull-request
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_BRANCH: "master"
+          PULL_REQUEST_TITLE: "Integration Changes"
+          PULL_REQUEST_BODY: "Automated PR to merge changes to production from integration"
