@@ -29,18 +29,66 @@ This library ships with a set of pre-written plugins. Some of them have peer dep
 
 ### API
 
-| name                  | description                                                                                          | type                       | required                                        |
-| --------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------- |
-| pageData              | default editor data loaded                                                                           | {header, blocks}           | -                                               |
-| onChange              | fires on every change                                                                                | function(header,blocks){}  | One of onSave or onChange if `readOnly = false` |
-| readOnly              | if true, applies read-only styles to content and does not render the toolbar or editing canvas       | boolean                    | default `false`                                 |
-| plugins               | list of plugins you want to work with in editor mode or need to render according to `pageData`       | []                         | yes                                             |
-| showPluginDescription | show descriptive text beside plugins in editor mode                                                  | boolean                    | default `true`                                  |
-| fullHeight            | sidebar/canvas height toggle. true: 100vh, false: 100.                                               | boolean                    | default `false`                                 |
+Taken from [user-prop-types.js](src/user-prop-types.js).
+
+```javascript
+  /**
+   * Function receiving two arguments: 1. header, 2. blocks, whose shape is described
+   * below under the pageData prop
+   */
+  onChange: PropTypes.func,
+  
+  /**
+   * Whether or not to render the complete editor (false), or supplied pageData (true)
+   * Default: false
+   */
+  readOnly: PropTypes.bool,
+  
+  /**
+   * If readOnly = false, controls the sidebar/canvas height CSS property. 
+   * true: 100vh, false: 100%
+   * Default: false
+   */
+  fullHeight: PropTypes.bool,
+  
+  /**
+   * Whether or not to show descriptive text beside plugins in editor mode	
+   * default: true
+   */
+  showPluginDescription: PropTypes.bool,
+  
+  /**
+   * Used to generate blocks on the canvas. Note it's an array of element types, not elements
+   */
+  plugins: PropTypes.arrayOf(PropTypes.shape({
+      // see docs/plugins.md
+  })).isRequired,
+  
+  /**
+   * Default editor data loaded on initialization
+   */
+  pageData: PropTypes.exact({
+    header: PropTypes.exact({
+      title: PropTypes.string.isRequired,
+      subTitle: PropTypes.string.isRequired,
+      displayDate1: PropTypes.string.isRequired, // dates: yyyy-mm-dd format
+      displayDate2: PropTypes.string.isRequired
+    }),
+    // The header and blocks properties are the same as the arguments 
+    // supplied to the onChange prop
+    blocks: PropTypes.arrayOf(PropTypes.exact({
+      name: PropTypes.string.isRequired,
+      baseAttrs: PropTypes.object,
+      variation: PropTypes.string,
+      variationAttrs: PropTypes.object
+    }))
+  })
+}
+```
 
 ### Roadmap
 
-- Unit testing
-- Remove depedency on bootstrap-react
-- Implement native HTML5 form validation on attributes
-- Support all HTML5 input attributes in attribute definitions, such as "min", "max", etc
+- Jest/enzyme testing, with or without storybook
+- Remove depedency on bootstrap-react and bootstrap
+- read only vs editor separate exports
+- attribute validation

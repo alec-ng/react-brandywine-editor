@@ -38,12 +38,9 @@ function generateStateFromProps({
   showPluginDescription 
 }) {
   // Validation
-  if (!plugins ||plugins.length < 1) {
-    throw new Error("You must supply at least one plugin through props.plugins");
-  }
-  if (!onChange && !props.readOnly) {
+  if (!onChange && !readOnly) {
     throw new Error(
-      'If rendering in edit mode, you must supply a function for onSave'
+      'You have initialized the editor as editable, but have not supplied a function for onSave'
     );
   }
 
