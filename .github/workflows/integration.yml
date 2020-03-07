@@ -15,8 +15,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Build
-      - name: npm run 
-      - name: Build
         run: npm run build
   auto-pull-request:
     name: auto-pull-request
