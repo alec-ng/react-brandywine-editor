@@ -5,8 +5,18 @@ import {
   UPDATE_HEADER,
   TOGGLE_PREVIEW_MODE,
   SWITCH_BLOCK_FOCUS,
-  MOVE_BLOCK
+  MOVE_BLOCK,
+  UPDATE_FOCUSED_ELEMENT_TYPE
 } from '../actions';
+
+export function focusedElementTypeReducer(focusedElementType=null, action) {
+  switch (action.type) {
+    case UPDATE_FOCUSED_ELEMENT_TYPE:
+      return action.type;
+    default:
+      return focusedElementType;
+  }
+}
 
 export function headerReducer(header={}, action) {
   switch (action.type) {

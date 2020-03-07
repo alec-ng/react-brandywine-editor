@@ -9,11 +9,11 @@ export const UPDATE_VARIATION = 'UPDATE_VARIATION';
 export const TOGGLE_PREVIEW_MODE = 'TOGGLE_PREVIEW_MODE';
 export const DELETE_FOCUSED_BLOCK = 'DELETE_FOCUSED_BLOCK';
 export const MOVE_BLOCK = 'MOVE_BLOCK';
+export const UPDATE_FOCUSED_ELEMENT_TYPE = 'UPDATE_FOCUSED_ELEMENT_TYPE';
 
 /**
  * Action creators
  */
-
 export const updateHeader = makeActionCreator(UPDATE_HEADER, 'key', 'value');
 export const updateFocusedBlock = makeActionCreator(UPDATE_FOCUSED_BLOCK, 'variation', 'key', 'val');
 export const addBlock = makeActionCreator(ADD_BLOCK, 'pluginName', 'positionUuid', 'newUuid');
@@ -22,7 +22,7 @@ export const updateVariation = makeActionCreator(UPDATE_VARIATION, 'newVariation
 export const togglePreviewMode = makeActionCreator(TOGGLE_PREVIEW_MODE);
 export const deleteFocusedBlock = makeActionCreator(DELETE_FOCUSED_BLOCK);
 export const moveBlock = makeActionCreator(MOVE_BLOCK, 'targetBlockId', 'positionBlockId');
-
+export const updateFocusedElementType = makeActionCreator(UPDATE_FOCUSED_ELEMENT_TYPE, 'type');
 
 /**
  * Action types that will fire the onSave config cb
