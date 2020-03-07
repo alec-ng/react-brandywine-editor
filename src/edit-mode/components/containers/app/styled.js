@@ -7,12 +7,15 @@ import styled from 'styled-components';
 export const BaseContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
-  display: ${props =>
-    props.readOnly || props.inPreviewMode ? "block" : "flex"};
   height: ${props => props.fullHeight === true ? '100vh' : '100%' };
-  min-width: ${props =>
-    props.readOnly || props.inPreviewMode ? "inherit" : "992px"};
-  `;
+
+  ${({ inPreviewMode }) => inPreviewMode 
+    ? `display: block;`
+    : `display: flex;
+       min-width: 992px;
+      `
+  }
+`;
 
 export const ToolbarContainer = styled.div`
   flex: 0 0 25%;
@@ -33,18 +36,14 @@ export const ToolbarContainer = styled.div`
 `;
 
 export const CanvasContainer = styled.div`
-  ${({ readOnly, inPreviewMode }) => (readOnly || inPreviewMode) && `
-    padding: 0;
-  `}
-  ${({ readOnly, inPreviewMode }) => !readOnly && !inPreviewMode && `
-    flex: 75%;
-    padding: 0 10px 20px 10px;
-    height: 100%;
-    overflow-y: auto;  
-  `}
-  ${({ inPreviewMode }) => inPreviewMode && `
-    padding-bottom: 30px;
-  `}
+  ${({ inPreviewMode }) => inPreviewMode 
+    ? `padding-bottom: 30px;`
+    : `flex: 75%;
+       padding: 0 10px 20px 10px;
+       height: 100%;
+       overflow-y: auto;  
+       `
+  }
 `;
 
 export const InPreviewModeButton = styled.button`

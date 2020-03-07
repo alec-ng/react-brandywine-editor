@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import "../../src/styles.css";
-import 'bootstrap/dist/css/bootstrap.css';
+import { BrandywineEditor } from '../../src/edit-mode/index';
+import { BrandywineReader } from '../../src/read-mode/index';
 
-import { BrandywineEditor } from '../../src/index';
 import Image from '../../src/plugins/image';
 import Markdown from '../../src/plugins/markdown';
 import CoverPhoto from "../../src/plugins/cover-photo";
@@ -36,6 +36,13 @@ function Demo(props) {
 			fullHeight={true}
 			pageData={testData}
 		/>
+		/*
+		 * Readonly module for static rendering
+		 */
+		// <BrandywineReader
+		// 	plugins={plugins}
+		// 	pageData={testData}
+		// />
   );
 }
 

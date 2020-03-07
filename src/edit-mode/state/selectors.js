@@ -6,7 +6,6 @@ export function selectConfig(state) {
     verticalBlockMargin: state.verticalBlockMargin,
     showPluginDescription: state.showPluginDescription,
     onSave: state.onSave,
-    readOnly: state.readOnly,
     onChange: state.onChange,
     fullHeight: state.onChange,
     pluginOrder: state.pluginOrder,

@@ -92,6 +92,6 @@ const mapStateToProps = (state) => ({
   config: selectConfig(state),
   blocks: selectBlockArray(state),
   header: state.header,
-  isEditable: !state.readOnly && !state.inPreviewMode
+  isEditable: !state.inPreviewMode
 });
 export default connect(mapStateToProps)(Canvas);
