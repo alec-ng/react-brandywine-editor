@@ -6,15 +6,28 @@ import {
   TOGGLE_PREVIEW_MODE,
   SWITCH_BLOCK_FOCUS,
   MOVE_BLOCK,
-  UPDATE_FOCUSED_ELEMENT_TYPE
+  UPDATE_FOCUSED_ELEMENT
 } from '../actions';
 
 export function focusedElementTypeReducer(focusedElementType=null, action) {
   switch (action.type) {
-    case UPDATE_FOCUSED_ELEMENT_TYPE:
-      return action.type;
+    case UPDATE_FOCUSED_ELEMENT:
+      return action.elementType;
+    case SWITCH_BLOCK_FOCUS:
+      return 'block';
     default:
       return focusedElementType;
+  }
+}
+
+export function focusedDropzoneReducer(focusedDropzone=null, action) {
+  switch (action.type) {
+    case SWITCH_BLOCK_FOCUS:
+      return null;
+    case UPDATE_FOCUSED_ELEMENT:
+      return action.elementType === 'dropzone' ? action.uuid : null;
+    default:
+      return focusedDropzone;
   }
 }
 
@@ -40,6 +53,8 @@ export function focusedBlockReducer(focusedBlock=null, action) {
   switch (action.type) {
     case SWITCH_BLOCK_FOCUS:
       return action.uuid;
+    case UPDATE_FOCUSED_ELEMENT:
+      return action.elementType === 'block' ? action.uuid : null;
     case DELETE_FOCUSED_BLOCK:
       return null;
     case ADD_BLOCK:

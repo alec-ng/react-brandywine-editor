@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import { selectConfig, selectBlockArray } from '../../state/selectors';
-import { switchBlockFocus, addBlock, moveBlock } from '../../state/actions';
+import { 
+  switchBlockFocus, addBlock, moveBlock, updateFocusedElement 
+} from '../../state/actions';
 
+import FocusableContainer from '../universal/focusable-container';
 import PageHeader from "../universal/page-header"
 import DropZone from "../universal/dropzone";
 import BlockContainer from "../universal/block-container";
@@ -12,17 +15,32 @@ import BlockContainer from "../universal/block-container";
  * Represents the portion of the editor showing block elements. In editor mode, the user can
  * drag/drop/manipulate blocks on the canvas. In read/preview, the blocks are just shown
  */
-function Canvas({ config, header, isEditable, blocks, dispatch }) {
+function Canvas({ 
+  config, 
+  header, 
+  inPreviewMode, 
+  blocks,
+  focusedDropzone, 
+  focusedBlock,
+  focusedElementType,
+  dispatch 
+}) {
   
+  /**
+   * Components to render
+   */
   let elements = [];
   blocks.forEach((block, index) => {
     let BlockElement = config.pluginMap[block.name].canvasElement;
-    if (isEditable) {
+    if (!inPreviewMode) {
       elements.push(
         <DropZone
           key={`dropzone-${block.uuid}`}
           uuid={`dropzone-${block.uuid}`}
           onDrop={handleOnDrop}
+          onClick={handleElementClick}
+          inPreviewMode={inPreviewMode}
+          isFocused={focusedDropzone === `dropzone-${block.uuid}`}
         />
       );
     }
@@ -32,27 +50,30 @@ function Canvas({ config, header, isEditable, blocks, dispatch }) {
         block={block}
         onBlockClick={handleBlockClick}
         BlockElement={BlockElement}
-        isEditable={isEditable}
+        inPreviewMode={inPreviewMode}
         omitBottomMargin={index === blocks.length - 1}
+        isFocused={focusedBlock === block.uuid}
       />
     );
   });
-  if (isEditable) {
+  if (!inPreviewMode) {
     elements.push(
       <DropZone key={`dropzone-last`} onDrop={handleOnDrop} />
     );
   }
 
   /**
-   * When a block on the canvas is clicked, switch the active focus to that block if in editor mode
+   * Handlers for clicking canvas elements
    */
-  function handleBlockClick(e) {
-    dispatch(switchBlockFocus(e.currentTarget.dataset.uuid));
+  function handleBlockClick({ uuid }) {
+    dispatch(switchBlockFocus(uuid));
   };
+  function handleElementClick({ elementType, uuid }) {
+    dispatch(updateFocusedElement(elementType, uuid))
+  }
 
   /**
-   * When an item is dropped onto a dropzone, determine whether to add a new block
-   * or move a current one
+   * When an item is dropped , determine whether to add block or plugin
    * Assumes dropzone uuid is of form dropzone-{uuid}, set in canvas.js
    */
   function handleOnDrop(e) {
@@ -82,7 +103,14 @@ function Canvas({ config, header, isEditable, blocks, dispatch }) {
 
   return (
     <React.Fragment>
-      <PageHeader header={header} />
+      <FocusableContainer
+        isFocused={focusedElementType === 'header'}
+        dataset={{ elementType: 'header' }}
+        onClick={handleElementClick}
+        inPreviewMode={inPreviewMode}
+      >
+        <PageHeader header={header} />
+      </FocusableContainer>
       {elements}
     </React.Fragment>
   );
@@ -92,6 +120,9 @@ const mapStateToProps = (state) => ({
   config: selectConfig(state),
   blocks: selectBlockArray(state),
   header: state.header,
-  isEditable: !state.inPreviewMode
+  inPreviewMode: state.inPreviewMode,
+  focusedDropzone: state.focusedDropzone,
+  focusedBlock: state.focusedBlock,
+  focusedElementType: state.focusedElementType
 });
 export default connect(mapStateToProps)(Canvas);

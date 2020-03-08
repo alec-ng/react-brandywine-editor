@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import FocusableContainer from './focusable-container';
 
 const DropZoneDiv = styled.div`
   z-index: 9999;
@@ -13,10 +14,21 @@ const DropZoneDiv = styled.div`
     : "1px dashed rgba(0, 0, 0, 0.15)"
   };
   transition: border 0.25s, background-color 0.25s;  
+  margin: -1px;
 `;
 
-export default function DropZone({ uuid, onDrop }) {
+export default function DropZone({ 
+  uuid, 
+  onDrop,
+  inPreviewMode, 
+  isFocused, 
+  onClick 
+}) {
   const [dragEnter, setDragEnter] = useState(false);
+  const dataset = { 
+    elementType: 'dropzone',
+    uuid: uuid
+  }
 
   function onDragOver(e) {
     e.preventDefault();
@@ -33,13 +45,20 @@ export default function DropZone({ uuid, onDrop }) {
   }
 
   return (
-    <DropZoneDiv
-      data-uuid={uuid}
-      onDragOver={onDragOver}
-      onDrop={handleDrop}
-      onDragLeave={setDragLeft}
-      onDragEnter={setDrag}
-      dragEnter={dragEnter}
-    />
+    <FocusableContainer
+      onClick={onClick}
+      inPreviewMode={inPreviewMode}
+      isFocused={isFocused}
+      dataset={dataset}
+    >
+      <DropZoneDiv
+        data-uuid={uuid}
+        onDragOver={onDragOver}
+        onDrop={handleDrop}
+        onDragLeave={setDragLeft}
+        onDragEnter={setDrag}
+        dragEnter={dragEnter}
+      />
+    </FocusableContainer>
   );
 };
