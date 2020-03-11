@@ -22,13 +22,12 @@ See [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or the
 `npm install --save react-brandywine-editor`
 
 The library comes with two entry points that can be imported separately.
-
 * Readonly mode for static rendering: `import { BrandywineReader } from react-bradywine-editor/src/read-mode/index`
 * Editor mode: `import { BrandywineEditor } from react-bradywine-editor/src/edit-mode/index`
 
-If using editor mode, install the following peerDependencies:
-
-`npm install styled-components@^5.0.0" react@16.x react-bootstrap@^1.0.0-beta.16 react-redux@^7.2.0 redux@^4.0 bootstrap@^4.4.1 immer@^6.0.0`
+The only dependency listed is `prop-types`. If your project intends to use editor mode, the following packages are listed as peer dependencies:
+* material-ui/core, styled-components, react, react-redux, bootstrap, immer, uuid
+* `npm install @material-ui/core@^4.9.5 styled-components@^5.0.0" react@16.x react-redux@^7.2.0 redux@^4.0 bootstrap@^4.4.1 immer@^6.0.0 uuid@^7.0.1"`
 
 The library ships with a set of pre-written plugins. Some of them have peer dependencies:
   * Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`

@@ -25,7 +25,6 @@
     "@material-ui/core": "^4.9.5",
     "styled-components": "^5.0.0",
     "react": "16.x",
-    "react-bootstrap": "^1.0.0-beta.16",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "bootstrap": "^4.4.1",
@@ -36,11 +35,11 @@
     "react-markdown": "^4.3.1"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.9.5",
     "bootstrap": "^4.4.1",
     "immer": "^6.0.0",
-    "nwb": "0.23.x",
+    "nwb": "^0.24.0",
     "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.12.0",
     "react-items-carousel": "^2.8.0",

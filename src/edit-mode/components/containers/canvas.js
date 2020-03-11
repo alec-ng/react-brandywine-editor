@@ -1,31 +1,28 @@
-import React from "react";
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
-import { selectConfig, selectBlockArray } from '../../state/selectors';
-import { 
-  switchBlockFocus, addBlock, moveBlock, updateFocusedElement 
-} from '../../state/actions';
+import { selectConfig, selectBlockArray, selectFocusedBlock } from '../../state/selectors';
+import { moveBlock, updateFocusedElement } from '../../state/actions';
 
 import FocusableContainer from '../universal/focusable-container';
 import PageHeader from "../universal/page-header"
 import DropZone from "../universal/dropzone";
 import BlockContainer from "../universal/block-container";
+import FocusedElementPopper from './focused-element-popper';
 
 /**
- * Represents the portion of the editor showing block elements. In editor mode, the user can
- * drag/drop/manipulate blocks on the canvas. In read/preview, the blocks are just shown
+ * Top level stateful container for responsive canvas
+ * Renders all canvas elements and the focused element popper
  */
 function Canvas({ 
   config, 
   header, 
   inPreviewMode, 
   blocks,
-  focusedDropzone, 
-  focusedBlock,
-  focusedElementType,
+  focusedData,
   dispatch 
-}) {
-  
+}) {  
+  const [focusedElementRef, setFocusedElementRef] = useState(null);
+
   /**
    * Components to render
    */
@@ -40,7 +37,7 @@ function Canvas({
           onDrop={handleOnDrop}
           onClick={handleElementClick}
           inPreviewMode={inPreviewMode}
-          isFocused={focusedDropzone === `dropzone-${block.uuid}`}
+          isFocused={focusedData.dropzoneId === `dropzone-${block.uuid}`}
         />
       );
     }
@@ -48,63 +45,69 @@ function Canvas({
       <BlockContainer
         key={block.uuid}
         block={block}
-        onBlockClick={handleBlockClick}
+        onBlockClick={handleElementClick}
         BlockElement={BlockElement}
         inPreviewMode={inPreviewMode}
         omitBottomMargin={index === blocks.length - 1}
-        isFocused={focusedBlock === block.uuid}
+        isFocused={focusedData.blockId === block.uuid}
       />
     );
   });
   if (!inPreviewMode) {
     elements.push(
-      <DropZone key={`dropzone-last`} onDrop={handleOnDrop} />
+      <DropZone 
+        key='dropzone-last' 
+        uuid={'dropzone-last'}
+        onDrop={handleOnDrop} 
+        onClick={handleElementClick}
+        inPreviewMode={inPreviewMode}
+        isFocused={focusedData.dropzoneId === 'dropzone-last'}
+      />
     );
   }
 
   /**
    * Handlers for clicking canvas elements
    */
-  function handleBlockClick({ uuid }) {
-    dispatch(switchBlockFocus(uuid));
-  };
-  function handleElementClick({ elementType, uuid }) {
-    dispatch(updateFocusedElement(elementType, uuid))
+  function handleElementClick({ elementType, uuid }, elementRef) {
+    dispatch(updateFocusedElement(elementType, uuid));
+    setFocusedElementRef(elementRef);
   }
 
   /**
-   * When an item is dropped , determine whether to add block or plugin
-   * Assumes dropzone uuid is of form dropzone-{uuid}, set in canvas.js
+   * When a block is dragged onto a dropzone, initiate move action
    */
   function handleOnDrop(e) {
-    const draggedItemType = e.dataTransfer.getData("dragType");
+    // Assumes dropzone uuid is of form dropzone-{uuid}, set in canvas.js
     const currentPositionId = e.currentTarget.dataset.uuid
       ? e.currentTarget.dataset.uuid.replace("dropzone-", "")
-      : null;
+      : null; // special case for no uuid -- last block of the canvas
 
-    if (draggedItemType === "plugin") {
-      dispatch(addBlock(
-        e.dataTransfer.getData("pluginName"),
-        currentPositionId,
-        uuidv4()
-      ));
+    // do not move block if it is dragged to same position
+    const targetBlockId = e.dataTransfer.getData("targetBlockId");
+    if (targetBlockId === currentPositionId) {
+      return; 
     }
-
-    if (draggedItemType === "block") {
-      // do not move block if it is dragged to same position
-      const targetBlockId = e.dataTransfer.getData("targetBlockId");
-      if (targetBlockId === currentPositionId) {
-        return; 
-      }
-      dispatch(moveBlock(targetBlockId, currentPositionId));
-    }
+    dispatch(moveBlock(targetBlockId, currentPositionId));
   };
-
 
   return (
     <React.Fragment>
+      {
+        !inPreviewMode && focusedData.exists &&
+        <FocusedElementPopper
+          header={header}
+          config={config}
+          anchorRef={focusedElementRef}
+          focusedBlock={focusedData.block}
+          focusedDropzone={focusedData.dropzoneId}
+          focusedElementType={focusedData.elementType}
+          dispatch={dispatch}
+        />
+      }
+
       <FocusableContainer
-        isFocused={focusedElementType === 'header'}
+        isFocused={focusedData.elementType === 'header'}
         dataset={{ elementType: 'header' }}
         onClick={handleElementClick}
         inPreviewMode={inPreviewMode}
@@ -112,6 +115,7 @@ function Canvas({
         <PageHeader header={header} />
       </FocusableContainer>
       {elements}
+
     </React.Fragment>
   );
 }
@@ -121,8 +125,12 @@ const mapStateToProps = (state) => ({
   blocks: selectBlockArray(state),
   header: state.header,
   inPreviewMode: state.inPreviewMode,
-  focusedDropzone: state.focusedDropzone,
-  focusedBlock: state.focusedBlock,
-  focusedElementType: state.focusedElementType
+  focusedData: {
+    exists: state.focusedElementType != null,
+    dropzoneId: state.focusedDropzone,
+    blockId: state.focusedBlock,
+    elementType: state.focusedElementType,
+    block: selectFocusedBlock(state)
+  }
 });
 export default connect(mapStateToProps)(Canvas);

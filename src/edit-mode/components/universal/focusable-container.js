@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from "styled-components";
 
 const FocusDiv = styled.div`
-  border: ${props => props.isFocused 
-    ? '1pt solid rgba(0,0,0,0.4)' 
-    : '1pt solid transparent' 
-  };
-  ${({ inPreviewMode }) => !inPreviewMode
-    ? `cursor: pointer;
-       min-height: 15px;
-       margin: 10px 0;
-      `
-    : ``
-  }
-  ${({ isFocused }) => !isFocused && `
-    &:hover {
-      border: 1pt solid rgba(0,0,0,0.3);
+  ${({ inPreviewMode, isFocused }) => {
+    if (inPreviewMode) {
+      return ``;
     }
+    let styles = `
+      transition: border 0.1s linear;
+      cursor: pointer;
+      min-height: 15px;
+      margin: 10px 0;
     `
-  } 
-  transition: border 0.1s linear;
-
+    styles += isFocused
+      ? `border: 1pt solid rgba(0,0,0,0.4);`
+      : `border: 1pt solid transparent;
+         &:hover {
+          border: 1pt solid rgba(0,0,0,0.3);
+         }
+        `
+    return styles;
+  }}
 `;
 
 /**
@@ -30,20 +30,23 @@ const FocusDiv = styled.div`
 export default function FocusableContainer({
   onClick, inPreviewMode, isFocused, dataset, children
 }) {
-  const containerRef = React.createRef();
+  const containerRef = useRef();
 
   // Scroll into view whenever the block is in focus
   useEffect(() => {
     if (isFocused && !inPreviewMode) {
       containerRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "center"
+        block: "start"
       });
     }
   }, [isFocused, inPreviewMode]);
 
+  /**
+   * Call onClick handler, passing in dataset prop and ref
+   */
   function handleOnClick(e) {
-    onClick(dataset);
+    onClick(dataset, containerRef.current);
   }
 
   return (

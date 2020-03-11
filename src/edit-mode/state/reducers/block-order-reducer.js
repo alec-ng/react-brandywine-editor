@@ -30,9 +30,9 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
     // sample canvas ids: [dropzone-0, 0, dropzone-1, 1, dropzone-2, 2]
     case MOVE_BLOCK: {
       const oldInd = newArray.findIndex(uuid => uuid === action.targetBlockId);
-      let newInd = action.positionBlockId
-        ? newArray.findIndex(uuid => uuid === action.positionBlockId)
-        : newArray.length;
+      let newInd = action.positionBlockId === 'last'
+        ? newArray.length
+        : newArray.findIndex(uuid => uuid === action.positionBlockId);
 
       if (oldInd === newInd || newInd === (oldInd + 1)) {
         return blockOrder;

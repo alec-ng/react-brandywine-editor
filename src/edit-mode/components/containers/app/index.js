@@ -2,11 +2,8 @@ import React from "react";
 import { connect } from 'react-redux';
 import { togglePreviewMode } from '../../../state/actions';
 
-import Toolbar from "../toolbar";
 import Canvas from "../canvas";
-import { 
-  BaseContainer, CanvasContainer, ToolbarContainer , InPreviewModeButton
-} from './styled';
+import { BaseContainer, CanvasContainer } from './styled';
 
 /**
  * Top level container component
@@ -20,23 +17,9 @@ function App({ inPreviewMode, fullHeight, dispatch }) {
 
   return (
     <BaseContainer inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
-      {!inPreviewMode && (
-        <ToolbarContainer>
-          <Toolbar />
-        </ToolbarContainer>
-      )}
       <CanvasContainer inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
         <Canvas />
       </CanvasContainer>
-      {inPreviewMode && 
-        <InPreviewModeButton 
-          type="button"
-          className="btn btn-block btn-primary"
-          onClick={togglePreview}
-        >
-          Return to Editor
-        </InPreviewModeButton>
-      }
     </BaseContainer>
   );
 }

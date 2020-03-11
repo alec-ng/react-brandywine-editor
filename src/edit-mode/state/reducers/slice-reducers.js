@@ -15,6 +15,8 @@ export function focusedElementTypeReducer(focusedElementType=null, action) {
       return action.elementType;
     case SWITCH_BLOCK_FOCUS:
       return 'block';
+    case DELETE_FOCUSED_BLOCK:
+      return null;
     default:
       return focusedElementType;
   }
