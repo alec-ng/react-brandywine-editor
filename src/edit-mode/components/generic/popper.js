@@ -4,12 +4,9 @@ import Popper from '@material-ui/core/Popper';
 import { Paper } from '@material-ui/core';
 
 const Container = styled.div`
-  
   position: relative;
   padding: 5px;
-  width: 50vw;
-  min-width: 300px;
-  max-width: 768px; /* tablet */
+  width: 350px;
   max-height: 300px;
   overflow-y: auto;
   border: 1px solid rgba(0, 0, 0, 0.4);

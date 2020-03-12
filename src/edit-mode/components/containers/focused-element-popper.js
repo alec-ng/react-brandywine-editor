@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { 
   deleteFocusedBlock, 
   updateHeader,
   updateFocusedBlock, 
-  updateVariation
+  updateVariation,
+  addBlock
 } from '../../state/actions';
 
 import Popper from '../generic/popper';
 import PageHeaderForm from "../universal/page-header-form";
 import BlockAttributes from "../universal/block-attributes";
+import PluginButtonGroup from '../universal/plugin-button-group';
 
 /**
  * Renders a popper that conditionally renders a body depending on the focused
  * element type
+ * Stateful, but relies on props instead of connecting to store
  */
 export default function FocusedElementPopper({ 
   anchorRef, 
@@ -42,7 +44,7 @@ export default function FocusedElementPopper({
   }
   function createNewBlock(e) {
     dispatch(addBlock(
-      e.currentTarget.dataset.pluginName,
+      e.currentTarget.dataset.pluginname,
       focusedDropzone,
       uuidv4()
     ));
@@ -70,7 +72,11 @@ export default function FocusedElementPopper({
       }
       {
         focusedElementType === 'dropzone' && 
-        <h1>Dropzone!</h1>
+        <PluginButtonGroup
+          pluginOrder={config.pluginOrder}
+          pluginMap={config.pluginMap}
+          onClick={createNewBlock}
+        />
       }
       {
         focusedElementType === 'header' && 
@@ -80,20 +86,5 @@ export default function FocusedElementPopper({
         />
       }
     </Popper>
-  )
-}
-
-
-
-const StyledButton = styled.div`
-  border: 1px solid grey;
-
-`;
-
-function PluginButtons({ pluginOrder, pluginMap }) {
-  return (
-    <div>
-
-    </div>
   )
 }

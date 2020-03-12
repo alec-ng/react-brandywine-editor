@@ -14,6 +14,7 @@ export function focusedElementTypeReducer(focusedElementType=null, action) {
     case UPDATE_FOCUSED_ELEMENT:
       return action.elementType;
     case SWITCH_BLOCK_FOCUS:
+    case ADD_BLOCK:
       return 'block';
     case DELETE_FOCUSED_BLOCK:
       return null;
@@ -24,6 +25,7 @@ export function focusedElementTypeReducer(focusedElementType=null, action) {
 
 export function focusedDropzoneReducer(focusedDropzone=null, action) {
   switch (action.type) {
+    case ADD_BLOCK:
     case SWITCH_BLOCK_FOCUS:
       return null;
     case UPDATE_FOCUSED_ELEMENT:

@@ -13,7 +13,10 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
       if (!action.positionUuid) {
         newArray.push(action.newUuid);
       } else {
-        const indToInsert = newArray.findIndex(uuid => uuid === action.positionUuid);
+        const positionId = action.positionUuid.startsWith('dropzone-')
+          ? action.positionUuid.split('dropzone-')[1]
+          : action.positionUuid;
+        const indToInsert = newArray.findIndex(val => val === positionId);
         newArray.splice(indToInsert, 0, action.newUuid);
       }
       return newArray;
