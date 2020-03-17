@@ -4,19 +4,24 @@ import styled from "styled-components";
 const FocusDiv = styled.div`
   ${({ inPreviewMode, isFocused }) => {
     if (inPreviewMode) {
-      return ``;
+      return `
+        margin-bottom: 20px;
+      `;
     }
     let styles = `
-      transition: border 0.1s linear;
       cursor: pointer;
       min-height: 15px;
       margin: 10px 0;
+      border-width: 1px;
     `
     styles += isFocused
-      ? `border: 1pt solid rgba(0,0,0,0.4);`
-      : `border: 1pt solid transparent;
+      ? `border-color: rgba(0,0,0,0.4);
+         border-style: solid;
+         `
+      : `border-color: rgba(0,0,0,0);
+         border-style: dashed;
          &:hover {
-          border: 1pt solid rgba(0,0,0,0.3);
+          border-color: rgba(0,0,0,0.2);
          }
         `
     return styles;

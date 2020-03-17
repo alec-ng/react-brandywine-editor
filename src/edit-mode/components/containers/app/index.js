@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { togglePreviewMode } from '../../../state/actions';
 
 import Canvas from "../canvas";
+import AppBar from '../../generic/appbar';
+import AppbarControls from '../../universal/appbar-controls';
 import { BaseContainer, CanvasContainer } from './styled';
 
 /**
@@ -11,12 +13,18 @@ import { BaseContainer, CanvasContainer } from './styled';
  */
 function App({ inPreviewMode, fullHeight, dispatch }) {
   
-  const togglePreview = () => {
+  function togglePreview() {
     dispatch(togglePreviewMode());
   }
 
   return (
-    <BaseContainer inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
+    <BaseContainer>
+      <AppBar>
+        <AppbarControls
+          inPreviewMode={inPreviewMode}
+          handlePreviewClick={togglePreview}
+        />
+      </AppBar>
       <CanvasContainer inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
         <Canvas />
       </CanvasContainer>

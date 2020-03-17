@@ -30,19 +30,19 @@ function Demo(props) {
 	}
 
 	return (
-		<BrandywineEditor
-			plugins={plugins}
-			onChange={onEditorChange}
-			fullHeight={true}
-			pageData={testData}
-		/>
-		/*
-		 * Readonly module for static rendering
-		 */
-		// <BrandywineReader
-		// 	plugins={plugins}
-		// 	pageData={testData}
-		// />
+		<div className="container">
+			<BrandywineEditor
+				plugins={plugins}
+				onChange={onEditorChange}
+				fullHeight={true}
+				pageData={testData}
+			/>
+			{/* Readonly module for static rendering */}
+			{/* <BrandywineReader
+				plugins={plugins}
+				pageData={testData}
+			/> */}
+		</div>
   );
 }
 
