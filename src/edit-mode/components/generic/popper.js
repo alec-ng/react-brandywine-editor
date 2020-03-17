@@ -1,22 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 import Popper from '@material-ui/core/Popper';
-import { Paper } from '@material-ui/core';
+
+const Arrow = styled.span`
+  &, &::before {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: -1;
+  }
+  &::before {
+    top: -10px;
+    content: '';
+    transform: rotate(45deg);
+    background: rgb(245, 245, 245);
+  }
+`;
+
+const RootContainer = styled.div`
+  box-shadow: 0px 2px 2px rgb(100, 100, 100);
+  border-radius: 10px;
+`;
 
 export const PopperContainer = styled.div`
   position: relative;
-  padding: 5px;
-  width: 350px;
+  padding: 10px 20px;
+  width: 400px;
   max-height: 300px;
   overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: rgb(245, 245, 245);
+  border-radius: 5px;
 
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 3px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+    border-radius: 3px;
   }
   &::-webkit-scrollbar-track {
     opacity: 0;
@@ -54,11 +74,20 @@ export function PopperComponent({ anchorEl, open, children }) {
         flip: {
           enabled: false,
         },
+        arrow: {
+          enabled: true,
+          element: '[data-popper-arrow]'
+        },
+        offset: {
+          enabled: true,
+          offset: "0, 15"
+        }  
       }}
     >
-      <Paper>
+      <Arrow data-popper-arrow></Arrow>
+      <RootContainer>
         {children}
-      </Paper>
+      </RootContainer>
     </Popper>
   );
 }
