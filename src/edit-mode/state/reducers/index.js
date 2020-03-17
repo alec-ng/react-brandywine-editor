@@ -3,7 +3,13 @@ import { actionsTriggeringDispatch } from '../actions';
 
 import blocksReducer from "./blocks-reducer";
 import blockOrderReducer from './block-order-reducer';
-import { headerReducer, previewModeReducer, focusedBlockReducer } from './slice-reducers';
+import { 
+  headerReducer, 
+  previewModeReducer, 
+  focusedBlockReducer, 
+  focusedElementTypeReducer,
+  focusedDropzoneReducer
+} from './slice-reducers';
 
 export const mainReducer = (state = {}, action) => {
   // get next values for subset of state that is mutable 
@@ -12,7 +18,9 @@ export const mainReducer = (state = {}, action) => {
     blocks: blocksReducer(state.blocks, state.focusedBlock, state.pluginMap, action),
     blockOrder: blockOrderReducer(state.blockOrder, state.focusedBlock, action),
     focusedBlock: focusedBlockReducer(state.focusedBlock, action),
-    inPreviewMode: previewModeReducer(state.inPreviewMode, action)
+    focusedDropzone: focusedDropzoneReducer(state.focusedDropzone, action),
+    inPreviewMode: previewModeReducer(state.inPreviewMode, action),
+    focusedElementType: focusedElementTypeReducer(state.focusedElementType, action),
   };
 
   // merge next state values with static config values

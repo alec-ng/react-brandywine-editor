@@ -15,13 +15,16 @@ const defaultState = {
   blockOrder: [],
   blocks: {},
   focusedBlock: null,
+  focusedDropzone: null,
+  focusedElementType: null,
   header: {},
   inPreviewMode: false
 }
 
 export const getInitialStore = (props) => createStore(
   mainReducer, 
-  generateStateFromProps(props)
+  generateStateFromProps(props),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 /**

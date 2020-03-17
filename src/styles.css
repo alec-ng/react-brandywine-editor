@@ -2,12 +2,6 @@
  * react-brandywine-editor.js specific styles
  * works on top of bootstrap and bootstrap-react
  */
-
-Row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .brandywine-width_stretch .brandywine-width_stretch,
 .brandywine-width_large,
 .brandywine-width_medium,
