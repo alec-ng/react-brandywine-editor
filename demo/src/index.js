@@ -26,6 +26,7 @@ const plugins = [
 
 function Demo(props) {
 	function onEditorChange(header, blocks) {
+		console.log(header, blocks);
 		// save this somewhere
 	}
 
@@ -38,10 +39,12 @@ function Demo(props) {
 				pageData={testData}
 			/>
 			{/* Readonly module for static rendering */}
-			{/* <BrandywineReader
-				plugins={plugins}
-				pageData={testData}
-			/> */}
+			{/* <div style={{marginBottom: '20px'}}>
+				<BrandywineReader
+					plugins={plugins}
+					pageData={testData}
+				/>
+			</div> */}
 		</div>
   );
 }
