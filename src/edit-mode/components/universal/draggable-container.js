@@ -3,16 +3,17 @@ import styled from "styled-components";
 
 const DraggableDiv = styled.div`
   cursor: ${props => props.inPreviewMode ? 'inherit' : 'move'};
-  margin-bottom: ${props => props.inPreviewMode
-    ? props.omitBottomMargin ? 0 : '20px'
-    : '0'
-  }
 `;
 
 /**
  * Wrapper for block canvas block elements to be draggable
  */
-export default function DraggableContainer({ inPreviewMode, omitBottomMargin, uuid, children }) {
+function DraggableContainer({ 
+  inPreviewMode, 
+  uuid, 
+  renderCompareProp,  // optional: value used for equality comparison for component memoization
+  children 
+}) {
   function onDragStart(e) {
     e.dataTransfer.setData("targetBlockId", uuid);
   };
@@ -27,9 +28,14 @@ export default function DraggableContainer({ inPreviewMode, omitBottomMargin, uu
       {...isDraggable}
       {...editableProperties}
       inPreviewMode={inPreviewMode} 
-      omitBottomMargin={omitBottomMargin}
     >
       {children}
     </DraggableDiv>
   )
 }
+
+function isEqual(prevProps, nextProps) {
+  return prevProps.inPreviewMode === nextProps.inPreviewMode
+    && prevProps.renderCompareProp === nextProps.renderCompareProp
+}
+export default React.memo(DraggableContainer, isEqual);

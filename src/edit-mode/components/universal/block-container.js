@@ -2,11 +2,10 @@ import React from "react";
 import FocusableContainer from './focusable-container';
 import DraggableContainer from './draggable-container';
 
-export default function BlockContainer({ 
+function BlockContainer({ 
   block, 
   onBlockClick, 
   BlockElement, 
-  omitBottomMargin, 
   inPreviewMode,
   isFocused
 }) {
@@ -21,11 +20,12 @@ export default function BlockContainer({
         dataset={dataset}
         onClick={onBlockClick}
         inPreviewMode={inPreviewMode}
+        renderCompareProp={block}
     >
       <DraggableContainer
         inPreviewMode={inPreviewMode}
-        omitBottomMargin={omitBottomMargin}
         uuid={block.uuid}
+        renderCompareProp={block}
       >
         <BlockElement
           isEditable={!inPreviewMode}
@@ -37,3 +37,10 @@ export default function BlockContainer({
     </FocusableContainer>
   );
 }
+
+function isEqual(prevProps, nextProps) {
+  return prevProps.inPreviewMode === nextProps.inPreviewMode
+    && prevProps.isFocused === nextProps.isFocused
+    && prevProps.block === nextProps.block
+}
+export default React.memo(BlockContainer, isEqual);

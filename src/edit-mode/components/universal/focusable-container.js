@@ -27,8 +27,13 @@ const FocusDiv = styled.div`
  * Wrapper for canvas elements that can be focused on
  * Provides styling, onClick / scrollTo functionality
  */
-export default function FocusableContainer({
-  onClick, inPreviewMode, isFocused, dataset, children
+function FocusableContainer({
+  onClick,            // cb that receives the dataset supplied as props to this component
+  inPreviewMode,
+  isFocused,
+  dataset,            // object that will be passed as argument to onClick callback
+  renderCompareProp,  // optional: value used for equality comparison for component memoization
+  children
 }) {
   const containerRef = useRef();
 
@@ -60,3 +65,10 @@ export default function FocusableContainer({
     </FocusDiv>
   )
 }
+
+function isEqual(prevProps, nextProps) {
+  return prevProps.inPreviewMode === nextProps.inPreviewMode
+    && prevProps.isFocused === nextProps.isFocused
+    && prevProps.renderCompareProp === nextProps.renderCompareProp
+}
+export default React.memo(FocusableContainer, isEqual);

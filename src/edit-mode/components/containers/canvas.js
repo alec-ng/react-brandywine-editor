@@ -27,7 +27,7 @@ function Canvas({
    * Components to render
    */
   let elements = [];
-  blocks.forEach((block, index) => {
+  blocks.forEach((block) => {
     let BlockElement = config.pluginMap[block.name].canvasElement;
     if (!inPreviewMode) {
       elements.push(
@@ -48,7 +48,6 @@ function Canvas({
         onBlockClick={handleElementClick}
         BlockElement={BlockElement}
         inPreviewMode={inPreviewMode}
-        omitBottomMargin={index === blocks.length - 1}
         isFocused={focusedData.blockId === block.uuid}
       />
     );
@@ -111,6 +110,7 @@ function Canvas({
         dataset={{ elementType: 'header' }}
         onClick={handleElementClick}
         inPreviewMode={inPreviewMode}
+        renderCompareProp={header}
       >
         <PageHeader header={header} />
       </FocusableContainer>
