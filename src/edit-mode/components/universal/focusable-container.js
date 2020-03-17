@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from "styled-components";
 
 const FocusDiv = styled.div`
@@ -35,13 +35,19 @@ function FocusableContainer({
   renderCompareProp,  // optional: value used for equality comparison for component memoization
   children
 }) {
-  const containerRef = useRef();
+  const htmlDatasetAttrs = dataset && !inPreviewMode
+    ? Object.keys(dataset).reduce((attributes, attr) => {
+        let dataProp = {};
+        dataProp[`data-${attr}`] = dataset[attr];
+        return Object.assign({}, attributes, dataProp);
+      }, {})
+    : {};
 
   /**
    * Call onClick handler, passing in dataset prop and ref
    */
   function handleOnClick(e) {
-    onClick(dataset, containerRef.current);
+    onClick(dataset);
   }
 
   return (
@@ -49,7 +55,7 @@ function FocusableContainer({
       inPreviewMode={inPreviewMode}
       onClick={handleOnClick}
       isFocused={isFocused}
-      ref={containerRef}
+      {... htmlDatasetAttrs}
     >
       {children}
     </FocusDiv>

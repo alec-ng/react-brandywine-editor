@@ -26,7 +26,7 @@ export default function DropZone({
 }) {
   const [dragEnter, setDragEnter] = useState(false);
   const dataset = { 
-    elementType: 'dropzone',
+    elementtype: 'dropzone',
     uuid: uuid
   }
 

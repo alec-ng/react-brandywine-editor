@@ -11,7 +11,7 @@ function BlockContainer({
 }) {
   const dataset = {
     uuid: block.uuid, 
-    elementType: 'block'
+    elementtype: 'block'
   }; 
 
   return (

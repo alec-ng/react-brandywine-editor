@@ -24,8 +24,8 @@ export default function FocusedElementPopper({
   focusedElement,
   dispatch
 }) {
-
   const [open, setOpen] = useState(true);
+  
   const contentRef = useRef();
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,7 +33,7 @@ export default function FocusedElementPopper({
         behavior: "smooth",
         block: "center"
       });
-    }, 100);
+    });
     return () => clearTimeout(timer);
   }, [anchorRef])
   

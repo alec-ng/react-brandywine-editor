@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useFocusedElementRef from '../../hooks/useFocusedElementRef';
 import { connect } from 'react-redux';
 import { 
   selectConfig, 
@@ -25,7 +26,7 @@ function Canvas({
   focusedElement,
   dispatch 
 }) {  
-  const [focusedElementRef, setFocusedElementRef] = useState(null);
+  const focusedElementRef = useFocusedElementRef(focusedElement.type, focusedElement.id);
 
   /**
    * Components to render
@@ -72,9 +73,8 @@ function Canvas({
   /**
    * Handlers for clicking canvas elements
    */
-  function handleElementClick({ elementType, uuid }, elementRef) {
-    dispatch(updateFocusedElement(elementType, uuid));
-    setFocusedElementRef(elementRef);
+  function handleElementClick({ elementtype, uuid }) {
+    dispatch(updateFocusedElement(elementtype, uuid));
   }
 
   /**
@@ -97,7 +97,7 @@ function Canvas({
   return (
     <React.Fragment>
       {
-        !inPreviewMode && focusedElement.type &&
+        !inPreviewMode && focusedElementRef &&
         <FocusedElementPopper
           config={config}
           anchorRef={focusedElementRef}
@@ -108,7 +108,7 @@ function Canvas({
 
       <FocusableContainer
         isFocused={focusedElement.type === 'header'}
-        dataset={{ elementType: 'header' }}
+        dataset={{ elementtype: 'header', uuid: 'header' }}
         onClick={handleElementClick}
         inPreviewMode={inPreviewMode}
         renderCompareProp={header}
