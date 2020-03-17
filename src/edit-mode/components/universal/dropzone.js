@@ -16,6 +16,13 @@ const DropZoneDiv = styled.div`
   margin: -1px;
 `;
 
+const RootContainer = styled.div`
+  display: ${props => props.inPreviewMode 
+    ? 'none'
+    : 'initial'
+  }
+`;
+
 export default function DropZone({ 
   uuid, 
   onDrop,
@@ -44,21 +51,23 @@ export default function DropZone({
   }
 
   return (
-    <FocusableContainer
-      onClick={onClick}
-      inPreviewMode={inPreviewMode}
-      isFocused={isFocused}
-      dataset={dataset}
-      renderCompareProp={dragEnter}
-    >
-      <DropZoneDiv
-        data-uuid={uuid}
-        onDragOver={onDragOver}
-        onDrop={handleDrop}
-        onDragLeave={setDragLeft}
-        onDragEnter={setDrag}
-        dragEnter={dragEnter}
-      />
-    </FocusableContainer>
+    <RootContainer inPreviewMode={inPreviewMode}>
+      <FocusableContainer
+        onClick={onClick}
+        inPreviewMode={inPreviewMode}
+        isFocused={isFocused}
+        dataset={dataset}
+        renderCompareProp={dragEnter}
+      >
+        <DropZoneDiv
+          data-uuid={uuid}
+          onDragOver={onDragOver}
+          onDrop={handleDrop}
+          onDragLeave={setDragLeft}
+          onDragEnter={setDrag}
+          dragEnter={dragEnter}
+        />
+      </FocusableContainer>
+    </RootContainer>
   );
 };

@@ -56,7 +56,7 @@ export default function FocusedElementPopper({
       uuidv4()
     ));
   }
-
+  
   return (
     <PopperComponent anchorEl={anchorRef} open={open}>
       <div ref={contentRef}>

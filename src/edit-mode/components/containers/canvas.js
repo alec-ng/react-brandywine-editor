@@ -38,18 +38,16 @@ function Canvas({
   let elements = [];
   blocks.forEach((block) => {
     let BlockElement = config.pluginMap[block.name].canvasElement;
-    if (!inPreviewMode) {
-      elements.push(
-        <DropZone
-          key={`dropzone-${block.uuid}`}
-          uuid={`dropzone-${block.uuid}`}
-          onDrop={handleOnDrop}
-          onClick={handleElementClick}
-          inPreviewMode={inPreviewMode}
-          isFocused={focusedElement.id === `dropzone-${block.uuid}`}
-        />
-      );
-    }
+    elements.push(
+      <DropZone
+        key={`dropzone-${block.uuid}`}
+        uuid={`dropzone-${block.uuid}`}
+        onDrop={handleOnDrop}
+        onClick={handleElementClick}
+        inPreviewMode={inPreviewMode}
+        isFocused={focusedElement.id === `dropzone-${block.uuid}`}
+      />
+    );
     elements.push(
       <BlockContainer
         key={block.uuid}
@@ -61,18 +59,16 @@ function Canvas({
       />
     );
   });
-  if (!inPreviewMode) {
-    elements.push(
-      <DropZone 
-        key='dropzone-last' 
-        uuid={'dropzone-last'}
-        onDrop={handleOnDrop} 
-        onClick={handleElementClick}
-        inPreviewMode={inPreviewMode}
-        isFocused={focusedElement.id === 'dropzone-last'}
-      />
-    );
-  }
+  elements.push(
+    <DropZone 
+      key='dropzone-last' 
+      uuid={'dropzone-last'}
+      onDrop={handleOnDrop} 
+      onClick={handleElementClick}
+      inPreviewMode={inPreviewMode}
+      isFocused={focusedElement.id === 'dropzone-last'}
+    />
+  );
 
   /**
    * Handlers for clicking canvas elements

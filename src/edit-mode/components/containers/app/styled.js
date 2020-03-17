@@ -14,7 +14,7 @@ export const CanvasContainer = styled.div`
   ${({ inPreviewMode }) => {
     if (!inPreviewMode) {
       return `
-        padding: 0 10px 200px 10px;
+        padding-bottom: 350px;
         & div[role=tooltip] {
           z-index: 2;
         }
