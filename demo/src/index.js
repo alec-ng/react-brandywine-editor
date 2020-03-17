@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import "../../src/styles.css";
-import 'bootstrap/dist/css/bootstrap.css';
+import { BrandywineEditor } from '../../src/edit-mode/index';
+import { BrandywineReader } from '../../src/read-mode/index';
 
-import { BrandywineEditor } from '../../src/index';
 import Image from '../../src/plugins/image';
 import Markdown from '../../src/plugins/markdown';
 import CoverPhoto from "../../src/plugins/cover-photo";
@@ -24,18 +24,27 @@ const plugins = [
 	HTMLVideo, EmbeddedVideo
 ];
 
-function Demo(props) {
+function Demo() {
 	function onEditorChange(header, blocks) {
 		// save this somewhere
 	}
 
 	return (
-		<BrandywineEditor
-			plugins={plugins}
-			onChange={onEditorChange}
-			fullHeight={true}
-			pageData={testData}
-		/>
+		<div className="container">
+			<BrandywineEditor
+				plugins={plugins}
+				onChange={onEditorChange}
+				fullHeight={true}
+				pageData={testData}
+			/>
+			{/* Readonly module for static rendering */}
+			{/* <div style={{marginBottom: '20px'}}>
+				<BrandywineReader
+					plugins={plugins}
+					pageData={testData}
+				/>
+			</div> */}
+		</div>
   );
 }
 

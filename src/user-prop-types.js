@@ -1,23 +1,17 @@
 import PropTypes  from 'prop-types';
 
 /**
- * Editor API
+ * Applicable for <BrandywineEditor />, edit mode
  */
-export const userPropTypes = {
+export const editorPropTypes = {
   /**
    * Function receiving two arguments: 1. header, 2. blocks, whose shape is described
    * below under the pageData prop
    */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   
   /**
-   * Whether or not to render the complete editor (false), or supplied pageData (true)
-   * Default: false
-   */
-  readOnly: PropTypes.bool,
-  
-  /**
-   * If readOnly = false, controls the sidebar/canvas height CSS property. 
+   * Controls the sidebar/canvas height CSS property. 
    * true: 100vh, false: 100%
    * Default: false
    */
@@ -87,4 +81,17 @@ export const userPropTypes = {
       variationAttrs: PropTypes.object
     }))
   })
+}
+
+/**
+ * Applicable for <BrandywineReader />, readonly mode
+ */
+export const readModePropTypes = {
+  /**
+   * Optional React element to be rendered in between the page header and the block content
+   */
+  customContent: PropTypes.element,
+  // subset of editor props
+  pageData: editorPropTypes.pageData.isRequired,
+  plugins: editorPropTypes.plugins, // isRequired already
 }

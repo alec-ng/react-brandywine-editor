@@ -13,35 +13,41 @@ __Features__
 
 ![react-brandywine-editor overview](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/features.gif?raw=true)
 
+### Examples
+
+See [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or the [demo source file](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src/index.js).
+
 ### Quickstart
 
 `npm install --save react-brandywine-editor`
 
-See [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or the [demo source file](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src/index.js) to get started.
+The library comes with two entry points that can be imported separately.
+* Readonly mode for static rendering: `import { BrandywineReader } from react-bradywine-editor/src/read-mode/index`
+* Editor mode: `import { BrandywineEditor } from react-bradywine-editor/src/edit-mode/index`
 
-A note on dependencies:
-  * Styled components is a peer dependency: `npm install styled-components@^5.0.0`
-  * This library ships with a set of pre-written plugins. Some of them have peer dependencies; if you are using any of the following, run:
-    * Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`
-    * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
-    * Markdown: `npm install react-markdown@^4.3.1`
+The only dependency listed is `prop-types`. If your project intends to use editor mode, the following packages are listed as peer dependencies:
+* material-ui/core, styled-components, react, react-redux, bootstrap, immer, uuid
+* `npm install @material-ui/core@^4.9.5 styled-components@^5.0.0" react@16.x react-redux@^7.2.0 redux@^4.0 bootstrap@^4.4.1 immer@^6.0.0 uuid@^7.0.1"`
+
+The library ships with a set of pre-written plugins. Some of them have peer dependencies:
+  * Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`
+  * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
+  * Markdown: `npm install react-markdown@^4.3.1`
 
 ### API
 
 Taken from [user-prop-types.js](src/user-prop-types.js).
 
 ```javascript
+/**
+ * Applicable for <BrandywineEditor />, edit mode
+ */
+const editorPropTypes = {
   /**
    * Function receiving two arguments: 1. header, 2. blocks, whose shape is described
    * below under the pageData prop
    */
   onChange: PropTypes.func,
-  
-  /**
-   * Whether or not to render the complete editor (false), or supplied pageData (true)
-   * Default: false
-   */
-  readOnly: PropTypes.bool,
   
   /**
    * If readOnly = false, controls the sidebar/canvas height CSS property. 
@@ -60,7 +66,7 @@ Taken from [user-prop-types.js](src/user-prop-types.js).
    * Used to generate blocks on the canvas. Note it's an array of element types, not elements
    */
   plugins: PropTypes.arrayOf(PropTypes.shape({
-      // see docs/plugins.md
+    // ... see /docs/plugins.md, or use of one default shipped plugins in /src/plugins/
   })).isRequired,
   
   /**
@@ -83,11 +89,22 @@ Taken from [user-prop-types.js](src/user-prop-types.js).
     }))
   })
 }
+
+/**
+ * Applicable for <BrandywineReader />, readonly mode
+ */
+const readModePropTypes = {
+  /**
+   * Optional React element to be rendered in between the page header and the block content
+   */
+  customContent: PropTypes.element,
+  // subset of editor props
+  pageData: editorPropTypes.pageData.isRequired,
+  plugins: editorPropTypes.plugins, // isRequired already
+}
 ```
 
 ### Roadmap
 
 - Jest/enzyme testing, with or without storybook
-- Remove depedency on bootstrap-react and bootstrap
-- read only vs editor separate exports
 - attribute validation

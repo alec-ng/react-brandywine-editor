@@ -6,7 +6,6 @@ export function selectConfig(state) {
     verticalBlockMargin: state.verticalBlockMargin,
     showPluginDescription: state.showPluginDescription,
     onSave: state.onSave,
-    readOnly: state.readOnly,
     onChange: state.onChange,
     fullHeight: state.onChange,
     pluginOrder: state.pluginOrder,
@@ -22,6 +21,30 @@ export function selectFocusedBlock(state) {
     return null;
   }
   return state.blocks[state.focusedBlock];
+}
+
+export function selectFocusedElement(state) {
+  if (!state.focusedElementType) {
+    return {};
+  }
+  let id;
+  let data;
+  if (state.focusedElementType === 'dropzone') {
+    id = state.focusedDropzone; 
+  }
+  if (state.focusedElementType === 'block') {
+    id = state.focusedBlock; 
+    data = state.blocks[state.focusedBlock]
+  }
+  if (state.focusedElementType === 'header') {
+    data = state.header;
+  }
+
+  return {
+    type: state.focusedElementType,
+    id: id,
+    data: data
+  };
 }
 
 /**

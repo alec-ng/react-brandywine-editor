@@ -5,7 +5,6 @@ import { mainReducer } from "./reducers/index";
 
 const defaultState = {
   // CONFIG properties: set once from user props
-  readOnly: false,
   showPluginDescription: true,
   onChange: null,
   fullHeight: false,
@@ -16,6 +15,8 @@ const defaultState = {
   blockOrder: [],
   blocks: {},
   focusedBlock: null,
+  focusedDropzone: null,
+  focusedElementType: null,
   header: {},
   inPreviewMode: false
 }
@@ -32,18 +33,10 @@ export const getInitialStore = (props) => createStore(
 function generateStateFromProps({ 
   plugins, 
   onChange, 
-  readOnly, 
   pageData, 
   fullHeight, 
   showPluginDescription 
 }) {
-  // Validation
-  if (!onChange && !readOnly) {
-    throw new Error(
-      'You have initialized the editor as editable, but have not supplied a function for onSave'
-    );
-  }
-
   let initialState = {...defaultState};
 
   // Map Config properties
@@ -58,7 +51,6 @@ function generateStateFromProps({
   initialState.onChange = onChange;
   initialState.showPluginDescription = showPluginDescription === false ? false : true;
   initialState.fullHeight = fullHeight === true ? true : false;
-  initialState.readOnly = readOnly === true ? true : false;  
 
   // Initialize default content
   if (pageData) {

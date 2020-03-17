@@ -1,10 +1,10 @@
 import React from "react";
 import { Provider } from 'react-redux';
 import { getInitialStore } from "./state/index";
-import { userPropTypes } from './user-prop-types';
 import AppContainer from "./components/containers/app/index";
 
-import "./styles.css";
+import { editorPropTypes } from '../user-prop-types';
+import "../styles.css";
 
 function BrandywineEditor(props) {
   const initialStore = getInitialStore(props);
@@ -14,5 +14,5 @@ function BrandywineEditor(props) {
     </Provider>
   );
 }
-BrandywineEditor.propTypes = userPropTypes;
+BrandywineEditor.propTypes = editorPropTypes;
 export { BrandywineEditor };

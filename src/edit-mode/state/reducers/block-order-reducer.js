@@ -10,10 +10,13 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
   switch (action.type) {
     // insert new id into specified position
     case ADD_BLOCK: {
-      if (!action.positionUuid) {
+      if (action.positionUuid === 'dropzone-last') {
         newArray.push(action.newUuid);
       } else {
-        const indToInsert = newArray.findIndex(uuid => uuid === action.positionUuid);
+        const positionId = action.positionUuid.startsWith('dropzone-')
+          ? action.positionUuid.split('dropzone-')[1]
+          : action.positionUuid;
+        const indToInsert = newArray.findIndex(val => val === positionId);
         newArray.splice(indToInsert, 0, action.newUuid);
       }
       return newArray;
@@ -30,9 +33,9 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
     // sample canvas ids: [dropzone-0, 0, dropzone-1, 1, dropzone-2, 2]
     case MOVE_BLOCK: {
       const oldInd = newArray.findIndex(uuid => uuid === action.targetBlockId);
-      let newInd = action.positionBlockId
-        ? newArray.findIndex(uuid => uuid === action.positionBlockId)
-        : newArray.length;
+      let newInd = action.positionBlockId === 'last'
+        ? newArray.length
+        : newArray.findIndex(uuid => uuid === action.positionBlockId);
 
       if (oldInd === newInd || newInd === (oldInd + 1)) {
         return blockOrder;
