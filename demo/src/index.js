@@ -24,9 +24,8 @@ const plugins = [
 	HTMLVideo, EmbeddedVideo
 ];
 
-function Demo(props) {
+function Demo() {
 	function onEditorChange(header, blocks) {
-		console.log(header, blocks);
 		// save this somewhere
 	}
 
