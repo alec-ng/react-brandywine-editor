@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from "styled-components";
 
 const FocusDiv = styled.div`
@@ -36,16 +36,6 @@ function FocusableContainer({
   children
 }) {
   const containerRef = useRef();
-
-  // Scroll into view whenever the block is in focus
-  useEffect(() => {
-    if (isFocused && !inPreviewMode) {
-      containerRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  }, [isFocused, inPreviewMode]);
 
   /**
    * Call onClick handler, passing in dataset prop and ref

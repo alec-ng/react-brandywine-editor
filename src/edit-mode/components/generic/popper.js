@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Popper from '@material-ui/core/Popper';
 import { Paper } from '@material-ui/core';
 
-const Container = styled.div`
+export const PopperContainer = styled.div`
   position: relative;
   padding: 5px;
   width: 350px;
@@ -37,7 +37,7 @@ const Container = styled.div`
   }
 `;
 
-export default function StyledPopper({ anchorEl, open, children }) {
+export function PopperComponent({ anchorEl, open, children }) {
   return (
     <Popper 
       open={open} 
@@ -57,9 +57,7 @@ export default function StyledPopper({ anchorEl, open, children }) {
       }}
     >
       <Paper>
-        <Container>
-          {children}
-        </Container>
+        {children}
       </Paper>
     </Popper>
   );

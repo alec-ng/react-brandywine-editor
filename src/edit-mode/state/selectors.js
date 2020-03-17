@@ -23,6 +23,30 @@ export function selectFocusedBlock(state) {
   return state.blocks[state.focusedBlock];
 }
 
+export function selectFocusedElement(state) {
+  if (!state.focusedElementType) {
+    return {};
+  }
+  let id;
+  let data;
+  if (state.focusedElementType === 'dropzone') {
+    id = state.focusedDropzone; 
+  }
+  if (state.focusedElementType === 'block') {
+    id = state.focusedBlock; 
+    data = state.blocks[state.focusedBlock]
+  }
+  if (state.focusedElementType === 'header') {
+    data = state.header;
+  }
+
+  return {
+    type: state.focusedElementType,
+    id: id,
+    data: data
+  };
+}
+
 /**
  * Return an ordered array of block objects
  */

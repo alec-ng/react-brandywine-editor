@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from 'react-redux';
-import { selectConfig, selectBlockArray, selectFocusedBlock } from '../../state/selectors';
+import { 
+  selectConfig, 
+  selectBlockArray, 
+  selectFocusedElement 
+} from '../../state/selectors';
 import { moveBlock, updateFocusedElement } from '../../state/actions';
 
 import FocusableContainer from '../universal/focusable-container';
@@ -18,7 +22,7 @@ function Canvas({
   header, 
   inPreviewMode, 
   blocks,
-  focusedData,
+  focusedElement,
   dispatch 
 }) {  
   const [focusedElementRef, setFocusedElementRef] = useState(null);
@@ -37,7 +41,7 @@ function Canvas({
           onDrop={handleOnDrop}
           onClick={handleElementClick}
           inPreviewMode={inPreviewMode}
-          isFocused={focusedData.dropzoneId === `dropzone-${block.uuid}`}
+          isFocused={focusedElement.id === `dropzone-${block.uuid}`}
         />
       );
     }
@@ -48,7 +52,7 @@ function Canvas({
         onBlockClick={handleElementClick}
         BlockElement={BlockElement}
         inPreviewMode={inPreviewMode}
-        isFocused={focusedData.blockId === block.uuid}
+        isFocused={focusedElement.id === block.uuid}
       />
     );
   });
@@ -60,7 +64,7 @@ function Canvas({
         onDrop={handleOnDrop} 
         onClick={handleElementClick}
         inPreviewMode={inPreviewMode}
-        isFocused={focusedData.dropzoneId === 'dropzone-last'}
+        isFocused={focusedElement.id === 'dropzone-last'}
       />
     );
   }
@@ -93,20 +97,17 @@ function Canvas({
   return (
     <React.Fragment>
       {
-        !inPreviewMode && focusedData.exists &&
+        !inPreviewMode && focusedElement.type &&
         <FocusedElementPopper
-          header={header}
           config={config}
           anchorRef={focusedElementRef}
-          focusedBlock={focusedData.block}
-          focusedDropzone={focusedData.dropzoneId}
-          focusedElementType={focusedData.elementType}
+          focusedElement={focusedElement}
           dispatch={dispatch}
         />
       }
 
       <FocusableContainer
-        isFocused={focusedData.elementType === 'header'}
+        isFocused={focusedElement.type === 'header'}
         dataset={{ elementType: 'header' }}
         onClick={handleElementClick}
         inPreviewMode={inPreviewMode}
@@ -125,12 +126,6 @@ const mapStateToProps = (state) => ({
   blocks: selectBlockArray(state),
   header: state.header,
   inPreviewMode: state.inPreviewMode,
-  focusedData: {
-    exists: state.focusedElementType != null,
-    dropzoneId: state.focusedDropzone,
-    blockId: state.focusedBlock,
-    elementType: state.focusedElementType,
-    block: selectFocusedBlock(state)
-  }
+  focusedElement: selectFocusedElement(state),
 });
 export default connect(mapStateToProps)(Canvas);

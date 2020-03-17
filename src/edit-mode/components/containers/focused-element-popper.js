@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { 
   deleteFocusedBlock, 
@@ -8,7 +8,7 @@ import {
   addBlock
 } from '../../state/actions';
 
-import Popper from '../generic/popper';
+import { PopperComponent, PopperContainer } from '../generic/popper';
 import PageHeaderForm from "../universal/page-header-form";
 import BlockAttributes from "../universal/block-attributes";
 import PluginButtonGroup from '../universal/plugin-button-group';
@@ -20,15 +20,22 @@ import PluginButtonGroup from '../universal/plugin-button-group';
  */
 export default function FocusedElementPopper({ 
   anchorRef, 
-  focusedBlock,
-  header,
   config,
-  focusedDropzone,
-  focusedElementType,
+  focusedElement,
   dispatch
 }) {
 
   const [open, setOpen] = useState(true);
+  const contentRef = useRef();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      contentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [anchorRef])
   
   function deleteCurrentBlock() {
     dispatch(deleteFocusedBlock());
@@ -45,46 +52,50 @@ export default function FocusedElementPopper({
   function createNewBlock(e) {
     dispatch(addBlock(
       e.currentTarget.dataset.pluginname,
-      focusedDropzone,
+      focusedElement.id,
       uuidv4()
     ));
   }
 
   return (
-    <Popper anchorEl={anchorRef} open={open}>
-      {
-        focusedElementType === 'block' && 
-        <div>
-          <BlockAttributes 
-            onAttributeChange={updateBlockAttribute}
-            onVariationChange={updateBlockVariation}
-            focusedBlock={focusedBlock}
-            pluginMap={config.pluginMap}
-          />
-          <button
-            type="button"
-            className="btn btn-block btn-danger"
-            onClick={deleteCurrentBlock}
-          >
-            Delete
-          </button>
-        </div>
-      }
-      {
-        focusedElementType === 'dropzone' && 
-        <PluginButtonGroup
-          pluginOrder={config.pluginOrder}
-          pluginMap={config.pluginMap}
-          onClick={createNewBlock}
-        />
-      }
-      {
-        focusedElementType === 'header' && 
-        <PageHeaderForm 
-          header={header}
-          onInputChange={updateHeaderValue}
-        />
-      }
-    </Popper>
+    <PopperComponent anchorEl={anchorRef} open={open}>
+      <div ref={contentRef}>
+        <PopperContainer>
+          {
+            focusedElement.type === 'block' && 
+            <div>
+              <BlockAttributes 
+                onAttributeChange={updateBlockAttribute}
+                onVariationChange={updateBlockVariation}
+                focusedBlock={focusedElement.data}
+                pluginMap={config.pluginMap}
+              />
+              <button
+                type="button"
+                className="btn btn-block btn-danger"
+                onClick={deleteCurrentBlock}
+              >
+                Delete
+              </button>
+            </div>
+          }
+          {
+            focusedElement.type === 'dropzone' && 
+            <PluginButtonGroup
+              pluginOrder={config.pluginOrder}
+              pluginMap={config.pluginMap}
+              onClick={createNewBlock}
+            />
+          }
+          {
+            focusedElement.type === 'header' && 
+            <PageHeaderForm 
+              header={focusedElement.data}
+              onInputChange={updateHeaderValue}
+            />
+          }
+        </PopperContainer>
+      </div>
+    </PopperComponent>
   )
 }
