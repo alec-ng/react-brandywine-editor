@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useFocusedElementRef from '../../hooks/useFocusedElementRef';
 import { connect } from 'react-redux';
 import { 
@@ -6,7 +6,11 @@ import {
   selectBlockArray, 
   selectFocusedElement 
 } from '../../state/selectors';
-import { moveBlock, updateFocusedElement } from '../../state/actions';
+import { 
+  moveBlock, 
+  updateFocusedElement,
+  clearFocusedElement 
+} from '../../state/actions';
 
 import FocusableContainer from '../universal/focusable-container';
 import PageHeader from "../universal/page-header"
@@ -72,9 +76,18 @@ function Canvas({
 
   /**
    * Handlers for clicking canvas elements
+   * Focused element if not focused previously. Removes focus if already focused.
    */
   function handleElementClick({ elementtype, uuid }) {
-    dispatch(updateFocusedElement(elementtype, uuid));
+    const isSameElement = elementtype === 'header'
+      ? focusedElement.type === 'header'
+      : focusedElement.type === elementtype && focusedElement.id === uuid;
+
+    if (isSameElement) {
+      dispatch(clearFocusedElement());
+    } else {
+      dispatch(updateFocusedElement(elementtype, uuid));
+    }
   }
 
   /**
