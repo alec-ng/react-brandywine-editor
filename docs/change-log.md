@@ -1,6 +1,9 @@
 # 3.x.x
-### 3.0.0x
-3.0.0
+
+## 3.0.1
+* change build command to copy files (missed styles.css)
+
+## 3.0.0
 * Breaking changes:
     * Implement separate read and editor exports
     * Remove readOnly prop for editor (since separate export solves need)
@@ -18,9 +21,9 @@
     * configure nwb to not build a UMD module and publish to npm
     * change nwb build command to not copy non.js files
 
-# v3.x.x
-### v2.0.x
-2.0.0
+# v2.x.x
+
+## 2.0.0
 * Enhancements:
     * memoization of onChange dispatch
     * carousel plugin style changes (navigation buttons)
