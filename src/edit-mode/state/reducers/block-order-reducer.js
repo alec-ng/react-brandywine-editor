@@ -10,7 +10,7 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
   switch (action.type) {
     // insert new id into specified position
     case ADD_BLOCK: {
-      if (!action.positionUuid) {
+      if (action.positionUuid === 'dropzone-last') {
         newArray.push(action.newUuid);
       } else {
         const positionId = action.positionUuid.startsWith('dropzone-')
