@@ -27,12 +27,18 @@ export default function FocusedElementPopper({
   const [open, setOpen] = useState(true);
   
   const contentRef = useRef();
+
+  // Scroll into view when anchor changes, if necessary
   useEffect(() => {
     const timer = setTimeout(() => {
-      contentRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const eleStart = contentRef.current.getBoundingClientRect().top;
+      if (windowHeight - eleStart < 100) {
+        contentRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
     });
     return () => clearTimeout(timer);
   }, [anchorRef])
