@@ -20,7 +20,7 @@ export const mainReducer = (state = {}, action) => {
     focusedBlock: focusedBlockReducer(state.focusedBlock, action),
     focusedDropzone: focusedDropzoneReducer(state.focusedDropzone, action),
     inPreviewMode: previewModeReducer(state.inPreviewMode, action),
-    focusedElementType: focusedElementTypeReducer(state.focusedElementType, action),
+    focusedElementType: focusedElementTypeReducer(state.focusedElementType, state.focusedBlock, action),
   };
 
   // merge next state values with static config values

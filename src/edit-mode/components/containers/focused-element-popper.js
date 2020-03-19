@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { 
-  deleteFocusedBlock, 
   updateHeader,
   updateFocusedBlock, 
   updateVariation,
@@ -43,9 +42,6 @@ export default function FocusedElementPopper({
     return () => clearTimeout(timer);
   }, [anchorRef])
   
-  function deleteCurrentBlock() {
-    dispatch(deleteFocusedBlock());
-  }
   function updateHeaderValue(key, value) {
     dispatch(updateHeader(key, value));
   }
@@ -69,21 +65,12 @@ export default function FocusedElementPopper({
         <PopperContainer>
           {
             focusedElement.type === 'block' && 
-            <div>
-              <BlockAttributes 
-                onAttributeChange={updateBlockAttribute}
-                onVariationChange={updateBlockVariation}
-                focusedBlock={focusedElement.data}
-                pluginMap={config.pluginMap}
-              />
-              <button
-                type="button"
-                className="btn btn-block btn-danger"
-                onClick={deleteCurrentBlock}
-              >
-                Delete
-              </button>
-            </div>
+            <BlockAttributes 
+              onAttributeChange={updateBlockAttribute}
+              onVariationChange={updateBlockVariation}
+              focusedBlock={focusedElement.data}
+              pluginMap={config.pluginMap}
+            />
           }
           {
             focusedElement.type === 'dropzone' && 

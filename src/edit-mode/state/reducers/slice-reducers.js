@@ -1,7 +1,7 @@
 
 import {
   ADD_BLOCK,
-  DELETE_FOCUSED_BLOCK,
+  DELETE_BLOCK,
   UPDATE_HEADER,
   TOGGLE_PREVIEW_MODE,
   SWITCH_BLOCK_FOCUS,
@@ -10,16 +10,19 @@ import {
   CLEAR_FOCUSED_ELEMENT
 } from '../actions';
 
-export function focusedElementTypeReducer(focusedElementType=null, action) {
+export function focusedElementTypeReducer(focusedElementType=null, focusedBlock, action) {
   switch (action.type) {
     case UPDATE_FOCUSED_ELEMENT:
       return action.elementType;
     case SWITCH_BLOCK_FOCUS:
     case ADD_BLOCK:
       return 'block';
-    case DELETE_FOCUSED_BLOCK:
     case CLEAR_FOCUSED_ELEMENT:
       return null;
+    case DELETE_BLOCK:
+      if (action.uuid === focusedBlock) {
+        return null;
+      }
     default:
       return focusedElementType;
   }
@@ -66,9 +69,12 @@ export function focusedBlockReducer(focusedBlock=null, action) {
       return action.newUuid;
     case MOVE_BLOCK:
       return action.targetBlockId;
-    case DELETE_FOCUSED_BLOCK:
     case CLEAR_FOCUSED_ELEMENT:
       return null;
+    case DELETE_BLOCK:
+      if (focusedBlock === action.uuid) {
+        return null;
+      }
     default:
       return focusedBlock;
   }

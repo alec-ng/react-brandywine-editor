@@ -10,7 +10,7 @@ import {
   moveBlock, 
   updateFocusedElement,
   clearFocusedElement,
-  deleteFocusedBlock
+  deleteBlock
 } from '../../state/actions';
 
 import FocusableContainer from '../universal/focusable-container';
@@ -54,7 +54,7 @@ function Canvas({
         key={block.uuid}
         block={block}
         onBlockClick={handleElementClick}
-        onDelete={deleteBlock}
+        onDelete={deleteSpecificBlock}
         BlockElement={BlockElement}
         inPreviewMode={inPreviewMode}
         isFocused={focusedElement.id === block.uuid}
@@ -72,8 +72,8 @@ function Canvas({
     />
   );
 
-  function deleteBlock() {
-    dispatch(deleteFocusedBlock());
+  function deleteSpecificBlock(uuid) {
+    dispatch(deleteBlock(uuid));
   }
 
   /**
