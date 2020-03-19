@@ -93,7 +93,7 @@ The canvasElement is a React component that represents an instance of the plugin
 
 |                | Description                                                              | Type   |
 | -------------- | ------------------------------------------------------------------------ | ------ |
-| isEditable     | Whether the element is in a state that allows it to be modified          | bool   |
+| isEditable     | Whether the element is in a state that allows it to be modified. False when using read mode component or when in edit mode preview          | bool   |
 | variation      | API name of the plugin variation being used.                             | string |
 | baseAttrs      | key/value pairings of base attribute names to their values               | {}     |
 | variationAttrs | key/value pairings of variation specific attribute names to their values | {}     |
