@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   width: 100%;
   margin-bottom: 5px;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
 
@@ -20,7 +20,7 @@ const StyledButton = styled.button`
 
 const MediumContainer = styled.div`
   width: 70%;
-  margin: 10px auto;
+  margin: 0 auto;
 `;
 
 /**
