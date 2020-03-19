@@ -29,9 +29,9 @@ export const editorPropTypes = {
   plugins: PropTypes.arrayOf(PropTypes.shape({
     // API name of the plugin, must be unique across all plugins supplied
     name: PropTypes.string.isRequired,
-    // label shown on toolbar UI
+    // shown on block creation UI
     label: PropTypes.string.isRequired,
-    // description shown on toolbar UI
+    // for reference
     description: PropTypes.string.isRequired,
     // React element rendered on canvas
     canvasElement: PropTypes.elementType.isRequired,

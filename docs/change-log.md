@@ -1,5 +1,15 @@
 # 3.x.x
 
+## 3.02
+* Peer/dev dependency changes:
+    * `react-slick@^0.25.2` `slick-carousel@^1.8.1`, for carousel change
+    * remove previous carousel peer deps on react-items-carousel and react-device-detect
+* Enhancements:
+    * Carousel plugin now uses [react-slick](https://github.com/akiran/)
+    * Fancy styled dropzones
+    * Move block deletion button to block container, allow deletion of any block other than just the focused one
+    * minor global style changes
+
 ## 3.0.1
 * change build command to copy files (missed styles.css)
 

@@ -1,6 +1,6 @@
 import {
   ADD_BLOCK,
-  DELETE_FOCUSED_BLOCK,
+  DELETE_BLOCK,
   MOVE_BLOCK,
 } from '../actions';
 
@@ -22,9 +22,9 @@ export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
       return newArray;
     }
 
-    // remove id of focused block
-    case DELETE_FOCUSED_BLOCK: {
-      const indToRemove = newArray.findIndex(uuid => uuid === focusedBlock);
+    // remove id of specified block
+    case DELETE_BLOCK: {
+      const indToRemove = newArray.findIndex(uuid => uuid === action.uuid);
       newArray.splice(indToRemove, 1);
       return newArray;
     }

@@ -2,7 +2,7 @@ const blocks = JSON.parse(`
   [ 
     { 
       "baseAttrs":{ 
-          "source":"# Introduction\\n\\nreact-brandywine-editor is a simple block based editor based on dragging and dropping __plugins__ to  create __blocks__.  The content you see on this page is serialized to a JSON data structure that can be saved to a database and used again to initialize the editor. \\n\\nThe library comes shipped with a set of default plugins to help you create content right away. Building your own plugins is easy as well - check out the [docs] to find out how.\\n\\nKeep reading for an introduction on the default plugins and how they can be used to create great looking pages. Or, check out an example of a  [live blog](https://alecng.ca/blog) using react-brandywine-editor to create and render content.\\n"
+          "source":"# Introduction\\n\\nreact-brandywine-editor is a simple WYSIWYG editor. The content you see on this page is serialized to a JSON data structure that can be saved to a database and used again to initialize the editor. \\n\\nThe library comes shipped with a set of default plugins to help you create content right away. Building your own plugins is easy as well - check out the [docs](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/plugins.md) to find out how.\\n\\nKeep reading for an introduction on the default plugins and how they can be used to create great looking pages. Or, check out an example of a  [live blog](https://alecng.ca/blog) using react-brandywine-editor to create and render content.\\n"
       },
       "name":"markdown",
       "variation":"markdown_default",
@@ -107,7 +107,7 @@ const blocks = JSON.parse(`
     },
     { 
       "baseAttrs":{ 
-          "urlSource":"https://i.imgur.com/S1ziTDS.jpg"
+          "urlSource":"https://i.imgur.com/n6PuT6e.jpg"
       },
       "name":"coverPhoto",
       "variation":"coverPhoto_default",

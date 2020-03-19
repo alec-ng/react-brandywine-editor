@@ -16,10 +16,10 @@ A plugin is defined by an object and contains the following properties:
   // API name of the plugin, must be unique across all plugins supplied
   name: PropTypes.string.isRequired,
 
-  // label shown on toolbar UI
+  // shown on block creatino UI
   label: PropTypes.string.isRequired,
 
-  // description shown on toolbar UI
+  // developer reference
   description: PropTypes.string.isRequired,
 
   // React element rendered on canvas
@@ -56,7 +56,7 @@ A plugin is defined by an object and contains the following properties:
 
 Below is an example of how each plugin propery maps to the editor UI.
 
-![plugin-definition-to-UI](https://i.imgur.com/uMC97KD.png)
+![plugin-definition-to-UI](https://i.imgur.com/JUV8foe.png)
 
 ### Variations
 
@@ -93,7 +93,7 @@ The canvasElement is a React component that represents an instance of the plugin
 
 |                | Description                                                              | Type   |
 | -------------- | ------------------------------------------------------------------------ | ------ |
-| isEditable     | Whether the element is in a state that allows it to be modified          | bool   |
+| isEditable     | Whether the element is in a state that allows it to be modified. False when using read mode component or when in edit mode preview          | bool   |
 | variation      | API name of the plugin variation being used.                             | string |
 | baseAttrs      | key/value pairings of base attribute names to their values               | {}     |
 | variationAttrs | key/value pairings of variation specific attribute names to their values | {}     |

@@ -4,7 +4,7 @@ import {
   UPDATE_VARIATION,
   UPDATE_FOCUSED_BLOCK,
   ADD_BLOCK,
-  DELETE_FOCUSED_BLOCK,
+  DELETE_BLOCK,
   SWITCH_BLOCK_FOCUS,
   MOVE_BLOCK
 } from '../actions';
@@ -66,12 +66,9 @@ export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action
         break;
       }
        
-      // removes the focused block from key value store
-      case DELETE_FOCUSED_BLOCK: {
-        if (!focusedBlock) {
-          break;
-        }
-        delete draft[focusedBlock];
+      // remove specific block
+      case DELETE_BLOCK: {
+        delete draft[action.uuid];
         break;
       }
   

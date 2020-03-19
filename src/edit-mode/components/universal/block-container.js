@@ -2,9 +2,12 @@ import React from "react";
 import FocusableContainer from './focusable-container';
 import DraggableContainer from './draggable-container';
 
+import styled from 'styled-components';
+
 function BlockContainer({ 
   block, 
-  onBlockClick, 
+  onBlockClick,
+  onDelete, 
   BlockElement, 
   inPreviewMode,
   isFocused
@@ -13,6 +16,11 @@ function BlockContainer({
     uuid: block.uuid, 
     elementtype: 'block'
   }; 
+
+  function deleteBlock(e) {
+    e.stopPropagation();
+    onDelete(block.uuid);
+  }
 
   return (
     <FocusableContainer
@@ -27,12 +35,22 @@ function BlockContainer({
         uuid={block.uuid}
         renderCompareProp={block}
       >
-        <BlockElement
-          isEditable={!inPreviewMode}
-          variation={block.variation}
-          baseAttrs={block.baseAttrs}
-          variationAttrs={block.variationAttrs}
-        />
+        <ContentContainer>
+          <DeleteBtn 
+            className="btn" 
+            type="button"
+            onClick={deleteBlock}
+            inPreviewMode={inPreviewMode}
+          >
+            X
+          </DeleteBtn>
+          <BlockElement
+            isEditable={!inPreviewMode}
+            variation={block.variation}
+            baseAttrs={block.baseAttrs}
+            variationAttrs={block.variationAttrs}
+          />
+        </ContentContainer>
       </DraggableContainer>
     </FocusableContainer>
   );
@@ -44,3 +62,30 @@ function isEqual(prevProps, nextProps) {
     && prevProps.block === nextProps.block
 }
 export default React.memo(BlockContainer, isEqual);
+
+
+const ContentContainer = styled.div`
+  position: relative;
+`;
+const DeleteBtn = styled.button`
+  position: absolute;
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  border-radius: 15px;
+  font-size: 10px;
+  z-index: 2;
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3);
+  display: ${props => props.inPreviewMode ? 'none' : 'initial'};
+
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+  }
+`;

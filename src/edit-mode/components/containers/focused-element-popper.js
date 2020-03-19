@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { 
-  deleteFocusedBlock, 
   updateHeader,
   updateFocusedBlock, 
   updateVariation,
@@ -27,19 +26,22 @@ export default function FocusedElementPopper({
   const [open, setOpen] = useState(true);
   
   const contentRef = useRef();
+
+  // Scroll into view when anchor changes, if necessary
   useEffect(() => {
     const timer = setTimeout(() => {
-      contentRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const eleStart = contentRef.current.getBoundingClientRect().top;
+      if (windowHeight - eleStart < 100) {
+        contentRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
     });
     return () => clearTimeout(timer);
   }, [anchorRef])
   
-  function deleteCurrentBlock() {
-    dispatch(deleteFocusedBlock());
-  }
   function updateHeaderValue(key, value) {
     dispatch(updateHeader(key, value));
   }
@@ -63,21 +65,12 @@ export default function FocusedElementPopper({
         <PopperContainer>
           {
             focusedElement.type === 'block' && 
-            <div>
-              <BlockAttributes 
-                onAttributeChange={updateBlockAttribute}
-                onVariationChange={updateBlockVariation}
-                focusedBlock={focusedElement.data}
-                pluginMap={config.pluginMap}
-              />
-              <button
-                type="button"
-                className="btn btn-block btn-danger"
-                onClick={deleteCurrentBlock}
-              >
-                Delete
-              </button>
-            </div>
+            <BlockAttributes 
+              onAttributeChange={updateBlockAttribute}
+              onVariationChange={updateBlockVariation}
+              focusedBlock={focusedElement.data}
+              pluginMap={config.pluginMap}
+            />
           }
           {
             focusedElement.type === 'dropzone' && 

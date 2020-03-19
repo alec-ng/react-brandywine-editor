@@ -4,7 +4,7 @@ import Select from "../generic/select";
 import TextArea from "../generic/textarea";
 
 /**
- * Represents a grouping of form elements to be rendered in BlockAttributes in the Toolbar
+ * Represents a grouping of form elements to be rendered in BlockAttributes
  * The groupings are either "base" or some variation
  */
 export default function BlockAttributeGroup(
