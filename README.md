@@ -30,7 +30,7 @@ The only dependency listed is `prop-types`. If your project intends to use edito
 * `npm install @material-ui/core@^4.9.5 styled-components@^5.0.0" react@16.x react-redux@^7.2.0 redux@^4.0 bootstrap@^4.4.1 immer@^6.0.0 uuid@^7.0.1"`
 
 The library ships with a set of pre-written plugins. Some of them have peer dependencies:
-  * Carousel: `npm install react-items-carousel@^2.8.0 react-device-detect@^1.11.14`
+  * Carousel: `npm install react-slick@^0.25.2` `slick-carousel@^1.8.1`
   * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
   * Markdown: `npm install react-markdown@^4.3.1`
 
