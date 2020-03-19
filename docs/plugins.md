@@ -56,7 +56,7 @@ A plugin is defined by an object and contains the following properties:
 
 Below is an example of how each plugin propery maps to the editor UI.
 
-![plugin-definition-to-UI](https://i.imgur.com/uMC97KD.png)
+![plugin-definition-to-UI](https://i.imgur.com/JUV8foe.png)
 
 ### Variations
 

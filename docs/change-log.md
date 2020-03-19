@@ -1,5 +1,11 @@
 # 3.x.x
 
+## 3.02
+* update documentation
+* updates to carousel plugin
+    * change dependency from react-items-carousel to [react-slick](https://github.com/akiran/react-slick)
+    * remove peer its dependency on react-device-detect
+
 ## 3.0.1
 * change build command to copy files (missed styles.css)
 
