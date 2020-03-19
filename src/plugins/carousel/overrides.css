@@ -1,0 +1,11 @@
+/**
+ * Override styling from slick
+ */ 
+ .brandywine-carousel-plugin .slick-prev:before,
+ .brandywine-carousel-plugin .slick-next:before {
+    color: rgb(100, 100, 100);
+ }
+
+ .brandywine-slick-container {
+    margin: 0 25px;
+ }

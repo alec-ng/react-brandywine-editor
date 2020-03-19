@@ -1,12 +1,7 @@
 /**
- * PEER DEPENDENCY: react-items-carousel, react-device-detect
+ * PEER DEPENDENCY: react-slick, slick-carousel
  */
-
-import {
-  CarouselElement,
-  DEFAULT_NUM_CARDS,
-  VARIATION_DEFAULT
-} from "./carousel";
+import { CarouselElement, VARIATION_DEFAULT } from "./carousel";
 
 const Carousel = {
   name: "carousel",
@@ -19,16 +14,17 @@ const Carousel = {
       label: "Number of cards to show on screen",
       element: "input",
       type: "number",
-      defaultValue: DEFAULT_NUM_CARDS
+      min: 0,
+      defaultValue: 1
     },
     {
       name: "height",
       label: "Max Height (px)",
       element: "input",
       type: "range",
-      min: 200,
-      max: 700,
-      defaultValue: 400
+      min: 300,
+      max: 800,
+      defaultValue: 500
     },
     {
       name: "urlSources",
