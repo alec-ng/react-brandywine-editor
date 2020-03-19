@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "rgb(255, 255, 255)"
   },
   root: {
-    boxShadow: '0 2px 1px rgba(0,0,0, 0.1)'
+    boxShadow: 'none'
   },
   toolbarRoot: {
     paddingTop: '10px',
