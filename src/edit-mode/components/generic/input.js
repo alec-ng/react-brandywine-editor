@@ -1,4 +1,5 @@
 import React from "react";
+import FormGroupDiv from './form-group-div'
 
 /**
  * Represents an HTML5 input. Requires at least props.onInput to handle any
@@ -6,22 +7,20 @@ import React from "react";
  */
 export default function Input(props) {
   return (
-    <div className="form-group">
-      <label style={{ width: "100%" }}>
-        {props.label}
-        {props.type === "checkbox" ? (
-          <CheckboxInput {...props} />
-        ) : (
-          <BaseInput {...props} />
-        )}
-      </label>
-    </div>
+    <FormGroupDiv>
+      {props.label}
+      {props.type === "checkbox" ? (
+        <CheckboxInput {...props} />
+      ) : (
+        <BaseInput {...props} />
+      )}
+    </FormGroupDiv>
   );
 }
 
 function BaseInput(props) {
   let inputClass =
-    props.type === "range" ? "form-control-range" : "form-control";
+    props.type === "range" ? "form-control-range" : "form-control form-control-sm";
   return (
     <input
       type={props.type}
@@ -33,7 +32,6 @@ function BaseInput(props) {
   );
 }
 
-// Encapsulates checked logic specific to checkboxes
 function CheckboxInput(props) {
   // Convert value to checked property
   let attributeObj = props.attributes

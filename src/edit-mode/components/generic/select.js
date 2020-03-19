@@ -1,4 +1,5 @@
 import React from "react";
+import FormGroupDiv from './form-group-div'
 
 /**
  * Represents an HTML5 select element
@@ -27,17 +28,15 @@ export default function Select(props) {
   optionsList.push(children);
 
   return (
-    <div className="form-group">
-      <label style={{ width: "100%" }}>
-        {props.label}
-        <select
-          className="form-control"
-          onChange={props.onChange}
-          {...attributes}
-        >
-          {optionsList}
-        </select>
-      </label>
-    </div>
+    <FormGroupDiv>
+      {props.label}
+      <select
+        className="form-control form-control-sm"
+        onChange={props.onChange}
+        {...attributes}
+      >
+        {optionsList}
+      </select>
+    </FormGroupDiv>
   );
 }
