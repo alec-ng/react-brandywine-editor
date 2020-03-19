@@ -20,7 +20,8 @@ export const StyledBtn = styled.button`
   position: absolute;
   bottom: -3px;
   right: -1px;
-  border-radius: 10px;
+  padding-bottom: 2px;
+  border-radius: 15px;
   border-style: solid;
   border-width: 1px;
   background: white;

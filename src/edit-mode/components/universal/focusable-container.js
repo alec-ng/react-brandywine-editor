@@ -13,17 +13,15 @@ const FocusDiv = styled.div`
       min-height: 15px;
       margin: 10px 0;
       border-width: 1px;
+      border-color: rgba(0,0,0,0);
+      border-style: dashed;
+      &:hover {
+      border-color: rgba(0,0,0,0.2);
+      }
     `
-    styles += isFocused
-      ? `border-color: rgba(0,0,0,0.4);
-         border-style: solid;
-         `
-      : `border-color: rgba(0,0,0,0);
-         border-style: dashed;
-         &:hover {
-          border-color: rgba(0,0,0,0.2);
-         }
-        `
+    if (isFocused) {
+      styles += `border-color: rgba(0,0,0,0.2);`
+    }
     return styles;
   }}
 `;
