@@ -14,7 +14,7 @@ import {
 
 import FocusableContainer from '../universal/focusable-container';
 import PageHeader from "../universal/page-header"
-import DropZone from "../universal/dropzone";
+import DropZone from "../universal/dropzone/index";
 import BlockContainer from "../universal/block-container";
 import FocusedElementPopper from './focused-element-popper';
 
