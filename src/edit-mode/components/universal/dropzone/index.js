@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import DropzoneDiv from './styled-div';
 import FocusableContainer from '../focusable-container';
+import { RootContainer } from './styles';
 
 /**
- * 
+ * Area allowing click and drop functionality, and maintains
+ * an active state for styling
  */
 export default function DropZone({ 
   uuid, 
@@ -63,11 +64,3 @@ export default function DropZone({
     </RootContainer>
   );
 };
-
-// --------- STYLES
-const RootContainer = styled.div`
-  display: ${props => props.inPreviewMode 
-    ? 'none'
-    : 'initial'
-  }
-`;
