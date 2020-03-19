@@ -107,7 +107,7 @@ const blocks = JSON.parse(`
     },
     { 
       "baseAttrs":{ 
-          "urlSource":"https://i.imgur.com/S1ziTDS.jpg"
+          "urlSource":"https://i.imgur.com/n6PuT6e.jpg"
       },
       "name":"coverPhoto",
       "variation":"coverPhoto_default",
