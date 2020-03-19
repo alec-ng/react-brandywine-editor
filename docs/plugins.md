@@ -16,10 +16,10 @@ A plugin is defined by an object and contains the following properties:
   // API name of the plugin, must be unique across all plugins supplied
   name: PropTypes.string.isRequired,
 
-  // label shown on toolbar UI
+  // shown on block creatino UI
   label: PropTypes.string.isRequired,
 
-  // description shown on toolbar UI
+  // developer reference
   description: PropTypes.string.isRequired,
 
   // React element rendered on canvas

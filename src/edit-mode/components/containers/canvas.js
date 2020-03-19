@@ -9,7 +9,8 @@ import {
 import { 
   moveBlock, 
   updateFocusedElement,
-  clearFocusedElement 
+  clearFocusedElement,
+  deleteFocusedBlock
 } from '../../state/actions';
 
 import FocusableContainer from '../universal/focusable-container';
@@ -53,6 +54,7 @@ function Canvas({
         key={block.uuid}
         block={block}
         onBlockClick={handleElementClick}
+        onDelete={deleteBlock}
         BlockElement={BlockElement}
         inPreviewMode={inPreviewMode}
         isFocused={focusedElement.id === block.uuid}
@@ -69,6 +71,10 @@ function Canvas({
       isFocused={focusedElement.id === 'dropzone-last'}
     />
   );
+
+  function deleteBlock() {
+    dispatch(deleteFocusedBlock());
+  }
 
   /**
    * Handlers for clicking canvas elements
