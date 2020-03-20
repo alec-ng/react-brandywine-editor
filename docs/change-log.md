@@ -1,5 +1,10 @@
 # 3.x.x
 
+## 3.0.3
+* Style changes - hoverable buttons, dropzone color, app bar placement
+* UX changes:
+    * moving blocks around doesn't affect focused element
+
 ## 3.02
 * Peer/dev dependency changes:
     * `react-slick@^0.25.2` `slick-carousel@^1.8.1`, for carousel change
