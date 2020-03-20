@@ -18,9 +18,8 @@ export const RelativeContainer = styled.div`
 `;
 export const StyledBtn = styled.button`
   position: absolute;
-  bottom: -3px;
+  bottom: -2px;
   right: -1px;
-  padding-bottom: 2px;
   border-radius: 15px;
   border-style: solid;
   border-width: 1px;
@@ -35,12 +34,12 @@ export const StyledBtn = styled.button`
       ? `color: ${color};
          border-color: ${color};
         `
-      : `color: rgba(0, 0, 0, 0.3);
+      : `color: rgba(0, 0, 0, 0.5);
          border-color: rgba(0, 0, 0, 0.3);
         `
   }}
   
-  &:hover {
+  &:hover, &:focus {
     border-color: ${props => props.color};
     color: ${props=> props.color};
   }
@@ -51,7 +50,7 @@ export const StyledBtn = styled.button`
  * DIV STYLES
  */
 export const ColourBlockDiv = styled.div`
-  height: 15px;
+  height: 17px;
   transition: border 0.25s;  
   margin: -1px;
   display: flex;
@@ -79,6 +78,9 @@ export const ColourBlockDiv = styled.div`
     & ${ColourBlock}:nth-child(2) {
       background-color: ${props => props.color};
     }
+  }
+  &:focus {
+    outline: none;
   }
 `;
 

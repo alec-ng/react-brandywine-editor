@@ -25,7 +25,7 @@ export default function DropzoneDiv({ setActiveState, isActive }) {
         onDragLeave={setInactive} 
         onMouseOver={setActive}
         onMouseOut={setInactive}
-        color="#64b5f6" 
+        color="#007bff" 
         isActive={isActive}
       >  
         <ColourBlock />
@@ -36,8 +36,10 @@ export default function DropzoneDiv({ setActiveState, isActive }) {
         type="button"
         onMouseOver={setActive}
         onMouseOut={setInactive}
+        onFocus={setActive}
+        onBlur={setInactive}
         isActive={isActive}
-        color="#64b5f6"
+        color="#007bff"
       >
         +
       </StyledBtn>

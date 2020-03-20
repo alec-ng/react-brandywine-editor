@@ -67,8 +67,6 @@ export function focusedBlockReducer(focusedBlock=null, action) {
       return action.elementType === 'block' ? action.uuid : null;
     case ADD_BLOCK:
       return action.newUuid;
-    case MOVE_BLOCK:
-      return action.targetBlockId;
     case CLEAR_FOCUSED_ELEMENT:
       return null;
     case DELETE_BLOCK:

@@ -6,6 +6,10 @@
     color: rgb(100, 100, 100);
  }
 
+ .brandywine-carousel-plugin div:focus {
+    outline: none;
+ }
+
  .brandywine-slick-container {
     margin: 0 25px;
  }

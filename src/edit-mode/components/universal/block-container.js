@@ -69,21 +69,21 @@ const ContentContainer = styled.div`
 `;
 const DeleteBtn = styled.button`
   position: absolute;
-  position: absolute;
+  padding: 5px 9px;
   top: -10px;
-  left: -15px;
-  border-radius: 15px;
-  font-size: 10px;
+  left: -12px;
+  border-radius: 12px;
+  font-size: 7px;
   z-index: 2;
   background-color: white;
-  border-color: rgba(0, 0, 0, 0.3);
-  color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0,0,0,0.3);
+  color: rgba(0,0,0,0.5);
   display: ${props => props.inPreviewMode ? 'none' : 'initial'};
 
   &:focus {
     box-shadow: none;
   }
-  &:hover {
+  &:hover, &:focus {
     background-color: #dc3545;
     border-color: #dc3545;
     color: white;
