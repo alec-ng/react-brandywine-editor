@@ -7,10 +7,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   colorPrimary: {
-    backgroundColor: "rgb(255, 255, 255)"
+    backgroundColor: "rgba(255, 255, 255, 0.75)"
   },
   root: {
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
   toolbarRoot: {
     paddingTop: '10px',
@@ -29,7 +29,7 @@ export default function DynamicAppBar({ children }) {
   const classes = useStyles();
 
   return (
-    <HideOnScroll>
+    
       <AppBar
         position="sticky"
         classes={{
@@ -44,7 +44,7 @@ export default function DynamicAppBar({ children }) {
           {children}
         </Toolbar>
       </AppBar>
-    </HideOnScroll>
+  
   )
 }
 
