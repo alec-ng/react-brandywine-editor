@@ -83,7 +83,7 @@ const DeleteBtn = styled.button`
   &:focus {
     box-shadow: none;
   }
-  &:hover {
+  &:hover, &:focus {
     background-color: #dc3545;
     border-color: #dc3545;
     color: white;

@@ -36,6 +36,8 @@ export default function DropzoneDiv({ setActiveState, isActive }) {
         type="button"
         onMouseOver={setActive}
         onMouseOut={setInactive}
+        onFocus={setActive}
+        onBlur={setInactive}
         isActive={isActive}
         color="#007bff"
       >

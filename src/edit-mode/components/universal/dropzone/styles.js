@@ -39,7 +39,7 @@ export const StyledBtn = styled.button`
         `
   }}
   
-  &:hover {
+  &:hover, &:focus {
     border-color: ${props => props.color};
     color: ${props=> props.color};
   }
@@ -78,6 +78,9 @@ export const ColourBlockDiv = styled.div`
     & ${ColourBlock}:nth-child(2) {
       background-color: ${props => props.color};
     }
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
