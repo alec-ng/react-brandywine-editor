@@ -76,7 +76,7 @@ const responsiveSliderSettings = [
 
 // ----- STYLING
 const ImageContainer = styled.div`
-  padding: 0 10px;
+  padding: 0 5px;
 `;
 
 const CarouselImage = styled.div`
