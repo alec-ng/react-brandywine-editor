@@ -11,6 +11,7 @@ export const BaseContainer = styled.div`
 `;
 
 export const CanvasContainer = styled.div`
+  position: relative;
   ${({ inPreviewMode }) => {
     if (!inPreviewMode) {
       return `
