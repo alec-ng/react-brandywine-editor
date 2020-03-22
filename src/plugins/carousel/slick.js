@@ -51,19 +51,19 @@ export default function SlickCarousel({
 function getResponsiveSettings(numCards) {
   return [
     {
-      breakpoint: 1024,
+      breakpoint: 992,
       settings: {
         slidesToShow: numCards > 3 ? 3 : numCards,
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 768,
       settings: {
         slidesToShow: numCards > 2 ? 2 : numCards,
       }
     },
     {
-      breakpoint: 480,
+      breakpoint: 576,
       settings: {
         slidesToShow: 1,
       }
