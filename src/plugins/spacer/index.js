@@ -1,6 +1,4 @@
-import SpacerElement, { VARIATION_INVERSE } from './spacer';
-
-const VARIATION_DEFAULT = "spacer_default";
+import SpacerElement, { VARIATION_INVERSE, VARIATION_DEFAULT } from './spacer';
 
 const Spacer = {
   name: "spacer",
