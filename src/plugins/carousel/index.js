@@ -23,8 +23,8 @@ const Carousel = {
       element: "input",
       type: "range",
       min: 300,
-      max: 800,
-      defaultValue: 500
+      max: 600,
+      defaultValue: 400
     },
     {
       name: "urlSources",

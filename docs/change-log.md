@@ -1,5 +1,13 @@
 # 3.x.x
 
+## 3.0.4
+* UI Changes:
+    * Carousel plugin responsive numCards
+    * Markdown plugin add responsive CSS
+    * Relative position root container
+    * Responsive spacer padding
+    * remove required proptypes from header properties
+
 ## 3.0.3
 * Style changes - hoverable buttons, dropzone color, app bar placement
 * UX changes:

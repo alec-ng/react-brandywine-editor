@@ -67,10 +67,10 @@ export const editorPropTypes = {
    */
   pageData: PropTypes.exact({
     header: PropTypes.exact({
-      title: PropTypes.string.isRequired,
-      subTitle: PropTypes.string.isRequired,
-      displayDate1: PropTypes.string.isRequired, // dates: yyyy-mm-dd format
-      displayDate2: PropTypes.string.isRequired
+      title: PropTypes.string,
+      subTitle: PropTypes.string,
+      displayDate1: PropTypes.string, // dates: yyyy-mm-dd format
+      displayDate2: PropTypes.string
     }),
     // The header and blocks properties are the same as the arguments 
     // supplied to the onChange prop

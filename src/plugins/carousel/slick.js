@@ -13,6 +13,7 @@ export default function SlickCarousel({
 }) {
   const cardHeight = responsiveHeights[viewport] || `${itemHeight}px`;
   const cardsToShow = numCards > 0 ? numCards : 1;
+  const responsiveSettings = getResponsiveSettings(cardsToShow)
 
   let imgList = [];
   srcList.forEach((url, index) => {
@@ -37,7 +38,7 @@ export default function SlickCarousel({
         slidesToShow={cardsToShow}
         slidesToScroll={1}
         arrows={true}
-        responsive={responsiveSliderSettings}
+        responsive={responsiveSettings}
         className="brandywine-slick-container"
       >
         {imgList}
@@ -47,32 +48,28 @@ export default function SlickCarousel({
 }
 
 // ----- CONFIG
-const responsiveSliderSettings = [
-  {
-    breakpoint: 1024,
-    settings: {
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      infinite: true,
-      dots: true
+function getResponsiveSettings(numCards) {
+  return [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: numCards > 3 ? 3 : numCards,
+      }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: numCards > 2 ? 2 : numCards,
+      }
+    },
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 1,
+      }
     }
-  },
-  {
-    breakpoint: 600,
-    settings: {
-      slidesToShow: 2,
-      slidesToScroll: 2,
-      initialSlide: 2
-    }
-  },
-  {
-    breakpoint: 480,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1
-    }
-  }
-]
+  ]
+}
 
 // ----- STYLING
 const ImageContainer = styled.div`

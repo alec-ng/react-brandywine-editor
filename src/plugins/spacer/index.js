@@ -1,9 +1,4 @@
-import React from "react";
-
-const VARIATION_DEFAULT = "spacer_default";
-const VARIATION_INVERSE = "inverse";
-const DEFAULT_SPACE_SIZE = 20;
-const DEFAULT_SPACE_UNIT = "px";
+import SpacerElement, { VARIATION_INVERSE, VARIATION_DEFAULT } from './spacer';
 
 const Spacer = {
   name: "spacer",
@@ -48,28 +43,3 @@ const Spacer = {
   defaultVariation: VARIATION_DEFAULT
 };
 export default Spacer;
-
-function SpacerElement(props) {
-  if (props.variation === VARIATION_INVERSE) {
-    if (props.isEditable) {
-      return (
-        <p className="text-center text-muted my-0">
-          This space will not exist in read mode.
-        </p>
-      );
-    }
-    return (
-      <div
-        style={{ marginTop: `-${DEFAULT_SPACE_SIZE}${DEFAULT_SPACE_UNIT}` }}
-      ></div>
-    );
-  }
-
-  // default
-  let spaceSize =
-    parseInt(props.variationAttrs[VARIATION_DEFAULT].factor) *
-    DEFAULT_SPACE_SIZE;
-  return (
-    <div style={{ paddingTop: `${spaceSize}${DEFAULT_SPACE_UNIT}` }}></div>
-  );
-}
