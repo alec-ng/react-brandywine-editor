@@ -2,27 +2,24 @@
 
 [![npm](https://img.shields.io/npm/v/react-brandywine-editor)](https://www.npmjs.com/package/react-brandywine-editor)
 
-A WYSIWYG-like block editor for creating blogging content. Try out a live demo [here](https://ld0lq.csb.app/) hosted on [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq), or check out a [live blog](https://alecng.ca/blog) using content produced and rendered with this library.
-
-__Features__
-
-- drag and drop UX
+A WYSIWYG-like block editor for creating blogging content. 
+- easily customizable (see [plugins](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/plugins.md))
+- separate read/edit exports
 - serializes to a JSON data structure
-- read-only mode
-- easily customizable (see the documentation on [plugins](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/plugins.md) for more details)
 
 ![react-brandywine-editor overview](https://github.com/alec-ng/react-brandywine-editor/blob/master/docs/features.gif?raw=true)
 
-### Examples
+### Demo
 
-See [codesandbox](https://codesandbox.io/s/react-brandywine-editor-ld0lq) or the [demo source file](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src/index.js).
+* [Standalone editor](https://alec-ng.github.io/react-brandywine-editor/demo/dist/)
+* [Live blog](https://alecng.ca/blog) using read mode with data produced with this library
 
-### Quickstart
+### Setup
 
 `npm install --save react-brandywine-editor`
 
 The library comes with two entry points that can be imported separately.
-* Readonly mode for static rendering: `import { BrandywineReader } from react-bradywine-editor/src/read-mode/index`
+* Read mode for static rendering: `import { BrandywineReader } from react-bradywine-editor/src/read-mode/index`
 * Editor mode: `import { BrandywineEditor } from react-bradywine-editor/src/edit-mode/index`
 
 The only dependency listed is `prop-types`. If your project intends to use editor mode, the following packages are listed as peer dependencies:
@@ -33,6 +30,8 @@ The library ships with a set of pre-written plugins. Some of them have peer depe
   * Carousel: `npm install react-slick@^0.25.2` `slick-carousel@^1.8.1`
   * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
   * Markdown: `npm install react-markdown@^4.3.1`
+
+See the [demo src/](https://github.com/alec-ng/react-brandywine-editor/blob/master/demo/src) for an example.
 
 ### API
 
@@ -103,8 +102,3 @@ const readModePropTypes = {
   plugins: editorPropTypes.plugins, // isRequired already
 }
 ```
-
-### Roadmap
-
-- Jest/enzyme testing, with or without storybook
-- attribute validation
