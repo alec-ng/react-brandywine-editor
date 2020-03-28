@@ -1,5 +1,14 @@
 # 3.x.x
 
+## 3.0.6
+* Styled demo with google fonts
+* Carousel plugin enhancements:
+    * remove dep on styled-components
+    * add styles to overlay buttons on image
+
+## 3.0.5
+* README update to gh-pages demo
+
 ## 3.0.4
 * UI Changes:
     * Carousel plugin responsive numCards
