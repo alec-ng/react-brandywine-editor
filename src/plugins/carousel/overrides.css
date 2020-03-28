@@ -17,6 +17,9 @@
    right: 10px;
 }
 
+.brandywine-carousel-plugin .slick-active {
+   transition: 0.5s padding-left ease-in-out; 
+}
 .brandywine-carousel-plugin .slick-active:not(.slick-current) {
    padding-left: 10px;
 }
