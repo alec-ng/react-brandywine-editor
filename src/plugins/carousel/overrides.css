@@ -1,15 +1,30 @@
 /**
- * Override styling from slick
- */ 
- .brandywine-carousel-plugin .slick-prev:before,
- .brandywine-carousel-plugin .slick-next:before {
-    color: rgb(100, 100, 100);
- }
+* Overrides to move arrows inside the carousel and provide 
+* spacing between images
+*/ 
+.brandywine-carousel-plugin .slick-prev:before,
+.brandywine-carousel-plugin .slick-next:before {
+   color: rgba(255, 255, 255);
+}
+.brandywine-carousel-plugin .slick-prev,
+.brandywine-carousel-plugin .slick-next {
+   z-index: 2;
+}
+.brandywine-carousel-plugin .slick-prev {
+   left: 10px;
+}
+.brandywine-carousel-plugin .slick-next {
+   right: 10px;
+}
 
- .brandywine-carousel-plugin div:focus {
-    outline: none;
- }
+.brandywine-carousel-plugin .slick-active:not(.slick-current) {
+   padding-left: 10px;
+}
 
- .brandywine-slick-container {
-    margin: 0 25px;
- }
+/**
+* Misc overrides
+*/
+.brandywine-carousel-plugin div:focus {
+   outline: none;
+}
+

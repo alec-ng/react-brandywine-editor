@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from "styled-components";
 import Slider from 'react-slick';
 
 import "slick-carousel/slick/slick.css";
@@ -19,9 +18,7 @@ export default function SlickCarousel({
   srcList.forEach((url, index) => {
     if (url.length) {
       imgList.push(
-        <ImageContainer key={index}>
-          <CarouselImage urlSource={url} height={cardHeight} />
-        </ImageContainer>
+        <CarouselImage urlSource={url} height={cardHeight} key={index} />
       );
     }
   });
@@ -72,17 +69,16 @@ function getResponsiveSettings(numCards) {
 }
 
 // ----- STYLING
-const ImageContainer = styled.div`
-  padding: 0 5px;
-`;
 
-const CarouselImage = styled.div`
-  height: ${props => props.height};
-  background: url(${props => props.urlSource});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+const CarouselImage = ({ height, urlSource }) =>
+  <div style={{
+    height: height,
+    background: `url(${urlSource})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
+  }} />
+  
 
 const viewport = (function() {
   const vw = Math.max(
