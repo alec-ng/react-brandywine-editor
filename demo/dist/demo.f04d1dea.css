@@ -437,7 +437,7 @@ h1, h2, h3, h4, h5, h6 {
    right: 10px;
 }
 
-.brandywine-carousel-plugin .slick-active {
+.brandywine-carousel-plugin .slick-slide {
    -webkit-transition: 0.5s padding-left ease-in-out;
    -o-transition: 0.5s padding-left ease-in-out;
    transition: 0.5s padding-left ease-in-out; 
@@ -455,4 +455,4 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-/*# sourceMappingURL=demo.7d457f15.css.map*/
+/*# sourceMappingURL=demo.f04d1dea.css.map*/
