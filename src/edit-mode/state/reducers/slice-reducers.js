@@ -5,12 +5,16 @@ import {
   UPDATE_HEADER,
   TOGGLE_PREVIEW_MODE,
   SWITCH_BLOCK_FOCUS,
-  MOVE_BLOCK,
   UPDATE_FOCUSED_ELEMENT,
   CLEAR_FOCUSED_ELEMENT
 } from '../actions';
 
-export function focusedElementTypeReducer(focusedElementType=null, focusedBlock, action) {
+export function focusedElementTypeReducer(
+  focusedElementType=null, 
+  focusedBlock, 
+  focusedDropzone,
+  action
+) {
   switch (action.type) {
     case UPDATE_FOCUSED_ELEMENT:
       return action.elementType;
@@ -19,16 +23,21 @@ export function focusedElementTypeReducer(focusedElementType=null, focusedBlock,
       return 'block';
     case CLEAR_FOCUSED_ELEMENT:
       return null;
+
+    // If we're deleting the current focused block, or deleting a block associated
+    // with the focused dropzone, then clear focused element
     case DELETE_BLOCK:
-      if (action.uuid === focusedBlock) {
-        return null;
-      }
+      const isCurrBlock = action.uuid === focusedBlock;
+      const isCurrDropzone = focusedDropzone 
+        && focusedDropzone.split('dropzone-')[1] === action.uuid;
+      return (isCurrBlock || isCurrDropzone) ? null : focusedElementType;
+      
     default:
       return focusedElementType;
   }
 }
 
-export function focusedDropzoneReducer(focusedDropzone=null, action) {
+export function focusedDropzoneReducer(focusedDropzone=null, action ) {
   switch (action.type) {
     case ADD_BLOCK:
     case SWITCH_BLOCK_FOCUS:
@@ -36,6 +45,13 @@ export function focusedDropzoneReducer(focusedDropzone=null, action) {
       return null;
     case UPDATE_FOCUSED_ELEMENT:
       return action.elementType === 'dropzone' ? action.uuid : null;
+
+    // if deleting a block associated with a dropzone that is in focus, remove it
+    case DELETE_BLOCK:
+      const doRemoveDropzone = focusedDropzone
+        && action.uuid === focusedDropzone.split('dropzone-')[1];
+      return doRemoveDropzone ? null : focusedDropzone;
+      
     default:
       return focusedDropzone;
   }

@@ -9,7 +9,12 @@ import {
   MOVE_BLOCK
 } from '../actions';
 
-export default function blocksReducer(blocks={}, focusedBlock, pluginMap, action) {
+export default function blocksReducer(
+  blocks={}, 
+  focusedBlock, 
+  pluginMap, 
+  action
+) {
   return produce(blocks, draft => {
     switch (action.type) {
       // block that was just moved is now the only new focused block
