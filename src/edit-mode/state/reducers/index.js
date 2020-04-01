@@ -15,12 +15,22 @@ export const mainReducer = (state = {}, action) => {
   // get next values for subset of state that is mutable 
   const updatedState = {
     header: headerReducer(state.header, action),
-    blocks: blocksReducer(state.blocks, state.focusedBlock, state.pluginMap, action),
-    blockOrder: blockOrderReducer(state.blockOrder, state.focusedBlock, action),
     focusedBlock: focusedBlockReducer(state.focusedBlock, action),
     focusedDropzone: focusedDropzoneReducer(state.focusedDropzone, action),
     inPreviewMode: previewModeReducer(state.inPreviewMode, action),
-    focusedElementType: focusedElementTypeReducer(state.focusedElementType, state.focusedBlock, action),
+    blockOrder: blockOrderReducer(state.blockOrder, action),
+    blocks: blocksReducer(
+      state.blocks, 
+      state.focusedBlock, 
+      state.pluginMap, 
+      action
+    ),
+    focusedElementType: focusedElementTypeReducer(
+      state.focusedElementType, 
+      state.focusedBlock, 
+      state.focusedDropzone,
+      action
+    ),
   };
 
   // merge next state values with static config values

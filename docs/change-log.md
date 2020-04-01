@@ -1,5 +1,9 @@
 # 3.x.x
 
+## 3.0.7
+* Fix null ref bug when deleting block and it's associated dropzone is focused
+* Fix padding transition on carousel to include all slick items
+
 ## 3.0.6
 * Styled demo with google fonts
 * Carousel plugin enhancements:

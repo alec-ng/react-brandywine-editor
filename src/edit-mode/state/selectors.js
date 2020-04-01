@@ -37,6 +37,7 @@ export function selectFocusedElement(state) {
     data = state.blocks[state.focusedBlock]
   }
   if (state.focusedElementType === 'header') {
+    id = 'header';
     data = state.header;
   }
 

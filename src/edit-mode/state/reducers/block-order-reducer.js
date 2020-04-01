@@ -4,7 +4,7 @@ import {
   MOVE_BLOCK,
 } from '../actions';
 
-export default function blockOrderReducer(blockOrder=[], focusedBlock, action) {
+export default function blockOrderReducer(blockOrder=[], action) {
   let newArray = blockOrder.slice();
   
   switch (action.type) {
