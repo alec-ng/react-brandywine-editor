@@ -13,6 +13,9 @@ export default function useFocusedElementRef(type, id) {
   }
 
   useEffect(() => {
+    if (!type && !id) {
+      return;
+    }
     const hash = getHash(type, id);
     if (cachedRefs[hash]) {
       return;
@@ -21,6 +24,7 @@ export default function useFocusedElementRef(type, id) {
     const newRef = { [hash]: document.querySelector(`[data-uuid="${selectorId}"]`) };
     setCachedRefs(Object.assign({}, cachedRefs, newRef));
   }, [type, id]);
-  
-  return type ? cachedRefs[getHash(type, id)] : null;
+  return (type && id) 
+    ? cachedRefs[getHash(type, id)] 
+    : null;
 }
