@@ -41,7 +41,7 @@ function BlockContainer({
             onClick={deleteBlock}
             inPreviewMode={inPreviewMode}
           >
-            x
+            X
           </DeleteBtn>
           <BlockElement
             isEditable={!inPreviewMode}
@@ -73,11 +73,11 @@ const DeleteBtn = styled.button`
   border-radius: 10px;
   height: 20px;
   width: 20px;
+  font-size: 10px;
   border-width: 1px;
   z-index: 2;
   background-color: rgb(250, 250, 250);
   border-color: rgba(0,0,0,0.3);
-  line-height: 0px;
   color: rgba(0,0,0,0.5);
   transition: border-color 0.1s, color 0.1s;
   display: ${props => props.inPreviewMode ? 'none' : 'initial'};

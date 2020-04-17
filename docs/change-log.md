@@ -1,5 +1,8 @@
 # 3.x.x
 
+## 3.0.9
+* Misc CSS fixes with button font size and popper carat color
+
 ## 3.0.8
 * Fix background colour issues specifying white when it should be transparent
 * Changed delete/add btns to be rgb(250, 250, 250)

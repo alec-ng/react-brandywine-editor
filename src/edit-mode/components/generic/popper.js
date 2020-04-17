@@ -13,7 +13,7 @@ const Arrow = styled.span`
     top: -10px;
     content: '';
     transform: rotate(45deg);
-    background: rgb(240, 240, 240);
+    background: rgb(245, 245, 245);
   }
 `;
 
@@ -28,7 +28,7 @@ export const PopperContainer = styled.div`
   width: 400px;
   max-height: 300px;
   overflow-y: auto;
-  background: rgb(250, 250, 250);
+  background: rgb(245, 245, 245);
   border-radius: 5px;
 
   &::-webkit-scrollbar {
