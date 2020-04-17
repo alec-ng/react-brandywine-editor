@@ -1,5 +1,10 @@
 # 3.x.x
 
+## 3.0.8
+* Fix background colour issues specifying white when it should be transparent
+* Changed delete/add btns to be rgb(250, 250, 250)
+* Changed header to be a sticky app bar that hides on scroll
+
 ## 3.0.7
 * Fix null ref bug when deleting block and it's associated dropzone is focused
 * Fix padding transition on carousel to include all slick items

@@ -28,7 +28,7 @@ export const PopperContainer = styled.div`
   width: 400px;
   max-height: 300px;
   overflow-y: auto;
-  background: rgb(240, 240, 240);
+  background: rgb(250, 250, 250);
   border-radius: 5px;
 
   &::-webkit-scrollbar {

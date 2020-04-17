@@ -48,6 +48,7 @@ export default function DropZone({
         inPreviewMode={inPreviewMode}
         isFocused={isFocused}
         dataset={dataset}
+        showOutline={false}
         renderCompareProp={isActive}
       >
         <div

@@ -37,12 +37,11 @@ function BlockContainer({
       >
         <ContentContainer>
           <DeleteBtn 
-            className="btn" 
             type="button"
             onClick={deleteBlock}
             inPreviewMode={inPreviewMode}
           >
-            X
+            x
           </DeleteBtn>
           <BlockElement
             isEditable={!inPreviewMode}
@@ -69,19 +68,23 @@ const ContentContainer = styled.div`
 `;
 const DeleteBtn = styled.button`
   position: absolute;
-  padding: 5px 9px;
   top: -10px;
   left: -12px;
-  border-radius: 12px;
-  font-size: 7px;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  border-width: 1px;
   z-index: 2;
-  background-color: white;
+  background-color: rgb(250, 250, 250);
   border-color: rgba(0,0,0,0.3);
+  line-height: 0px;
   color: rgba(0,0,0,0.5);
+  transition: border-color 0.1s, color 0.1s;
   display: ${props => props.inPreviewMode ? 'none' : 'initial'};
 
   &:focus {
     box-shadow: none;
+    outline: none;
   }
   &:hover, &:focus {
     background-color: #dc3545;

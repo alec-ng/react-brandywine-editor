@@ -21,9 +21,11 @@ export const StyledBtn = styled.button`
   bottom: -2px;
   right: -1px;
   border-radius: 15px;
+  height: 20px;
+  width: 20px;
   border-style: solid;
   border-width: 1px;
-  background: white;
+  background: rgb(250, 250, 250);
   outline: none;
   &:focus {
     outline: none;
@@ -52,6 +54,7 @@ export const StyledBtn = styled.button`
 export const ColourBlockDiv = styled.div`
   height: 17px;
   transition: border 0.25s;  
+  padding-right: 20px;
   margin: -1px;
   display: flex;
   flex-direction: column;
@@ -65,13 +68,13 @@ export const ColourBlockDiv = styled.div`
   }
   & ${ColourBlock}:nth-child(odd) {
     flex-grow: 4;
-    background-color: #FFF;
+    background-color: transparent;
   }
 
   & ${ColourBlock}:nth-child(2) {
     background-color: ${props => props.isActive 
       ? props.color 
-      : '#FFF' 
+      : 'transparent' 
     };
   }
   &:hover {
