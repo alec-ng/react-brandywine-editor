@@ -23,6 +23,7 @@ export const StyledBtn = styled.button`
   border-radius: 15px;
   height: 20px;
   width: 20px;
+  font-size: 10px;
   border-style: solid;
   border-width: 1px;
   background: rgb(250, 250, 250);
