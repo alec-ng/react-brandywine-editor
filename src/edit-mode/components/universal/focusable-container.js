@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const FocusDiv = styled.div`
-  ${({ inPreviewMode, isFocused }) => {
+  ${({ inPreviewMode, isFocused, showOutline }) => {
     if (inPreviewMode) {
       return `
         margin-bottom: 20px;
@@ -15,12 +15,14 @@ const FocusDiv = styled.div`
       border-width: 1px;
       border-color: rgba(0,0,0,0);
       border-style: dashed;
-      &:hover {
-      border-color: rgba(0,0,0,0.2);
-      }
     `
-    if (isFocused) {
-      styles += `border-color: rgba(0,0,0,0.2);`
+    if (showOutline) {
+      styles += `&:hover {
+        border-color: rgba(0,0,0,0.2);
+      }`;
+      if (isFocused) {
+        styles += `border-color: rgba(0,0,0,0.2);`
+      }
     }
     return styles;
   }}
@@ -34,10 +36,12 @@ function FocusableContainer({
   onClick,            // cb that receives the dataset supplied as props to this component
   inPreviewMode,
   isFocused,
+  showOutline = true,
   dataset,            // object that will be passed as argument to onClick callback
   renderCompareProp,  // optional: value used for equality comparison for component memoization
   children
 }) {
+  // pass through html dataset attributes if not in preview mode
   const htmlDatasetAttrs = dataset && !inPreviewMode
     ? Object.keys(dataset).reduce((attributes, attr) => {
         let dataProp = {};
@@ -46,9 +50,7 @@ function FocusableContainer({
       }, {})
     : {};
 
-  /**
-   * Call onClick handler, passing in dataset prop and ref
-   */
+  // onClick handler receives dataset as prop
   function handleOnClick(e) {
     onClick(dataset);
   }
@@ -57,6 +59,7 @@ function FocusableContainer({
     <FocusDiv
       inPreviewMode={inPreviewMode}
       onClick={handleOnClick}
+      showOutline={showOutline}
       isFocused={isFocused}
       {... htmlDatasetAttrs}
     >
