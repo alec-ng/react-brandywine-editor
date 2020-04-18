@@ -1,5 +1,12 @@
 # 3.x.x
 
+## 3.0.10
+* Update demo font size
+* Fix button padding on delete/create
+
+## 3.0.9
+* Misc CSS fixes with button font size and popper carat color
+
 ## 3.0.9
 * Misc CSS fixes with button font size and popper carat color
 
