@@ -1,5 +1,8 @@
 # 3.x.x
 
+## 3.0.11
+* empty -- previous publish caused issue
+
 ## 3.0.10
 * Update demo font size
 * Fix button padding on delete/create
