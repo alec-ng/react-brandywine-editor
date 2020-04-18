@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Inria+Serif:400,700|Open+Sans:400,700&display=swap");
 
-html, body {
+html {
+  font-size: 14px;
+}
+body, .container {
+  font-size: 1rem;
   font-family: "Open Sans", sans-serif;
 }
 

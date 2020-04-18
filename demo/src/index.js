@@ -17,40 +17,42 @@ import EmbeddedVideo from '../../src/plugins/embedded-video';
 import testData from './data';
 
 const plugins = [
-	Image, 
-	Markdown, 
-	CoverPhoto, 
-	Spacer, 
-	Carousel, 
-	HTMLVideo, EmbeddedVideo
+  Image, 
+  Markdown, 
+  CoverPhoto, 
+  Spacer, 
+  Carousel, 
+  HTMLVideo, EmbeddedVideo
 ];
 
 function Demo() {
-	function onEditorChange(header, blocks) {
-		// save this somewhere
-	}
+  
+  function onEditorChange(header, blocks) {
+  // save this somewhere
+  }
 
-	return (
-		<div className="container">
-			<BrandywineEditor
-				plugins={plugins}
-				onChange={onEditorChange}
-				fullHeight={true}
-				pageData={testData}
-			/>
-			{/* Readonly module for static rendering */}
-			{/* <div style={{marginBottom: '20px'}}>
-				<BrandywineReader
-					plugins={plugins}
-					pageData={testData}
-				/>
-			</div> */}
-		</div>
+  return (
+    <div className="container">
+      <BrandywineEditor
+        plugins={plugins}
+        onChange={onEditorChange}
+        fullHeight={true}
+        pageData={testData}
+      />
+      {/* Readonly module for static rendering */}
+      {/* <div style={{marginBottom: '20px'}}>
+            <BrandywineReader
+            plugins={plugins}
+            pageData={testData}
+            />
+      </div> */
+      }
+    </div>
   );
 }
 
 ReactDOM.render(
-  <Demo />,
-  document.querySelector('#demo')
+<Demo />,
+document.querySelector('#demo')
 );
 

@@ -20,6 +20,7 @@ export const StyledBtn = styled.button`
   position: absolute;
   bottom: -2px;
   right: -1px;
+  padding: 0;
   border-radius: 15px;
   height: 20px;
   width: 20px;
