@@ -27,7 +27,7 @@ export function MarkdownElement(props) {
 const Table = function(props) {
   return (
     <div className="table-responsive">
-      <table className="table table-striped table-hover">
+      <table className="table table-striped">
         {props.children}
       </table>
     </div>
