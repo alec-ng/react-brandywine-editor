@@ -29,7 +29,7 @@ export const TextOverlay = styled.p`
 export function CaptionContainer({ children }) {
   return (
     <div className="mt-1 text-center d-block d-md-none">
-      <figcaption className="mx-3 brandywine-responsive-caption">
+      <figcaption className="mx-3 pb-3 brandywine-responsive-caption">
         {children}
       </figcaption>
     </div>
