@@ -22,11 +22,10 @@ The library comes with two entry points that can be imported separately.
 * Read mode for static rendering: `import { BrandywineReader } from react-bradywine-editor/src/read-mode/index`
 * Editor mode: `import { BrandywineEditor } from react-bradywine-editor/src/edit-mode/index`
 
-The only dependency listed is `prop-types`. If your project intends to use editor mode, the following packages are listed as peer dependencies:
-* material-ui/core, styled-components, react, react-redux, bootstrap, immer, uuid
+The only dependency listed is `prop-types`. If your project intends to use editor mode, the peer dependencies are required:
 * `npm install @material-ui/core@^4.9.5 styled-components@^5.0.0 react@16.x react-redux@^7.2.0 redux@^4.0 bootstrap@^4.4.1 immer@^6.0.0 uuid@^7.0.1`
 
-The library ships with a set of pre-written plugins. Some of them have peer dependencies:
+The library ships with a set of pre-written plugins. _They rely on Bootstrap for styling_. Some of them also have peer dependencies:
   * Carousel: `npm install react-slick@^0.25.2` `slick-carousel@^1.8.1`
   * HTMLVideo: `npm install react-visibility-sensor@^5.1.1`
   * Markdown: `npm install react-markdown@^4.3.1`

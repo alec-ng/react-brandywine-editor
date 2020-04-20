@@ -40,19 +40,18 @@ function Demo() {
         pageData={testData}
       />
       {/* Readonly module for static rendering */}
-      {/* <div style={{marginBottom: '20px'}}>
-            <BrandywineReader
-            plugins={plugins}
-            pageData={testData}
-            />
-      </div> */
-      }
+      {/* <div style={{marginBottom: '2rem'}}>
+        <BrandywineReader
+          plugins={plugins}
+          pageData={testData}
+        />
+      </div> */}
     </div>
   );
 }
 
 ReactDOM.render(
-<Demo />,
-document.querySelector('#demo')
+  <Demo />,
+  document.querySelector('#demo')
 );
 

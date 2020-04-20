@@ -5,7 +5,7 @@ import React from 'react';
  */
 export default function FormGroupDiv({ children }) {
   return (
-    <div className="form-group" style={{ marginBottom: '5px' }}>
+    <div className="form-group" style={{ marginBottom: '0' }}>
       <label style={{ width: '100%' }}>
         {children}
       </label>

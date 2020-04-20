@@ -11,7 +11,7 @@ export function CarouselElement({ baseAttrs }) {
   const sizeClassName = `brandywine-width_${baseAttrs.size}`;
 
   return (
-    <div className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}>
+    <figure className={`${sizeClassName} mx-auto brandywine-responsive-x-padding`}>
       {isEmpty 
         ? <EmptyPlaceholder />
         : <SlickCarousel
@@ -20,12 +20,14 @@ export function CarouselElement({ baseAttrs }) {
             numCards={baseAttrs.numCards}
           />
       }
-       {baseAttrs.caption && (
-        <h6 className="mt-2 mx-3 mb-0 text-center brandywine-responsive-caption">
-          {baseAttrs.caption}
-        </h6>
-      )}
-    </div>
+       {baseAttrs.caption &&
+        <figcaption className="mx-3 mt-1 text-center">
+          <p className="mb-0 brandywine-responsive-caption">
+              {baseAttrs.caption}
+            </p>
+        </figcaption>
+      }
+    </figure>
   );
 }
 

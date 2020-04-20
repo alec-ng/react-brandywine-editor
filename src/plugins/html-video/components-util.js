@@ -15,14 +15,9 @@ export const OverlayContainer = styled.div`
 `;
 
 export const TextOverlay = styled.p`
-  font-size: 0.8rem;
-  
-  @media (min-width: 576px) {
-    font-size: 0.9rem;
-  }
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+  margin-bottom: 0;
+
   @media (min-width: 992px) {
     font-size: 1.1rem;
   }
@@ -31,12 +26,12 @@ export const TextOverlay = styled.p`
   }
 `;
 
-export function CaptionContainer(props) {
+export function CaptionContainer({ children }) {
   return (
-    <div className="mx-auto text-center d-block d-md-none">
-      <h6 className="mt-2 mx-3 mb-0 brandywine-responsive-caption">
-        {props.children}
-      </h6>
+    <div className="mt-1 text-center d-block d-md-none">
+      <figcaption className="mx-3 brandywine-responsive-caption">
+        {children}
+      </figcaption>
     </div>
   )
 }
@@ -49,42 +44,47 @@ const PlaceholderDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 `;
 export function Placeholder(props) {
   return (
     <PlaceholderDiv>
-      <h1 className="text-center">Provide a URL to a video file.</h1>
+      <h1>Provide a URL to a video file.</h1>
     </PlaceholderDiv>  
   )
 }
 
-export const AlignmentContainer = function(props) {
-  let responsivePadding =
-    props.sizeClassName !== "brandywine-width_stretch"
+export const AlignmentContainer = function({ sizeClassName, children }) {
+  const responsivePadding = sizeClassName !== "brandywine-width_stretch"
       ? "brandywine-responsive-x-padding"
       : "";
-
   return (
-    <div className={`${props.sizeClassName} ${responsivePadding} mx-auto`}>
-      {props.children}
-    </div>
+    <figure className={`${sizeClassName} ${responsivePadding} mx-auto`}>
+      {children}
+    </figure>
   );
 };
 
-export const VideoContainer = function(props) {
+export const VideoContainer = function({ children }) {
   return (
     <div
       className="embed-responsive embed-responsive-16by9"
       style={{ position: "relative" }}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
 
 export const HTMLVideo = function(props) {
-  let attributes = props.attributes || {
+  const attributes = props.attributes || {
     controls: true
   };
-  return <video src={props.urlSource} preload="metadata" {...attributes} />;
+  return (
+    <video 
+      src={props.urlSource} 
+      preload="metadata" 
+      {...attributes} 
+    />
+  );
 };

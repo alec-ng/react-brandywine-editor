@@ -13,7 +13,7 @@
   padding-left: 5%;
 }
 .brandywine-responsive-caption {
-  font-size: 85%;
+  font-size: 0.85rem;
 }
 .brandywine-responsive-header {
   font-size: 3rem;
@@ -37,7 +37,7 @@
     width: 50%;
   }
   .brandywine-responsive-caption {
-    font-size: 95%;
+    font-size: 0.9rem;
   }
   .brandywine-responsive-header {
     font-size: 4rem;
@@ -60,7 +60,7 @@
     padding-left: 0;
   }
   .brandywine-responsive-caption {
-    font-size: 100%;
+    font-size: 0.95rem;
   }
   .brandywine-responsive-header {
     font-size: 4.5rem;

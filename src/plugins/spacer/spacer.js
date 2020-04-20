@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DEFAULT_SPACE_SIZE = 20;
+const DEFAULT_SPACE_SIZE = 1.5; // rem
 
 export const VARIATION_DEFAULT = "spacer_default";
 export const VARIATION_INVERSE = "inverse";
@@ -20,7 +20,7 @@ export default function SpacerElement({
       );
     }
     return (
-      <div style={{ marginTop: `-${DEFAULT_SPACE_SIZE}px` }} />
+      <div style={{ marginTop: `-${DEFAULT_SPACE_SIZE}rem` }} />
     );
   }
 
@@ -30,7 +30,7 @@ export default function SpacerElement({
   const spaceSize = responsiveFactor * DEFAULT_SPACE_SIZE;
 
   return (
-    <div style={{ paddingTop: `${spaceSize}px` }} />
+    <div style={{ paddingTop: `${spaceSize}rem` }} />
   );
 }
 
