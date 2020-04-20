@@ -40,23 +40,18 @@ const Blockquote = function(props) {
 
 // Modified from https://codepen.io/johnfinkdesign/pen/gRvEGq
 const StyledBlockquote = styled.blockquote`
-  border-left: 2px solid rgb(255, 69, 0);
+  margin-left: 1rem;
   font-style: italic;
-  line-height: 1.8em;
-  padding: 1em 2em;
+  line-height: 1.25em;
+  padding: 1em;
   position: relative;
   transition: 0.2s border ease-in-out;
   z-index: 0;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -4px;
-    height: 2em;
-    background-color: white;
-    width: 5px;
-    margin-top: -1em;
+
+  & p {
+    margin-bottom: 0;
   }
+
   &:after {
     content: "\\201D";
     position: absolute;
@@ -64,7 +59,7 @@ const StyledBlockquote = styled.blockquote`
     font-size: 40px;
     top: 50%;
     left: -0.5em;
-    color: rgb(255, 69, 0);
+    color: inherit;
     font-style: normal;
     line-height: 1em;
     text-align: center;
@@ -98,26 +93,4 @@ const StyledBlockquote = styled.blockquote`
     margin-top: 1em;
   }
 
-  @media (max-width: 767px) {
-    border-top: 1px solid rgb(255, 69, 0);
-    border-left: none;
-    padding: 1.5em 1em;
-    &:before {
-      left: 50%;
-      top: 0;
-      height: 4px;
-      margin-top: -3px;
-      margin-left: -1em;
-      width: 2em;
-    }
-    &:after {
-      left: 50%;
-      top: 0;
-      margin-top: -0.33em;
-      margin-left: -0.5em;
-    }
-    & cite {
-      text-align: right;
-    }
-  }
 `;
