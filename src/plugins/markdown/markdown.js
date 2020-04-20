@@ -6,7 +6,12 @@ export const VARIATION_DEFAULT = "markdown_default";
 
 export function MarkdownElement(props) {
   return (
-    <div className="mx-auto brandywine-responsive-x-padding brandywine-width_large py-1">
+    <Container className="
+      brandywine-responsive-x-padding 
+      brandywine-width_large
+      mx-auto 
+      py-1 
+    ">
       {props.baseAttrs.source ? (
         <ReactMarkdown
           source={props.baseAttrs.source}
@@ -20,7 +25,7 @@ export function MarkdownElement(props) {
           Markdown will be rendered here
         </h6>
       )}
-    </div>
+    </Container>
   );
 }
 
@@ -38,17 +43,24 @@ const Blockquote = function(props) {
   return <StyledBlockquote>{props.children}</StyledBlockquote>;
 };
 
+const Container = styled.div`
+  & p:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 // Modified from https://codepen.io/johnfinkdesign/pen/gRvEGq
 const StyledBlockquote = styled.blockquote`
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   font-style: italic;
-  line-height: 1.25em;
+  line-height: 1.5em;
   padding: 1em;
+  padding-left: 1.5rem;
   position: relative;
   transition: 0.2s border ease-in-out;
   z-index: 0;
 
-  & p {
+  & p:last-child {
     margin-bottom: 0;
   }
 
