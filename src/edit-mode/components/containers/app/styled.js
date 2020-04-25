@@ -17,7 +17,7 @@ export const CanvasContainer = styled.div`
       return `
         padding-bottom: 350px;
         & div[role=tooltip] {
-          z-index: 2;
+          z-index: 3;
         }
       `
     }

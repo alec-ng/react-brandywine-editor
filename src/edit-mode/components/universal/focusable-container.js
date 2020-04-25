@@ -5,13 +5,13 @@ const FocusDiv = styled.div`
   ${({ inPreviewMode, isFocused, showOutline }) => {
     if (inPreviewMode) {
       return `
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
       `;
     }
     let styles = `
       cursor: pointer;
       min-height: 15px;
-      margin: 10px 0;
+      margin-bottom: 0.5rem;
       border-width: 1px;
       border-color: rgba(0,0,0,0);
       border-style: dashed;

@@ -1,6 +1,7 @@
 import React from 'react';
 
-const DEFAULT_SPACE_SIZE = 20;
+const DEFAULT_BOTTOM_MARGIN = 1.5; // rem
+const SPACER_BASE = 1; // rem
 
 export const VARIATION_DEFAULT = "spacer_default";
 export const VARIATION_INVERSE = "inverse";
@@ -20,35 +21,23 @@ export default function SpacerElement({
       );
     }
     return (
-      <div style={{ marginTop: `-${DEFAULT_SPACE_SIZE}px` }} />
+      <div style={{ marginTop: `-${DEFAULT_BOTTOM_MARGIN}rem` }} />
     );
   }
 
   // default
   const factor = parseInt(variationAttrs[VARIATION_DEFAULT].factor);
-  const responsiveFactor = getResponsiveFactor(factor);
-  const spaceSize = responsiveFactor * DEFAULT_SPACE_SIZE;
+  const spaceSize = factor * SPACER_BASE;
 
   return (
-    <div style={{ paddingTop: `${spaceSize}px` }} />
+    <div style={{ 
+      height: `${spaceSize}rem`, 
+      marginBottom:  `-${DEFAULT_BOTTOM_MARGIN}rem` 
+    }} />
   );
 }
 
 // ------- UTIL
-
-function getResponsiveFactor(originalFactor) {
-  const vw =  Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-  if (vw <= 576) {
-    return 1; // since min is already 1
-  }
-  if (vw <= 768) {
-    return originalFactor > 2 ? 2 : originalFactor;
-  }
-  if (vw <= 992) {
-    return originalFactor > 4 ? 4 : originalFactor;
-  }
-  return originalFactor;
-}
 
 const PlaceholderMsg = () => 
   <p className="text-center text-muted my-0">
