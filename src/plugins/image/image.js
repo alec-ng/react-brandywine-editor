@@ -8,7 +8,7 @@ export function ImageElement(props) {
   const isEmpty = !props.baseAttrs.urlSource
 
   return (
-    <figure className={`${sizeClassName} mx-auto text-center`} >
+    <figure className={`${sizeClassName} mx-auto text-center brandywine-responsive-x-padding`} >
       {isEmpty
         ? <Placeholder />
         : <Image baseAttrs={props.baseAttrs} />
