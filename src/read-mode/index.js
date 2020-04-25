@@ -32,7 +32,7 @@ function BrandywineReader({ pageData, plugins, customContent}) {
       const BlockElement = pluginMap[block.name].canvasElement;
       const styles =  i === pageData.blocks.length - 1
         ? {}
-        : { marginBottom: '20px' }
+        : { marginBottom: '1.5rem' }
       return (
         <div style={styles} key={i}>
           <BlockElement

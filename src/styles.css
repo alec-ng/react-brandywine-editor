@@ -13,7 +13,7 @@
   padding-left: 5%;
 }
 .brandywine-responsive-caption {
-  font-size: 85%;
+  font-size: 0.85rem;
 }
 .brandywine-responsive-header {
   font-size: 3rem;
@@ -28,16 +28,16 @@
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .brandywine-width_large {
-    width: 80%;
+    width: 70%;
   }
   .brandywine-width_medium {
-    width: 65%;
+    width: 60%;
   }
   .brandywine-width_small {
     width: 50%;
   }
   .brandywine-responsive-caption {
-    font-size: 95%;
+    font-size: 0.9rem;
   }
   .brandywine-responsive-header {
     font-size: 4rem;
@@ -47,7 +47,7 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .brandywine-width_large {
-    width: 65%;
+    width: 60%;
   }
   .brandywine-width_medium {
     width: 50%;
@@ -60,7 +60,7 @@
     padding-left: 0;
   }
   .brandywine-responsive-caption {
-    font-size: 100%;
+    font-size: 0.95rem;
   }
   .brandywine-responsive-header {
     font-size: 4.5rem;
@@ -70,7 +70,7 @@
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .brandywine-width_large {
-    width: 60%;
+    width: 50%;
   }
   .brandywine-width_medium {
     width: 40%;

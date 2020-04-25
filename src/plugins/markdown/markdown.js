@@ -6,7 +6,12 @@ export const VARIATION_DEFAULT = "markdown_default";
 
 export function MarkdownElement(props) {
   return (
-    <div className="mx-auto brandywine-responsive-x-padding brandywine-width_large py-1">
+    <Container className="
+      brandywine-responsive-x-padding 
+      brandywine-width_large
+      mx-auto 
+      py-1 
+    ">
       {props.baseAttrs.source ? (
         <ReactMarkdown
           source={props.baseAttrs.source}
@@ -20,14 +25,14 @@ export function MarkdownElement(props) {
           Markdown will be rendered here
         </h6>
       )}
-    </div>
+    </Container>
   );
 }
 
 const Table = function(props) {
   return (
     <div className="table-responsive">
-      <table className="table table-striped table-hover">
+      <table className="table table-striped">
         {props.children}
       </table>
     </div>
@@ -38,25 +43,27 @@ const Blockquote = function(props) {
   return <StyledBlockquote>{props.children}</StyledBlockquote>;
 };
 
+const Container = styled.div`
+  & p:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 // Modified from https://codepen.io/johnfinkdesign/pen/gRvEGq
 const StyledBlockquote = styled.blockquote`
-  border-left: 2px solid rgb(255, 69, 0);
+  margin-left: 0.5rem;
   font-style: italic;
-  line-height: 1.8em;
-  padding: 1em 2em;
+  line-height: 1.5em;
+  padding: 1em;
+  padding-left: 1.5rem;
   position: relative;
   transition: 0.2s border ease-in-out;
   z-index: 0;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -4px;
-    height: 2em;
-    background-color: white;
-    width: 5px;
-    margin-top: -1em;
+
+  & p:last-child {
+    margin-bottom: 0;
   }
+
   &:after {
     content: "\\201D";
     position: absolute;
@@ -64,7 +71,7 @@ const StyledBlockquote = styled.blockquote`
     font-size: 40px;
     top: 50%;
     left: -0.5em;
-    color: rgb(255, 69, 0);
+    color: inherit;
     font-style: normal;
     line-height: 1em;
     text-align: center;
@@ -98,26 +105,4 @@ const StyledBlockquote = styled.blockquote`
     margin-top: 1em;
   }
 
-  @media (max-width: 767px) {
-    border-top: 1px solid rgb(255, 69, 0);
-    border-left: none;
-    padding: 1.5em 1em;
-    &:before {
-      left: 50%;
-      top: 0;
-      height: 4px;
-      margin-top: -3px;
-      margin-left: -1em;
-      width: 2em;
-    }
-    &:after {
-      left: 50%;
-      top: 0;
-      margin-top: -0.33em;
-      margin-left: -0.5em;
-    }
-    & cite {
-      text-align: right;
-    }
-  }
 `;

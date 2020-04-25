@@ -1,5 +1,14 @@
 # 3.x.x
 
+# 3.0.13
+* repsonsive width changes
+* CSS refactor on rem
+* use figure/figcaption elements on cover photo, video, image, carousel, embedded video
+* change markdown blockquote styling
+
+## 3.0.11
+* empty -- previous publish caused issue
+
 ## 3.0.10
 * Update demo font size
 * Fix button padding on delete/create

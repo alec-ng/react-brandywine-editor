@@ -25,7 +25,7 @@ const RootContainer = styled.div`
 export const PopperContainer = styled.div`
   position: relative;
   padding: 10px 20px;
-  width: 400px;
+  width: 450px;
   max-height: 300px;
   overflow-y: auto;
   background: rgb(245, 245, 245);

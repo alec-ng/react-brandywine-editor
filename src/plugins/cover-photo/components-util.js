@@ -15,14 +15,9 @@ export const OverlayContainer = styled.div`
 `;
 
 export const TextOverlay = styled.p`
-  font-size: 0.8rem;
-  
-  @media (min-width: 576px) {
-    font-size: 0.9rem;
-  }
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+  margin-bottom: 0;
+
   @media (min-width: 992px) {
     font-size: 1.1rem;
   }
@@ -31,12 +26,12 @@ export const TextOverlay = styled.p`
   }
 `;
 
-export function CaptionContainer(props) {
+export function CaptionContainer({ children }) {
   return (
-    <div className="mx-auto text-center d-block d-md-none">
-      <h6 className="py-2 mx-3 mb-0 brandywine-responsive-caption">
-        {props.children}
-      </h6>
+    <div className="mt-1 text-center d-block d-md-none">
+      <figcaption className="mx-3 pb-3 brandywine-responsive-caption">
+        {children}
+      </figcaption>
     </div>
   )
 }
@@ -49,11 +44,13 @@ const PlaceholderDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 `;
-export function Placeholder(props) {
+
+export function Placeholder() {
   return (
     <PlaceholderDiv>
-      <h1 className="text-center">Provide a URL to an image.</h1>
+      <h1>Provide a URL to an image.</h1>
     </PlaceholderDiv>  
   )
 }

@@ -50,26 +50,6 @@ export default EmbeddedVideo;
 
 /////////////////////////////////////////////////////////////
 
-const AlignmentContainer = function(props) {
-  return (
-    <div
-      className={`${props.sizeClassName} mx-auto brandywine-responsive-x-padding`}
-    >
-      {props.children}
-    </div>
-  );
-};
-const PlaceholderDiv = styled.div`  
-  background-color: #ddd;
-  width: 100%;
-  min-height: 250px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-
 function EmbeddeVideoElement(props) {
   const sizeClassName = `brandywine-width_${props.baseAttrs.size}`;
 
@@ -107,3 +87,25 @@ function EmbeddeVideoElement(props) {
     </AlignmentContainer>
   );
 }
+
+/////////////////////////////////////////////////////////////
+
+const AlignmentContainer = function(props) {
+  return (
+    <figure
+      className={`${props.sizeClassName} mx-auto brandywine-responsive-x-padding`}
+    >
+      {props.children}
+    </figure>
+  );
+};
+
+const PlaceholderDiv = styled.div`  
+  background-color: #ddd;
+  width: 100%;
+  min-height: 250px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
