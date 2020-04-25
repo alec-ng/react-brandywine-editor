@@ -1,6 +1,6 @@
 {
   "name": "react-brandywine-editor",
-  "version": "3.0.12",
+  "version": "3.0.13",
   "description": "A React WYSIWYG block editor for creating blogging content",
   "main": "lib/index.js",
   "module": "es/index.js",

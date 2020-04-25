@@ -1,5 +1,11 @@
 # 3.x.x
 
+# 3.0.13
+* repsonsive width changes
+* CSS refactor on rem
+* use figure/figcaption elements on cover photo, video, image, carousel, embedded video
+* change markdown blockquote styling
+
 ## 3.0.11
 * empty -- previous publish caused issue
 
