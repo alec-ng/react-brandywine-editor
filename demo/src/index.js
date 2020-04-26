@@ -36,7 +36,6 @@ function Demo() {
       <BrandywineEditor
         plugins={plugins}
         onChange={onEditorChange}
-        fullHeight={true}
         pageData={testData}
       />
       {/* Readonly module for static rendering */}

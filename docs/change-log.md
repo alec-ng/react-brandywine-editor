@@ -1,5 +1,14 @@
 # 3.x.x
 
+# 3.1.0
+* plugin changes
+    * plugins receive setProps() callback
+    * attributes can specify `showInPopper`, default `true`
+* edit-mode api changes
+    * remove "full height", never used
+    * remove "showPluginDescription", never used
+* markdown plugin enhancement with react-mde
+
 # 3.0.13
 * repsonsive width changes
 * CSS refactor on rem

@@ -47,12 +47,6 @@ const editorPropTypes = {
    */
   onChange: PropTypes.func,
   
-  /**
-   * If readOnly = false, controls the sidebar/canvas height CSS property. 
-   * true: 100vh, false: 100%
-   * Default: false
-   */
-  fullHeight: PropTypes.bool,
   
   /**
    * Whether or not to show descriptive text beside plugins in editor mode	

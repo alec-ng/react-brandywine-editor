@@ -7,7 +7,6 @@ const defaultState = {
   // CONFIG properties: set once from user props
   showPluginDescription: true,
   onChange: null,
-  fullHeight: false,
   pluginOrder: [],
   pluginMap: {},
   
@@ -34,7 +33,6 @@ function generateStateFromProps({
   plugins, 
   onChange, 
   pageData, 
-  fullHeight, 
   showPluginDescription 
 }) {
   let initialState = {...defaultState};
@@ -50,7 +48,6 @@ function generateStateFromProps({
   initialState.pluginOrder = pluginOrder;
   initialState.onChange = onChange;
   initialState.showPluginDescription = showPluginDescription === false ? false : true;
-  initialState.fullHeight = fullHeight === true ? true : false;
 
   // Initialize default content
   if (pageData) {

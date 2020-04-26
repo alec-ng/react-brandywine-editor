@@ -11,13 +11,6 @@ export const editorPropTypes = {
   onChange: PropTypes.func.isRequired,
   
   /**
-   * Controls the sidebar/canvas height CSS property. 
-   * true: 100vh, false: 100%
-   * Default: false
-   */
-  fullHeight: PropTypes.bool,
-  
-  /**
    * Whether or not to show descriptive text beside plugins in editor mode	
    * default: true
    */

@@ -11,7 +11,7 @@ import { BaseContainer, CanvasContainer } from './styled';
  * Top level container component
  * Conditional rendering dependning on read vs preview vs edit mode
  */
-function App({ inPreviewMode, fullHeight, dispatch }) {
+function App({ inPreviewMode, dispatch }) {
   
   function togglePreview() {
     dispatch(togglePreviewMode());
@@ -25,7 +25,7 @@ function App({ inPreviewMode, fullHeight, dispatch }) {
           handlePreviewClick={togglePreview}
         />
       </AppBar>
-      <CanvasContainer inPreviewMode={inPreviewMode} fullHeight={fullHeight}>
+      <CanvasContainer inPreviewMode={inPreviewMode}>
         <Canvas />
       </CanvasContainer>
     </BaseContainer>
@@ -34,6 +34,5 @@ function App({ inPreviewMode, fullHeight, dispatch }) {
 
 const mapStateToProps = (state) => ({
   inPreviewMode: state.inPreviewMode,
-  fullHeight: state.fullHeight
 });
 export default connect(mapStateToProps)(App);

@@ -7,7 +7,6 @@ export function selectConfig(state) {
     showPluginDescription: state.showPluginDescription,
     onSave: state.onSave,
     onChange: state.onChange,
-    fullHeight: state.onChange,
     pluginOrder: state.pluginOrder,
     pluginMap: state.pluginMap
   };
