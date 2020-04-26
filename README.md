@@ -47,13 +47,6 @@ const editorPropTypes = {
    */
   onChange: PropTypes.func,
   
-  
-  /**
-   * Whether or not to show descriptive text beside plugins in editor mode	
-   * default: true
-   */
-  showPluginDescription: PropTypes.bool,
-  
   /**
    * Used to generate blocks on the canvas. Note it's an array of element types, not elements
    */

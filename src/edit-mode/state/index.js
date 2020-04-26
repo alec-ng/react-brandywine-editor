@@ -5,7 +5,6 @@ import { mainReducer } from "./reducers/index";
 
 const defaultState = {
   // CONFIG properties: set once from user props
-  showPluginDescription: true,
   onChange: null,
   pluginOrder: [],
   pluginMap: {},
@@ -33,7 +32,6 @@ function generateStateFromProps({
   plugins, 
   onChange, 
   pageData, 
-  showPluginDescription 
 }) {
   let initialState = {...defaultState};
 
@@ -47,7 +45,6 @@ function generateStateFromProps({
   initialState.pluginMap = pluginMap;
   initialState.pluginOrder = pluginOrder;
   initialState.onChange = onChange;
-  initialState.showPluginDescription = showPluginDescription === false ? false : true;
 
   // Initialize default content
   if (pageData) {
